@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Главная | Трекер Привычек</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans">
+    <!-- Навигационная панель -->
+    <header class="bg-white shadow sticky top-0 z-50">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center space-x-4">
+                    <a href="{% url 'home' %}" class="text-xl font-bold text-indigo-600 hover:text-indigo-800 transition">ХабитТрекер</a>
+                    <a href="{% url 'home' %}" class="text-gray-700 hover:text-indigo-600 transition font-medium">Главная</a>
+                    <a href="{% url 'profile' %}" class="text-gray-700 hover:text-indigo-600 transition font-medium">Профиль</a>
+                    <a href="/calendar" class="text-gray-700 hover:text-indigo-600 transition font-medium">Календарь</a>
+                </div>
+                <div>
+                    <a href="{% url 'logout' %}?next={% url 'welcome' %}" class="bg-indigo-600 text-white px-4 py-2 rounded-xl hover:bg-indigo-700 transition text-sm">Выйти</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Контент главной страницы -->
+    <main class="max-w-4xl mx-auto mt-10 px-4">
+        <h1 class="text-3xl font-bold mb-6 text-center">Добро пожаловать, {{ user.username }}!</h1>
+        <p class="text-gray-600 text-center mb-10">Отслеживайте привычки, устанавливайте цели и достигайте успеха каждый день.</p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="bg-white shadow-lg rounded-2xl p-6">
+                <h2 class="text-xl font-semibold text-indigo-600 mb-2">Ваши привычки</h2>
+                <p class="text-gray-600">Просматривайте и управляйте своими ежедневными привычками.</p>
+                <a href="/habits" class="mt-4 inline-block text-indigo-600 hover:underline">Перейти →</a>
+            </div>
+            <div class="bg-white shadow-lg rounded-2xl p-6">
+                <h2 class="text-xl font-semibold text-indigo-600 mb-2">Прогресс</h2>
+                <p class="text-gray-600">Следите за статистикой выполнения ваших целей.</p>
+                <a href="/calendar" class="mt-4 inline-block text-indigo-600 hover:underline">Перейти →</a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
