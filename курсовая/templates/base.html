@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Трекер Привычек{% endblock %}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .hero-pattern {
+            background-color: #f9fafb;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%234f46e5' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+    </style>
+    {% block extra_head %}{% endblock %}
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans min-h-screen flex flex-col">
+    {% if user.is_authenticated %}
+        <!-- Аутентифицированный пользователь - показываем навигацию -->
+        <header class="bg-white shadow sticky top-0 z-50">
+            <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between items-center h-16">
+                    <div class="flex items-center space-x-4">
+                        <a href="{% url 'home' %}" class="text-xl font-bold text-indigo-600 hover:text-indigo-800 transition">ХабитТрекер</a>
+                        <a href="{% url 'home' %}" class="text-gray-700 hover:text-indigo-600 transition font-medium">Главная</a>
+                        <a href="{% url 'profile' %}" class="text-gray-700 hover:text-indigo-600 transition font-medium">Профиль</a>
+                        <a href="/calendar" class="text-gray-700 hover:text-indigo-600 transition font-medium">Календарь</a>
+                    </div>
+                    <div>
+                        <a href="{% url 'logout' %}" class="bg-indigo-600 text-white px-4 py-2 rounded-xl hover:bg-indigo-700 transition text-sm">Выйти</a>
+                    </div>
+                </div>
+            </nav>
+        </header>
+    {% endif %}
+
+    <main class="flex-grow {% if not user.is_authenticated %}hero-pattern flex flex-col justify-center py-12 sm:px-6 lg:px-8{% endif %}">
+        {% block content %}{% endblock %}
+    </main>
+
+    {% if not user.is_authenticated %}
+        <!-- Неаутентифицированный пользователь - показываем футер с ссылками -->
+        <footer class="py-4 text-center text-sm text-gray-500">
+            <p>© {% now "Y" %} Трекер Привычек. Все права защищены.</p>
+        </footer>
+    {% endif %}
+
+    {% block extra_scripts %}{% endblock %}
+</body>
+</html>
