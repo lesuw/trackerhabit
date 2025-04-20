@@ -30,9 +30,24 @@ def welcome_view(request):
         return redirect('home')
     return render(request, 'accounts/welcome.html')
 
+
+
 @login_required
 def home_view(request):
-    return render(request, 'accounts/home.html', {'accounts': request.user})
+    tips = [
+        "Пейте воду утром для бодрости",
+        "Сделайте 5-минутную разминку перед работой",
+        "Запишите цель на день и держите перед глазами",
+        "Сформируйте привычку — начните с малого",
+        "Ограничьте соцсети перед сном для лучшего сна",
+        "Начните день с улыбки и сделайте его продуктивным"
+    ]
+    random_tip = random.choice(tips)
+
+    return render(request, 'accounts/home.html', {
+        'accounts': request.user,
+        'random_tip': random_tip
+    })
 
 def send_verification_email(email, verification_code):
     """
@@ -370,3 +385,4 @@ def change_password(request):
         form = PasswordChangeForm()
 
     return render(request, 'accounts/change_password.html', {'form': form})
+

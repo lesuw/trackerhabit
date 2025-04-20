@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{%load static%}
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
@@ -11,8 +11,7 @@
         <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
                 <div class="flex items-center space-x-4">
-                    <a href="/" class="text-xl font-bold text-indigo-600 hover:text-indigo-800 transition">ХабитТрекер</a>
-                    <a href="/" class="text-gray-700 hover:text-indigo-600 transition font-medium">Главная</a>
+                    <a href="/" class="text-xl font-bold text-indigo-600 hover:text-indigo-800 transition">HabitHub</a>
                     <a href="/habits" class="text-gray-700 hover:text-indigo-600 transition font-medium">Привычки</a>
                     <a href="/calendar" class="text-gray-700 hover:text-indigo-600 transition font-medium">Календарь</a>
                     <a href="/forum" class="text-gray-700 hover:text-indigo-600 transition font-medium">Форум</a>
@@ -44,19 +43,86 @@
             </a>
         </div>
 
-        <!-- Пример карточек -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div class="bg-white shadow-lg rounded-2xl p-6">
-                <h2 class="text-xl font-semibold text-indigo-600 mb-2">Ваши привычки</h2>
-                <p class="text-gray-600">Просматривайте и управляйте своими ежедневными привычками.</p>
-                <a href="/habits" class="mt-4 inline-block text-indigo-600 hover:underline">Перейти →</a>
+        <!-- Блок карточек + изображение в строку -->
+        <div class="flex flex-col md:flex-row gap-6">
+            <!-- Левая колонка с карточками -->
+            <div class="flex flex-col flex-1 gap-6">
+                <div class="bg-white shadow-lg rounded-2xl p-6">
+                    <h2 class="text-xl font-semibold text-indigo-600 mb-2">Ваши привычки</h2>
+                    <p class="text-gray-600">Просматривайте и управляйте своими ежедневными привычками.</p>
+                    <a href="/habits" class="mt-4 inline-block text-indigo-600 hover:underline">Перейти →</a>
+                </div>
+                <div class="bg-white shadow-lg rounded-2xl p-6">
+                    <h2 class="text-xl font-semibold text-indigo-600 mb-2">Прогресс</h2>
+                    <p class="text-gray-600">Следите за статистикой выполнения ваших целей.</p>
+                    <a href="/calendar" class="mt-4 inline-block text-indigo-600 hover:underline">Перейти →</a>
+                </div>
             </div>
-            <div class="bg-white shadow-lg rounded-2xl p-6">
-                <h2 class="text-xl font-semibold text-indigo-600 mb-2">Прогресс</h2>
-                <p class="text-gray-600">Следите за статистикой выполнения ваших целей.</p>
-                <a href="/calendar" class="mt-4 inline-block text-indigo-600 hover:underline">Перейти →</a>
+
+            <!-- Правая колонка с изображением -->
+            <div class="w-full md:w-80 flex-shrink-0">
+                <div class="relative bg-cover bg-center rounded-2xl shadow-xl p-6 flex items-end text-white text-lg leading-snug text-left"
+                     style="background-image: url('{% static 'images/image1.png' %}'); min-height: 115%;">
+                    <!-- Совет дня -->
+                    <div class="absolute top-6 left-0 right-0 px-4 py-3">
+                        <p class="text-white text-2xl font-serif font-semibold text-center drop-shadow-md">
+                            {{ random_tip }}
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
+<div class="text-center mt-20 mb-12 px-4">
+    <h2 class="text-4xl sm:text-5xl font-extrabold leading-tight">
+        Почему важно <span class="text-lime-600">осознанно<br>формировать привычки?</span>
+    </h2>
+    <p class="mt-6 text-lg sm:text-xl text-gray-800">
+        Привычки — это действия на автомате, <span class="font-semibold">без дополнительных усилий</span>. Осознаём мы их или нет,
+        они формируют нашу ежедневную реальность.
+        <span class="font-semibold">От совокупности привычек</span> зависит как долго и <span class="font-semibold">счастливо мы живем</span>.
+    </p>
+</div>
+        <!-- Блок с таблицами привычек -->
+        <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- Вредные привычки -->
+            <div class="bg-white rounded-2xl shadow p-6">
+                <h2 class="text-2xl font-bold text-orange-600 mb-6 text-center">Вредные привычки</h2>
+                <div class="space-y-4">
+                    <div class="grid grid-cols-2 gap-4 items-center">
+                        <div class="bg-gray-50 p-4 rounded-xl">Просмотр социальных сетей после сна и за едой</div>
+                        <div class="bg-orange-100 p-4 rounded-xl">Слабая концентрация, напряжение и тревога</div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4 items-center">
+                        <div class="bg-gray-50 p-4 rounded-xl">Большое количество сладкой и вредной еды в рационе</div>
+                        <div class="bg-orange-100 p-4 rounded-xl">Проблемы с кожей и лишним весом</div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4 items-center">
+                        <div class="bg-gray-50 p-4 rounded-xl">Недосып и малоподвижность</div>
+                        <div class="bg-orange-100 p-4 rounded-xl">Слабость, усталость, апатия</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Полезные привычки -->
+            <div class="bg-white rounded-2xl shadow p-6">
+                <h2 class="text-2xl font-bold text-green-600 mb-6 text-center">Полезные привычки</h2>
+                <div class="space-y-4">
+                    <div class="grid grid-cols-2 gap-4 items-center">
+                        <div class="bg-gray-50 p-4 rounded-xl">Постоянное чтение и изучение чего-то нового</div>
+                        <div class="bg-green-100 p-4 rounded-xl">Рост в карьере и в финансовых возможностях</div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4 items-center">
+                        <div class="bg-gray-50 p-4 rounded-xl">Система здорового питания и регулярный спорт</div>
+                        <div class="bg-green-100 p-4 rounded-xl">Стройное, подтянутое тело и уверенность в себе</div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4 items-center">
+                        <div class="bg-gray-50 p-4 rounded-xl">Налаженный сон, правильный отдых</div>
+                        <div class="bg-green-100 p-4 rounded-xl">Энергичность и стабильное эмоциональное состояние</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </main>
 </body>
 </html>
