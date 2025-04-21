@@ -19,9 +19,7 @@ from .forms import (
 )
 
 User = get_user_model()
-logger = logging.getLogger(__name__)
 
-# Добавляем функцию anonymous_required
 def anonymous_required(user):
     return not user.is_authenticated
 
@@ -29,8 +27,6 @@ def welcome_view(request):
     if request.user.is_authenticated:
         return redirect('home')
     return render(request, 'accounts/welcome.html')
-
-
 
 @login_required
 def home_view(request):
@@ -54,17 +50,17 @@ def send_verification_email(email, verification_code):
     Отправляет код верификации на email или выводит в консоль в зависимости от DEBUG_EMAIL_MODE
     """
     if DEBUG_EMAIL_MODE:
-        logger.debug(f'DEBUG_EMAIL_MODE: Код верификации для {email}: {verification_code}')
+        print(f'DEBUG_EMAIL_MODE: Код верификации для {email}: {verification_code}')
         return True
 
     try:
-        subject = 'Код верификации для ХабитТрекер'
+        subject = 'Код верификации для HabitHub'
         message = f'Ваш код верификации: {verification_code} (действителен 5 минут)'
         from_email = settings.DEFAULT_FROM_EMAIL
         recipient_list = [email]
         html_message = f'''
             <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-                <h2 style="color: #4f46e5;">Подтверждение входа в ХабитТрекер</h2>
+                <h2 style="color: #4f46e5;">Подтверждение входа в HabitHub</h2>
                 <p>Ваш код верификации: <strong style="font-size: 1.2em;">{verification_code}</strong></p>
                 <p>Код действителен в течение 5 минут.</p>
                 <p style="margin-top: 30px; color: #6b7280;">Если вы не запрашивали этот код, проигнорируйте это письмо.</p>
@@ -80,22 +76,16 @@ def send_verification_email(email, verification_code):
             html_message=html_message
         )
 
-        if result == 1:
-            logger.info(f'Письмо с кодом верификации успешно отправлено на {email}')
-            return True
-        else:
-            logger.error(f'Не удалось отправить письмо на {email}. Результат: {result}')
-            return False
+        return result == 1
 
     except Exception as e:
-        logger.error(f'Ошибка отправки письма на {email}: {str(e)}', exc_info=True)
+        print(f'Ошибка отправки письма на {email}: {str(e)}')
         return False
 
 def generate_verification_code():
     """Генерирует 6-значный код верификации"""
     return str(random.randint(100000, 999999))
 
-# Заменяем dashboard на home в декораторе
 @user_passes_test(anonymous_required, login_url='home')
 def register_view(request):
     if request.method == 'POST':
@@ -106,16 +96,12 @@ def register_view(request):
             user.verification_code_sent_at = timezone.now()
             user.save()
 
-            # Логируем попытку отправки кода
-            logger.info(f"Попытка отправки кода верификации для нового пользователя {user.email}")
-
             if send_verification_email(user.email, user.verification_code):
                 request.session['user_id'] = user.id
                 messages.info(request, 'На вашу почту отправлен код подтверждения.')
                 return redirect('verify')
             else:
                 messages.error(request, 'Не удалось отправить код подтверждения. Пожалуйста, попробуйте позже.')
-                logger.error(f"Не удалось отправить код верификации для пользователя {user.email}")
                 return redirect('register')
     else:
         form = RegisterForm()
@@ -136,17 +122,13 @@ def login_view(request):
                 user.verification_code_sent_at = timezone.now()
                 user.save()
 
-                logger.info(f"Попытка отправки кода верификации для пользователя {user.email}")
-
                 if send_verification_email(user.email, user.verification_code):
                     request.session['user_id'] = user.id
                     return redirect('verify')
                 else:
                     messages.error(request, 'Не удалось отправить код подтверждения. Пожалуйста, попробуйте позже.')
-                    logger.error(f"Не удалось отправить код верификации для пользователя {user.email}")
                     return redirect('login')
             else:
-                logger.warning(f"Неудачная попытка входа для пользователя {username}")
                 messages.error(request, 'Неверное имя пользователя или пароль.')
     else:
         form = LoginForm()
@@ -157,7 +139,6 @@ def resend_code(request):
     user_id = request.session.get('user_id')
     if not user_id:
         messages.error(request, 'Сессия истекла. Пожалуйста, войдите снова.')
-        logger.warning("Попытка повторной отправки кода без user_id в сессии")
         return redirect('login')
 
     try:
@@ -168,42 +149,31 @@ def resend_code(request):
         user.verification_code_sent_at = timezone.now()
         user.save()
 
-        logger.info(f"Повторная отправка кода верификации для пользователя {user.email}")
-
         if send_verification_email(user.email, new_code):
             messages.success(request, 'Новый код отправлен на вашу почту.')
             return redirect('verify')
         else:
             messages.error(request, 'Не удалось отправить код подтверждения. Пожалуйста, попробуйте позже.')
-            logger.error(f"Не удалось отправить повторный код верификации для пользователя {user.email}")
             return redirect('verify')
 
     except Exception as e:
-        logger.error(f'Ошибка при повторной отправке кода: {str(e)}', exc_info=True)
         messages.error(request, 'Произошла ошибка. Пожалуйста, попробуйте снова.')
         return redirect('login')
-
 
 @user_passes_test(anonymous_required, login_url='home')
 def verify_view(request):
     user_id = request.session.get('user_id')
-    print(f"DEBUG: user_id from session: {user_id}")  # Добавлено
     if not user_id:
         messages.error(request, 'Сессия истекла. Пожалуйста, войдите снова.')
-        logger.error("Нет user_id в сессии при попытке верификации")
         return redirect('login')
 
     try:
         user = get_object_or_404(User, id=user_id)
-        logger.info(f"Начало верификации для пользователя {user.email}, код: {user.verification_code}")
-        print(f"DEBUG: Found user: {user.email}")  # Добавлено
-        print(f"DEBUG: Verification code: {user.verification_code}")  # Добавлено
         now = timezone.now()
         code_expired = (now - user.verification_code_sent_at) > timedelta(
             minutes=5) if user.verification_code_sent_at else True
 
         if code_expired or user.verification_attempts >= 3:
-            logger.warning(f"Код истек или превышены попытки для пользователя {user.email}")
             user.verification_code = None
             user.save()
             code_expired = True
@@ -212,10 +182,8 @@ def verify_view(request):
             form = VerificationForm(request.POST)
             if form.is_valid():
                 code = form.cleaned_data['verification_code']
-                logger.info(f"Попытка верификации с кодом: {code} (ожидается: {user.verification_code})")
 
                 if code_expired:
-                    logger.warning("Попытка использовать просроченный код")
                     return render(request, 'accounts/verify.html', {
                         'form': form,
                         'remaining_attempts': 0,
@@ -224,7 +192,6 @@ def verify_view(request):
                     })
 
                 if user.verification_code == code:
-                    logger.info("Код верификации совпадает")
                     user.reset_verification_attempts()
                     login(request, user)
                     del request.session['user_id']
@@ -233,7 +200,6 @@ def verify_view(request):
                     user.verification_attempts += 1
                     user.save()
                     remaining_attempts = 3 - user.verification_attempts
-                    logger.warning(f"Неверный код верификации. Осталось попыток: {remaining_attempts}")
 
                     if user.verification_attempts >= 3:
                         user.verification_code = None
@@ -251,7 +217,6 @@ def verify_view(request):
                             'error_message': f'Неверный код. Осталось попыток: {remaining_attempts}'
                         })
             else:
-                logger.warning("Невалидная форма верификации")
                 return render(request, 'accounts/verify.html', {
                     'form': form,
                     'remaining_attempts': 3 - user.verification_attempts,
@@ -259,7 +224,6 @@ def verify_view(request):
                 })
         else:
             form = VerificationForm()
-            logger.info(f"Отображение формы верификации, код: {user.verification_code}")
             return render(request, 'accounts/verify.html', {
                 'form': form,
                 'remaining_attempts': 3 - user.verification_attempts if not code_expired else 0,
@@ -267,7 +231,6 @@ def verify_view(request):
             })
 
     except Exception as e:
-        logger.error(f'Ошибка при верификации: {str(e)}', exc_info=True)
         messages.error(request, 'Произошла ошибка. Пожалуйста, попробуйте снова.')
         return redirect('login')
 
@@ -289,18 +252,14 @@ def forgot_password(request):
                 user.verification_code_sent_at = timezone.now()
                 user.save()
 
-                logger.info(f"Попытка отправки кода сброса пароля для {email}")
-
                 if send_verification_email(email, verification_code):
                     request.session['reset_user_id'] = user.id
                     messages.success(request, 'Код подтверждения отправлен на вашу почту.')
                     return redirect('reset_password')
                 else:
                     messages.error(request, 'Не удалось отправить код подтверждения. Пожалуйста, попробуйте позже.')
-                    logger.error(f"Не удалось отправить код сброса пароля для {email}")
                     return redirect('forgot_password')
             else:
-                logger.warning(f"Попытка сброса пароля для несуществующего email: {email}")
                 messages.error(request, 'Пользователь с таким email не найден.')
     else:
         form = ResetPasswordForm()
@@ -385,4 +344,3 @@ def change_password(request):
         form = PasswordChangeForm()
 
     return render(request, 'accounts/change_password.html', {'form': form})
-
