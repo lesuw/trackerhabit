@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="notes-container">
+    <h2 class="section-title">Редактирование записи</h2>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="submit-btn">Сохранить изменения</button>
+        <a href="{% url 'notes' %}" class="cancel-btn">Отмена</a>
+    </form>
+</div>
+{% endblock %}

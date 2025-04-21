@@ -1,0 +1,878 @@
+{% load static %}
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Заметки | Трекер привычек</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        /* Основные стили страницы заметок */
+        .notes-main {
+            max-width: 56rem;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        /* Секции */
+        .mood-section {
+            background-color: white;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+            border-radius: 1rem;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #4f46e5;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        /* Форма добавления заметки */
+        .notes-form {
+            margin-top: 2rem;
+        }
+
+        .notes-form textarea {
+            width: 100%;
+            height: 120px;
+            padding: 1rem;
+            border: 1px solid #e5e7eb;
+            border-radius: 0.75rem;
+            font-family: inherit;
+            resize: none;
+            margin-bottom: 1rem;
+            transition: all 0.2s;
+        }
+
+        .notes-form textarea:focus {
+            outline: none;
+            border-color: #4f46e5;
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+        }
+
+        /* Кнопки */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.75rem;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+        }
+
+        .btn-primary {
+            background-color: #4f46e5;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #4338ca;
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid #e5e7eb;
+            color: #4b5563;
+        }
+
+        .btn-outline:hover {
+            background-color: #f3f4f6;
+        }
+
+        .btn-danger {
+            background-color: #fee2e2;
+            color: #dc2626;
+        }
+
+        .btn-danger:hover {
+            background-color: #fecaca;
+        }
+
+        .btn-icon {
+            padding: 0.5rem;
+            border-radius: 50%;
+            min-width: 36px;
+            min-height: 36px;
+        }
+
+        /* Карточка заметки */
+        .note-card {
+            background-color: white;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            border-left: 4px solid #4f46e5;
+            position: relative;
+            transition: all 0.2s;
+        }
+
+        .note-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .note-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .note-mood {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 500;
+        }
+
+        .note-content {
+            color: #1f2937;
+            line-height: 1.6;
+            margin: 1rem 0;
+            white-space: pre-line;
+        }
+
+        .note-footer {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1rem;
+            padding-top: 0.5rem;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .note-date {
+            color: #6b7280;
+            font-size: 0.75rem;
+        }
+
+        .edited-date {
+            font-size: 0.75rem;
+            color: #9ca3af;
+            font-style: italic;
+        }
+
+        /* Действия с заметкой */
+        .note-actions {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        /* Форма редактирования */
+        .edit-form-container {
+            display: none;
+            margin-top: 1rem;
+        }
+
+        .edit-form-container.active {
+            display: block;
+        }
+
+        .edit-form textarea {
+            width: 100%;
+            height: 120px;
+            padding: 1rem;
+            border: 1px solid #e5e7eb;
+            border-radius: 0.75rem;
+            font-family: inherit;
+            resize: none;
+            margin-bottom: 1rem;
+        }
+
+        /* Фильтры */
+        .filters-container {
+            background-color: #f9fafb;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .filter-group label {
+            font-size: 0.875rem;
+            color: #4b5563;
+            font-weight: 500;
+        }
+
+        .filter-controls {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-select {
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            border: 1px solid #e5e7eb;
+            background-color: white;
+            min-width: 180px;
+        }
+
+        .filter-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            background-color: white;
+            border: 1px solid #e5e7eb;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .filter-btn:hover {
+            background-color: #f3f4f6;
+        }
+
+        .filter-btn.active {
+            background-color: #eef2ff;
+            border-color: #4f46e5;
+            color: #4f46e5;
+        }
+
+        /* Смайлики настроения */
+        .mood-selector {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            margin: 1.5rem 0;
+        }
+
+        .mood-option {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            width: 80px;
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+        }
+
+        .mood-option:hover {
+            background-color: #f3f4f6;
+            transform: translateY(-3px);
+        }
+
+        .mood-option.selected {
+            background-color: #eef2ff;
+            transform: scale(1.05);
+        }
+
+        .mood-emoji {
+            width: 48px;
+            height: 48px;
+            margin-bottom: 0.5rem;
+            filter: grayscale(100%);
+            opacity: 0.7;
+            transition: all 0.3s;
+        }
+
+        .mood-emoji-sm {
+            width: 24px;
+            height: 24px;
+        }
+
+        .mood-option.selected .mood-emoji {
+            filter: grayscale(0%);
+            opacity: 1;
+        }
+
+        .mood-label {
+            font-size: 0.875rem;
+            color: #6b7280;
+            text-align: center;
+        }
+
+        .mood-option.selected .mood-label {
+            color: #4f46e5;
+            font-weight: 500;
+        }
+
+        /* Пагинация */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 2rem;
+        }
+
+        .pagination a, .pagination span {
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+        }
+
+        .pagination a {
+            background-color: #e5e7eb;
+            color: #4b5563;
+            transition: background-color 0.2s;
+        }
+
+        .pagination a:hover {
+            background-color: #d1d5db;
+        }
+
+        .pagination .current {
+            background-color: #4f46e5;
+            color: white;
+        }
+
+        /* Состояния */
+        .empty-state {
+            text-align: center;
+            padding: 2rem;
+            color: #6b7280;
+        }
+
+        /* Модальное окно */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            max-width: 500px;
+            width: 90%;
+        }
+
+        .modal-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 640px) {
+            .mood-selector {
+                gap: 0.5rem;
+            }
+
+            .mood-option {
+                width: 60px;
+            }
+
+            .mood-emoji {
+                width: 36px;
+                height: 36px;
+            }
+        }
+
+        /* Уведомления */
+        .messages-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            max-width: 400px;
+        }
+
+        .message {
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 0.5rem;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            animation: slideIn 0.3s ease-out;
+        }
+
+        .message.success {
+            background-color: #10b981;
+        }
+
+        .message.error {
+            background-color: #ef4444;
+        }
+
+        .close-message {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.25rem;
+            cursor: pointer;
+            margin-left: 1rem;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Навигационная панель -->
+    <header>
+        <nav>
+            <div class="nav-container">
+                <div class="nav-links">
+                    <a href="/" class="logo">HabitHub</a>
+                    <a href="/habits" class="nav-link">Привычки</a>
+                    <a href="/calendar" class="nav-link">Календарь</a>
+                    <a href="/forum" class="nav-link">Форум</a>
+                    <a href="/notes" class="nav-link active">Заметки</a>
+                    <a href="/faq" class="nav-link">FAQ</a>
+                    <a href="/rating" class="nav-link">Рейтинг</a>
+                </div>
+                <div class="user-actions">
+                    <a href="/profile" class="nav-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                        </svg>
+                    </a>
+                    <a href="{% url 'logout' %}?next={% url 'welcome' %}" class="logout-btn">Выйти</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Основной контент страницы заметок -->
+    <main class="notes-main">
+        {% if messages %}
+        <div class="messages-container">
+            {% for message in messages %}
+            <div class="message {{ message.tags }}">
+                {{ message }}
+                <button class="close-message">&times;</button>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <div class="mood-section">
+            <h1 class="section-title">Ваши заметки</h1>
+
+            <!-- Фильтры -->
+            <div class="filters-container">
+                <h3>Фильтры заметок</h3>
+                <form method="get" id="filter-form">
+                    <div class="filter-group">
+                        <label>Какое у вас настроение?</label>
+                        <div class="filter-controls">
+                            <button type="button" class="filter-btn {% if not request.GET.mood %}active{% endif %}"
+                                    onclick="setMoodFilter('')">
+                                <i class="material-icons">all_inclusive</i>
+                                Все
+                            </button>
+                            <button type="button" class="filter-btn {% if request.GET.mood == 'ecstatic' %}active{% endif %}"
+                                    onclick="setMoodFilter('ecstatic')">
+                                <img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f604.svg" alt="Отлично" class="mood-emoji-sm">
+                                Отлично
+                            </button>
+                            <button type="button" class="filter-btn {% if request.GET.mood == 'happy' %}active{% endif %}"
+                                    onclick="setMoodFilter('happy')">
+                                <img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f642.svg" alt="Хорошо" class="mood-emoji-sm">
+                                Хорошо
+                            </button>
+                            <button type="button" class="filter-btn {% if request.GET.mood == 'neutral' %}active{% endif %}"
+                                    onclick="setMoodFilter('neutral')">
+                                <img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f610.svg" alt="Нормально" class="mood-emoji-sm">
+                                Нормально
+                            </button>
+                            <button type="button" class="filter-btn {% if request.GET.mood == 'sad' %}active{% endif %}"
+                                    onclick="setMoodFilter('sad')">
+                                <img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f641.svg" alt="Плохо" class="mood-emoji-sm">
+                                Плохо
+                            </button>
+                            <button type="button" class="filter-btn {% if request.GET.mood == 'angry' %}active{% endif %}"
+                                    onclick="setMoodFilter('angry')">
+                                <img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f620.svg" alt="Ужасно" class="mood-emoji-sm">
+                                Ужасно
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="filter-group">
+                        <label for="date-filter">Дата:</label>
+                        <div class="filter-controls">
+                            <input type="date" id="date-filter" name="date" value="{{ request.GET.date }}"
+                                   class="filter-select" onchange="submitFilterForm()">
+                        </div>
+                    </div>
+
+                    <div class="filter-controls">
+                        <button type="button" class="btn btn-outline" onclick="resetFilters()">
+                            <i class="material-icons">refresh</i>
+                            Сбросить фильтры
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Форма добавления заметки -->
+            <div class="notes-form">
+                <h2>Новая заметка</h2>
+                <form method="POST" id="note-form">
+                    {% csrf_token %}
+                    <input type="hidden" name="add_note" value="1">
+                    <h3>Какое у вас настроение?</h3>
+                    <div class="mood-selector">
+                        <div class="mood-option" data-mood="ecstatic">
+                            <img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f604.svg" alt="Отлично" class="mood-emoji">
+                            <span class="mood-label">Отлично</span>
+                        </div>
+                        <div class="mood-option" data-mood="happy">
+                            <img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f642.svg" alt="Хорошо" class="mood-emoji">
+                            <span class="mood-label">Хорошо</span>
+                        </div>
+                        <div class="mood-option" data-mood="neutral">
+                            <img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f610.svg" alt="Нормально" class="mood-emoji">
+                            <span class="mood-label">Нормально</span>
+                        </div>
+                        <div class="mood-option" data-mood="sad">
+                            <img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f641.svg" alt="Плохо" class="mood-emoji">
+                            <span class="mood-label">Плохо</span>
+                        </div>
+                        <div class="mood-option" data-mood="angry">
+                            <img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f620.svg" alt="Ужасно" class="mood-emoji">
+                            <span class="mood-label">Ужасно</span>
+                        </div>
+                    </div>
+                    <input type="hidden" name="mood" id="mood-input" required>
+                    <label for="note-text">Ваши мысли:</label>
+                    <textarea id="note-text" name="notes" placeholder="Опишите, что повлияло на ваше настроение сегодня..." required></textarea>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="material-icons">save</i>
+                        Сохранить заметку
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Список заметок -->
+        <div class="mood-section">
+            <h2 class="section-title">Мои заметки</h2>
+
+            <div class="notes-list">
+                {% for entry in page_obj %}
+                <div class="note-card" id="note-{{ entry.id }}">
+                    <div class="note-actions">
+                        <button class="btn btn-icon" onclick="startEditNote({{ entry.id }})" title="Редактировать">
+                            <i class="material-icons">edit</i>
+                        </button>
+                        <button class="btn btn-icon btn-danger" onclick="confirmDeleteNote({{ entry.id }})" title="Удалить">
+                            <i class="material-icons">delete</i>
+                        </button>
+                    </div>
+
+                    <div class="note-view" id="note-view-{{ entry.id }}">
+                        <div class="note-header">
+                            <div class="note-mood">
+                                {% if entry.mood == 'ecstatic' %}
+                                    <img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f604.svg" alt="Отлично" class="mood-emoji-sm">
+                                {% elif entry.mood == 'happy' %}
+                                    <img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f642.svg" alt="Хорошо" class="mood-emoji-sm">
+                                {% elif entry.mood == 'neutral' %}
+                                    <img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f610.svg" alt="Нормально" class="mood-emoji-sm">
+                                {% elif entry.mood == 'sad' %}
+                                    <img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f641.svg" alt="Плохо" class="mood-emoji-sm">
+                                {% elif entry.mood == 'angry' %}
+                                    <img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f620.svg" alt="Ужасно" class="mood-emoji-sm">
+                                {% endif %}
+                                <span>{{ entry.get_mood_display }}</span>
+                            </div>
+                        </div>
+
+                        <div class="note-content">{{ entry.notes|linebreaksbr }}</div>
+
+                        <div class="note-footer">
+                            <span class="note-date">Создано: {{ entry.date|date:"d.m.Y H:i" }}</span>
+                            {% if entry.last_edited %}
+                            <span class="edited-date">Изменено: {{ entry.last_edited|date:"d.m.Y H:i" }}</span>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <div class="edit-form-container" id="edit-form-container-{{ entry.id }}">
+                        <form method="POST" class="edit-form">
+                            {% csrf_token %}
+                            <input type="hidden" name="edit_note" value="1">
+                            <input type="hidden" name="entry_id" value="{{ entry.id }}">
+
+                            <div class="mood-selector">
+                                <div class="mood-option {% if entry.mood == 'ecstatic' %}selected{% endif %}"
+                                     data-mood="ecstatic" onclick="selectEditMood(this, {{ entry.id }})">
+                                    <img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f604.svg" alt="Отлично" class="mood-emoji">
+                                    <span class="mood-label">Отлично</span>
+                                </div>
+                                <div class="mood-option {% if entry.mood == 'happy' %}selected{% endif %}"
+                                     data-mood="happy" onclick="selectEditMood(this, {{ entry.id }})">
+                                    <img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f642.svg" alt="Хорошо" class="mood-emoji">
+                                    <span class="mood-label">Хорошо</span>
+                                </div>
+                                <div class="mood-option {% if entry.mood == 'neutral' %}selected{% endif %}"
+                                     data-mood="neutral" onclick="selectEditMood(this, {{ entry.id }})">
+                                    <img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f610.svg" alt="Нормально" class="mood-emoji">
+                                    <span class="mood-label">Нормально</span>
+                                </div>
+                                <div class="mood-option {% if entry.mood == 'sad' %}selected{% endif %}"
+                                     data-mood="sad" onclick="selectEditMood(this, {{ entry.id }})">
+                                    <img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f641.svg" alt="Плохо" class="mood-emoji">
+                                    <span class="mood-label">Плохо</span>
+                                </div>
+                                <div class="mood-option {% if entry.mood == 'angry' %}selected{% endif %}"
+                                     data-mood="angry" onclick="selectEditMood(this, {{ entry.id }})">
+                                    <img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f620.svg" alt="Ужасно" class="mood-emoji">
+                                    <span class="mood-label">Ужасно</span>
+                                </div>
+                            </div>
+                            <input type="hidden" name="mood" id="edit-mood-{{ entry.id }}" value="{{ entry.mood }}">
+                            <textarea name="notes" id="edit-notes-{{ entry.id }}" required>{{ entry.notes }}</textarea>
+                            <div class="edit-actions">
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="material-icons">save</i>
+                                    Сохранить
+                                </button>
+                                <button type="button" class="btn btn-outline" onclick="cancelEditNote({{ entry.id }})">
+                                    <i class="material-icons">cancel</i>
+                                    Отмена
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                {% empty %}
+                <div class="empty-state">
+                    <img src="{% static 'images/empty-notes.svg' %}" alt="Нет записей" width="200">
+                    <h3>У вас пока нет записей</h3>
+                    <p>Добавьте первую заметку, чтобы отслеживать свои успехи и настроение</p>
+                </div>
+                {% endfor %}
+
+                <!-- Пагинация -->
+                {% if page_obj.paginator.num_pages > 1 %}
+                <div class="pagination">
+                    {% if page_obj.has_previous %}
+                        <a href="?page=1{% if request.GET.mood %}&mood={{ request.GET.mood }}{% endif %}{% if request.GET.date %}&date={{ request.GET.date }}{% endif %}">
+                            <i class="material-icons">first_page</i>
+                        </a>
+                        <a href="?page={{ page_obj.previous_page_number }}{% if request.GET.mood %}&mood={{ request.GET.mood }}{% endif %}{% if request.GET.date %}&date={{ request.GET.date }}{% endif %}">
+                            <i class="material-icons">chevron_left</i>
+                        </a>
+                    {% endif %}
+
+                    <span class="current">
+                        Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}
+                    </span>
+
+                    {% if page_obj.has_next %}
+                        <a href="?page={{ page_obj.next_page_number }}{% if request.GET.mood %}&mood={{ request.GET.mood }}{% endif %}{% if request.GET.date %}&date={{ request.GET.date }}{% endif %}">
+                            <i class="material-icons">chevron_right</i>
+                        </a>
+                        <a href="?page={{ page_obj.paginator.num_pages }}{% if request.GET.mood %}&mood={{ request.GET.mood }}{% endif %}{% if request.GET.date %}&date={{ request.GET.date }}{% endif %}">
+                            <i class="material-icons">last_page</i>
+                        </a>
+                    {% endif %}
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </main>
+
+    <!-- Модальное окно подтверждения удаления -->
+    <div id="delete-modal" class="modal">
+        <div class="modal-content">
+            <h3>Подтверждение удаления</h3>
+            <p>Вы уверены, что хотите удалить эту заметку?</p>
+            <form method="POST" id="delete-form">
+                {% csrf_token %}
+                <input type="hidden" name="delete_note" value="1">
+                <input type="hidden" name="entry_id" id="delete-entry-id" value="">
+                <div class="modal-actions">
+                    <button type="submit" class="btn btn-danger">
+                        <i class="material-icons">delete</i>
+                        Удалить
+                    </button>
+                    <button type="button" id="cancel-delete" class="btn btn-outline">
+                        <i class="material-icons">cancel</i>
+                        Отмена
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Выбор настроения для новой заметки
+        const moodOptions = document.querySelectorAll('.mood-option');
+        const moodInput = document.getElementById('mood-input');
+
+        moodOptions.forEach(option => {
+            option.addEventListener('click', function() {
+                document.querySelectorAll('.mood-selector .mood-option').forEach(opt => {
+                    opt.classList.remove('selected');
+                });
+                this.classList.add('selected');
+                moodInput.value = this.dataset.mood;
+            });
+        });
+
+        // Фильтры
+        function setMoodFilter(mood) {
+            const form = document.getElementById('filter-form');
+            const moodInput = document.createElement('input');
+            moodInput.type = 'hidden';
+            moodInput.name = 'mood';
+            moodInput.value = mood;
+            form.appendChild(moodInput);
+            form.submit();
+        }
+
+        function submitFilterForm() {
+            document.getElementById('filter-form').submit();
+        }
+
+        function resetFilters() {
+            window.location.href = "{% url 'notes' %}";
+        }
+
+        // Редактирование заметки
+        function startEditNote(noteId) {
+            document.getElementById(`note-view-${noteId}`).style.display = 'none';
+            document.getElementById(`edit-form-container-${noteId}`).classList.add('active');
+        }
+
+        function cancelEditNote(noteId) {
+            document.getElementById(`note-view-${noteId}`).style.display = 'block';
+            document.getElementById(`edit-form-container-${noteId}`).classList.remove('active');
+        }
+
+        function selectEditMood(element, noteId) {
+            document.querySelectorAll(`#edit-form-container-${noteId} .mood-option`).forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            element.classList.add('selected');
+            document.getElementById(`edit-mood-${noteId}`).value = element.dataset.mood;
+        }
+
+        // Удаление заметки
+        function confirmDeleteNote(noteId) {
+            document.getElementById('delete-entry-id').value = noteId;
+            document.getElementById('delete-modal').style.display = 'flex';
+        }
+
+        document.getElementById('cancel-delete').addEventListener('click', function() {
+            document.getElementById('delete-modal').style.display = 'none';
+        });
+
+        // Обработка отправки формы удаления
+        document.getElementById('delete-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = new FormData(this);
+
+            fetch(window.location.href, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'X-CSRFToken': formData.get('csrfmiddlewaretoken'),
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    document.getElementById('delete-modal').style.display = 'none';
+                    window.location.reload();
+                } else {
+                    showToast('Ошибка при удалении заметки', 'error');
+                }
+            })
+            .catch(error => {
+                showToast('Ошибка при удалении заметки', 'error');
+            });
+        });
+
+        // Функция для показа уведомлений
+        function showToast(message, type = 'success') {
+            const toast = document.createElement('div');
+            toast.className = `message ${type}`;
+            toast.innerHTML = `
+                ${message}
+                <button class="close-message">&times;</button>
+            `;
+
+            const messagesContainer = document.querySelector('.messages-container') || createMessagesContainer();
+            messagesContainer.appendChild(toast);
+
+            // Анимация появления
+            setTimeout(() => {
+                toast.style.animation = 'slideIn 0.3s ease-out';
+                toast.style.opacity = '1';
+                toast.style.transform = 'translateX(0)';
+            }, 100);
+
+            // Закрытие по кнопке
+            toast.querySelector('.close-message').addEventListener('click', () => {
+                closeToast(toast);
+            });
+
+            // Автозакрытие через 5 секунд
+            setTimeout(() => {
+                closeToast(toast);
+            }, 5000);
+        }
+
+        function createMessagesContainer() {
+            const container = document.createElement('div');
+            container.className = 'messages-container';
+            document.body.appendChild(container);
+            return container;
+        }
+
+        function closeToast(toast) {
+            toast.style.animation = 'slideIn 0.3s ease-out reverse';
+            toast.style.opacity = '0';
+            toast.style.transform = 'translateX(100%)';
+            setTimeout(() => {
+                toast.remove();
+            }, 300);
+        }
+
+        // Закрытие сообщений при загрузке страницы
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(() => {
+                document.querySelectorAll('.message').forEach(message => {
+                    closeToast(message);
+                });
+            }, 5000);
+        });
+    </script>
+</body>
+</html>
