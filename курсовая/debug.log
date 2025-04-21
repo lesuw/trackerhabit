@@ -25959,3 +25959,1108 @@ C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts\home.html notif
 (0.000) SELECT "accounts_user"."id", "accounts_user"."password", "accounts_user"."last_login", "accounts_user"."is_superuser", "accounts_user"."username", "accounts_user"."first_name", "accounts_user"."last_name", "accounts_user"."is_staff", "accounts_user"."is_active", "accounts_user"."date_joined", "accounts_user"."email", "accounts_user"."verification_code", "accounts_user"."verification_attempts", "accounts_user"."verification_code_sent_at", "accounts_user"."avatar" FROM "accounts_user" WHERE "accounts_user"."id" = 3 LIMIT 21; args=(3,); alias=default
 "GET /home/ HTTP/1.1" 200 8844
 "GET /static/images/image1.png HTTP/1.1" 304 0
+(0.000) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2025-04-20 20:16:05.692834' AND "django_session"."session_key" = 'wfpi61l8aemvtu7fvvqup2f3wypervgx') LIMIT 21; args=('2025-04-20 20:16:05.692834', 'wfpi61l8aemvtu7fvvqup2f3wypervgx'); alias=default
+(0.000) SELECT "accounts_user"."id", "accounts_user"."password", "accounts_user"."last_login", "accounts_user"."is_superuser", "accounts_user"."username", "accounts_user"."first_name", "accounts_user"."last_name", "accounts_user"."is_staff", "accounts_user"."is_active", "accounts_user"."date_joined", "accounts_user"."email", "accounts_user"."verification_code", "accounts_user"."verification_attempts", "accounts_user"."verification_code_sent_at", "accounts_user"."avatar" FROM "accounts_user" WHERE "accounts_user"."id" = 3 LIMIT 21; args=(3,); alias=default
+"GET /home/ HTTP/1.1" 200 8831
+(0.031) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2025-04-20 20:16:07.659275' AND "django_session"."session_key" = 'wfpi61l8aemvtu7fvvqup2f3wypervgx') LIMIT 21; args=('2025-04-20 20:16:07.659275', 'wfpi61l8aemvtu7fvvqup2f3wypervgx'); alias=default
+(0.000) SELECT "accounts_user"."id", "accounts_user"."password", "accounts_user"."last_login", "accounts_user"."is_superuser", "accounts_user"."username", "accounts_user"."first_name", "accounts_user"."last_name", "accounts_user"."is_staff", "accounts_user"."is_active", "accounts_user"."date_joined", "accounts_user"."email", "accounts_user"."verification_code", "accounts_user"."verification_attempts", "accounts_user"."verification_code_sent_at", "accounts_user"."avatar" FROM "accounts_user" WHERE "accounts_user"."id" = 3 LIMIT 21; args=(3,); alias=default
+"GET /home/ HTTP/1.1" 200 8807
+(0.000) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2025-04-20 20:16:08.205273' AND "django_session"."session_key" = 'wfpi61l8aemvtu7fvvqup2f3wypervgx') LIMIT 21; args=('2025-04-20 20:16:08.205273', 'wfpi61l8aemvtu7fvvqup2f3wypervgx'); alias=default
+(0.000) SELECT "accounts_user"."id", "accounts_user"."password", "accounts_user"."last_login", "accounts_user"."is_superuser", "accounts_user"."username", "accounts_user"."first_name", "accounts_user"."last_name", "accounts_user"."is_staff", "accounts_user"."is_active", "accounts_user"."date_joined", "accounts_user"."email", "accounts_user"."verification_code", "accounts_user"."verification_attempts", "accounts_user"."verification_code_sent_at", "accounts_user"."avatar" FROM "accounts_user" WHERE "accounts_user"."id" = 3 LIMIT 21; args=(3,); alias=default
+"GET /home/ HTTP/1.1" 200 8844
+(0.000) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2025-04-20 20:16:08.745365' AND "django_session"."session_key" = 'wfpi61l8aemvtu7fvvqup2f3wypervgx') LIMIT 21; args=('2025-04-20 20:16:08.745365', 'wfpi61l8aemvtu7fvvqup2f3wypervgx'); alias=default
+(0.000) SELECT "accounts_user"."id", "accounts_user"."password", "accounts_user"."last_login", "accounts_user"."is_superuser", "accounts_user"."username", "accounts_user"."first_name", "accounts_user"."last_name", "accounts_user"."is_staff", "accounts_user"."is_active", "accounts_user"."date_joined", "accounts_user"."email", "accounts_user"."verification_code", "accounts_user"."verification_attempts", "accounts_user"."verification_code_sent_at", "accounts_user"."avatar" FROM "accounts_user" WHERE "accounts_user"."id" = 3 LIMIT 21; args=(3,); alias=default
+"GET /home/ HTTP/1.1" 200 8836
+(0.000) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2025-04-20 20:16:09.695590' AND "django_session"."session_key" = 'wfpi61l8aemvtu7fvvqup2f3wypervgx') LIMIT 21; args=('2025-04-20 20:16:09.695590', 'wfpi61l8aemvtu7fvvqup2f3wypervgx'); alias=default
+(0.000) SELECT "accounts_user"."id", "accounts_user"."password", "accounts_user"."last_login", "accounts_user"."is_superuser", "accounts_user"."username", "accounts_user"."first_name", "accounts_user"."last_name", "accounts_user"."is_staff", "accounts_user"."is_active", "accounts_user"."date_joined", "accounts_user"."email", "accounts_user"."verification_code", "accounts_user"."verification_attempts", "accounts_user"."verification_code_sent_at", "accounts_user"."avatar" FROM "accounts_user" WHERE "accounts_user"."id" = 3 LIMIT 21; args=(3,); alias=default
+"GET /home/ HTTP/1.1" 200 8837
+(0.000) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2025-04-20 20:16:10.976702' AND "django_session"."session_key" = 'wfpi61l8aemvtu7fvvqup2f3wypervgx') LIMIT 21; args=('2025-04-20 20:16:10.976702', 'wfpi61l8aemvtu7fvvqup2f3wypervgx'); alias=default
+(0.000) SELECT "accounts_user"."id", "accounts_user"."password", "accounts_user"."last_login", "accounts_user"."is_superuser", "accounts_user"."username", "accounts_user"."first_name", "accounts_user"."last_name", "accounts_user"."is_staff", "accounts_user"."is_active", "accounts_user"."date_joined", "accounts_user"."email", "accounts_user"."verification_code", "accounts_user"."verification_attempts", "accounts_user"."verification_code_sent_at", "accounts_user"."avatar" FROM "accounts_user" WHERE "accounts_user"."id" = 3 LIMIT 21; args=(3,); alias=default
+"GET /home/ HTTP/1.1" 200 8831
+(0.000) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2025-04-20 20:16:11.858575' AND "django_session"."session_key" = 'wfpi61l8aemvtu7fvvqup2f3wypervgx') LIMIT 21; args=('2025-04-20 20:16:11.858575', 'wfpi61l8aemvtu7fvvqup2f3wypervgx'); alias=default
+(0.000) SELECT "accounts_user"."id", "accounts_user"."password", "accounts_user"."last_login", "accounts_user"."is_superuser", "accounts_user"."username", "accounts_user"."first_name", "accounts_user"."last_name", "accounts_user"."is_staff", "accounts_user"."is_active", "accounts_user"."date_joined", "accounts_user"."email", "accounts_user"."verification_code", "accounts_user"."verification_attempts", "accounts_user"."verification_code_sent_at", "accounts_user"."avatar" FROM "accounts_user" WHERE "accounts_user"."id" = 3 LIMIT 21; args=(3,); alias=default
+"GET /home/ HTTP/1.1" 200 8831
+(0.000) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2025-04-20 20:16:13.291451' AND "django_session"."session_key" = 'wfpi61l8aemvtu7fvvqup2f3wypervgx') LIMIT 21; args=('2025-04-20 20:16:13.291451', 'wfpi61l8aemvtu7fvvqup2f3wypervgx'); alias=default
+(0.000) SELECT "accounts_user"."id", "accounts_user"."password", "accounts_user"."last_login", "accounts_user"."is_superuser", "accounts_user"."username", "accounts_user"."first_name", "accounts_user"."last_name", "accounts_user"."is_staff", "accounts_user"."is_active", "accounts_user"."date_joined", "accounts_user"."email", "accounts_user"."verification_code", "accounts_user"."verification_attempts", "accounts_user"."verification_code_sent_at", "accounts_user"."avatar" FROM "accounts_user" WHERE "accounts_user"."id" = 3 LIMIT 21; args=(3,); alias=default
+"GET /home/ HTTP/1.1" 200 8836
+(0.015) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2025-04-20 20:16:14.361638' AND "django_session"."session_key" = 'wfpi61l8aemvtu7fvvqup2f3wypervgx') LIMIT 21; args=('2025-04-20 20:16:14.361638', 'wfpi61l8aemvtu7fvvqup2f3wypervgx'); alias=default
+(0.000) SELECT "accounts_user"."id", "accounts_user"."password", "accounts_user"."last_login", "accounts_user"."is_superuser", "accounts_user"."username", "accounts_user"."first_name", "accounts_user"."last_name", "accounts_user"."is_staff", "accounts_user"."is_active", "accounts_user"."date_joined", "accounts_user"."email", "accounts_user"."verification_code", "accounts_user"."verification_attempts", "accounts_user"."verification_code_sent_at", "accounts_user"."avatar" FROM "accounts_user" WHERE "accounts_user"."id" = 3 LIMIT 21; args=(3,); alias=default
+"GET /home/ HTTP/1.1" 200 8827
+(0.000) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2025-04-20 20:19:41.609828' AND "django_session"."session_key" = 'wfpi61l8aemvtu7fvvqup2f3wypervgx') LIMIT 21; args=('2025-04-20 20:19:41.609828', 'wfpi61l8aemvtu7fvvqup2f3wypervgx'); alias=default
+(0.000) SELECT "accounts_user"."id", "accounts_user"."password", "accounts_user"."last_login", "accounts_user"."is_superuser", "accounts_user"."username", "accounts_user"."first_name", "accounts_user"."last_name", "accounts_user"."is_staff", "accounts_user"."is_active", "accounts_user"."date_joined", "accounts_user"."email", "accounts_user"."verification_code", "accounts_user"."verification_attempts", "accounts_user"."verification_code_sent_at", "accounts_user"."avatar" FROM "accounts_user" WHERE "accounts_user"."id" = 3 LIMIT 21; args=(3,); alias=default
+"GET /home/ HTTP/1.1" 200 8807
+"GET /static/images/image1.png HTTP/1.1" 304 0
+(0.000) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2025-04-20 20:19:44.057255' AND "django_session"."session_key" = 'wfpi61l8aemvtu7fvvqup2f3wypervgx') LIMIT 21; args=('2025-04-20 20:19:44.057255', 'wfpi61l8aemvtu7fvvqup2f3wypervgx'); alias=default
+(0.000) SELECT "accounts_user"."id", "accounts_user"."password", "accounts_user"."last_login", "accounts_user"."is_superuser", "accounts_user"."username", "accounts_user"."first_name", "accounts_user"."last_name", "accounts_user"."is_staff", "accounts_user"."is_active", "accounts_user"."date_joined", "accounts_user"."email", "accounts_user"."verification_code", "accounts_user"."verification_attempts", "accounts_user"."verification_code_sent_at", "accounts_user"."avatar" FROM "accounts_user" WHERE "accounts_user"."id" = 3 LIMIT 21; args=(3,); alias=default
+"GET /home/ HTTP/1.1" 200 8807
+(0.000) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2025-04-20 20:19:45.431215' AND "django_session"."session_key" = 'wfpi61l8aemvtu7fvvqup2f3wypervgx') LIMIT 21; args=('2025-04-20 20:19:45.431215', 'wfpi61l8aemvtu7fvvqup2f3wypervgx'); alias=default
+(0.000) SELECT "accounts_user"."id", "accounts_user"."password", "accounts_user"."last_login", "accounts_user"."is_superuser", "accounts_user"."username", "accounts_user"."first_name", "accounts_user"."last_name", "accounts_user"."is_staff", "accounts_user"."is_active", "accounts_user"."date_joined", "accounts_user"."email", "accounts_user"."verification_code", "accounts_user"."verification_attempts", "accounts_user"."verification_code_sent_at", "accounts_user"."avatar" FROM "accounts_user" WHERE "accounts_user"."id" = 3 LIMIT 21; args=(3,); alias=default
+"GET /home/ HTTP/1.1" 200 8844
+(0.000) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2025-04-20 20:19:46.880885' AND "django_session"."session_key" = 'wfpi61l8aemvtu7fvvqup2f3wypervgx') LIMIT 21; args=('2025-04-20 20:19:46.880885', 'wfpi61l8aemvtu7fvvqup2f3wypervgx'); alias=default
+(0.000) SELECT "accounts_user"."id", "accounts_user"."password", "accounts_user"."last_login", "accounts_user"."is_superuser", "accounts_user"."username", "accounts_user"."first_name", "accounts_user"."last_name", "accounts_user"."is_staff", "accounts_user"."is_active", "accounts_user"."date_joined", "accounts_user"."email", "accounts_user"."verification_code", "accounts_user"."verification_attempts", "accounts_user"."verification_code_sent_at", "accounts_user"."avatar" FROM "accounts_user" WHERE "accounts_user"."id" = 3 LIMIT 21; args=(3,); alias=default
+"GET /home/ HTTP/1.1" 200 8836
+Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    callback, callback_args, callback_kwargs = self.resolve_request(request)
+                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\base.py", line 313, in resolve_request
+    resolver_match = resolver.resolve(request.path_info)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\urls\resolvers.py", line 722, in resolve
+    raise Resolver404({"tried": tried, "path": new_path})
+django.urls.exceptions.Resolver404: {'tried': [[<URLResolver <URLPattern list> (admin:admin) 'admin/'>], [<URLResolver <module 'accounts.urls' from 'C:\\Users\\yanaa\\trackerhabit\\курсовая\\accounts\\urls.py'> (None:None) ''>, <URLPattern '' [name='welcome']>], [<URLResolver <module 'accounts.urls' from 'C:\\Users\\yanaa\\trackerhabit\\курсовая\\accounts\\urls.py'> (None:None) ''>, <URLPattern 'home/' [name='home']>], [<URLResolver <module 'accounts.urls' from 'C:\\Users\\yanaa\\trackerhabit\\курсовая\\accounts\\urls.py'> (None:None) ''>, <URLPattern 'register/' [name='register']>], [<URLResolver <module 'accounts.urls' from 'C:\\Users\\yanaa\\trackerhabit\\курсовая\\accounts\\urls.py'> (None:None) ''>, <URLPattern 'login/' [name='login']>], [<URLResolver <module 'accounts.urls' from 'C:\\Users\\yanaa\\trackerhabit\\курсовая\\accounts\\urls.py'> (None:None) ''>, <URLPattern 'logout/' [name='logout']>], [<URLResolver <module 'accounts.urls' from 'C:\\Users\\yanaa\\trackerhabit\\курсовая\\accounts\\urls.py'> (None:None) ''>, <URLPattern 'verify/' [name='verify']>], [<URLResolver <module 'accounts.urls' from 'C:\\Users\\yanaa\\trackerhabit\\курсовая\\accounts\\urls.py'> (None:None) ''>, <URLPattern 'resend-code/' [name='resend_code']>], [<URLResolver <module 'accounts.urls' from 'C:\\Users\\yanaa\\trackerhabit\\курсовая\\accounts\\urls.py'> (None:None) ''>, <URLPattern 'forgot-password/' [name='forgot_password']>], [<URLResolver <module 'accounts.urls' from 'C:\\Users\\yanaa\\trackerhabit\\курсовая\\accounts\\urls.py'> (None:None) ''>, <URLPattern 'reset-password/' [name='reset_password']>], [<URLResolver <module 'accounts.urls' from 'C:\\Users\\yanaa\\trackerhabit\\курсовая\\accounts\\urls.py'> (None:None) ''>, <URLPattern 'profile/' [name='profile']>], [<URLResolver <module 'accounts.urls' from 'C:\\Users\\yanaa\\trackerhabit\\курсовая\\accounts\\urls.py'> (None:None) ''>, <URLPattern 'profile/edit/' [name='edit_profile']>], [<URLResolver <module 'accounts.urls' from 'C:\\Users\\yanaa\\trackerhabit\\курсовая\\accounts\\urls.py'> (None:None) ''>, <URLPattern 'profile/delete-avatar/' [name='delete_avatar']>], [<URLResolver <module 'accounts.urls' from 'C:\\Users\\yanaa\\trackerhabit\\курсовая\\accounts\\urls.py'> (None:None) ''>, <URLPattern 'profile/change-password/' [name='change_password']>], [<URLResolver <module 'habits.urls' from 'C:\\Users\\yanaa\\trackerhabit\\курсовая\\habits\\urls.py'> (None:None) ''>, <URLPattern 'habits/' [name='habits']>], [<URLPattern '^media/(?P<path>.*)$'>]], 'path': 'favicon.ico'}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\base.py", line 875, in _resolve_lookup
+    current = current[bit]
+              ~~~~~~~^^^^^
+TypeError: 'URLResolver' object is not subscriptable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\base.py", line 885, in _resolve_lookup
+    current = getattr(current, bit)
+              ^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'URLResolver' object has no attribute 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\base.py", line 891, in _resolve_lookup
+    current = current[int(bit)]
+                      ^^^^^^^^
+ValueError: invalid literal for int() with base 10: 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\base.py", line 898, in _resolve_lookup
+    raise VariableDoesNotExist(
+django.template.base.VariableDoesNotExist: Failed lookup for key [name] in <URLResolver <URLPattern list> (admin:admin) 'admin/'>
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 4708
+Watching for file changes with StatReloader
+Waiting for apps ready_event.
+Apps ready_event triggered. Sending autoreload_started signal.
+Watching dir C:\Users\yanaa\trackerhabit\курсовая\habits\templates with glob **/*.
+Watching dir C:\Users\yanaa\trackerhabit\курсовая\accounts\templates with glob **/*.
+Watching dir C:\Users\yanaa\trackerhabit\курсовая\templates with glob **/*.
+Watching dir C:\Users\yanaa\trackerhabit\курсовая\locale with glob **/*.mo.
+Watching dir C:\Users\yanaa\trackerhabit\курсовая\accounts\locale with glob **/*.mo.
+Watching dir C:\Users\yanaa\trackerhabit\курсовая\habits\locale with glob **/*.mo.
+(0.000) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None; alias=default
+(0.000) SELECT "django_migrations"."id", "django_migrations"."app", "django_migrations"."name", "django_migrations"."applied" FROM "django_migrations"; args=(); alias=default
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\fields\related_descriptors.py first seen with mtime 1742621912.3113182
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\engine.py first seen with mtime 1742621912.4873998
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\urls\__init__.py first seen with mtime 1742621912.5332136
+File C:\Users\yanaa\trackerhabit\курсовая\habits\urls.py first seen with mtime 1745161556.8101301
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\utils\timesince.py first seen with mtime 1742621912.5886989
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\migrations\__init__.py first seen with mtime 1742621912.2754872
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\email\feedparser.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\sessions\base_session.py first seen with mtime 1742621911.5285082
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\base\features.py first seen with mtime 1742621912.2304041
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\sqlparse\filters\output.py first seen with mtime 1740153088.8316164
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\contenttypes\checks.py first seen with mtime 1742621909.814139
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\weakref.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\functions\__init__.py first seen with mtime 1742621912.3163202
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\templatetags\__init__.py first seen with mtime 1742621912.514553
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\subprocess.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\DLLs\_socket.pyd first seen with mtime 1712649062.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\base\client.py first seen with mtime 1742621912.2253933
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\asyncio\tasks.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\base\base.py first seen with mtime 1742621912.220309
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\asyncio\format_helpers.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\asyncio\taskgroups.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\base\introspection.py first seen with mtime 1742621912.2304041
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\fields\related_lookups.py first seen with mtime 1742621912.3113182
+File C:\Users\yanaa\trackerhabit\курсовая\accounts\__init__.py first seen with mtime 1745161556.7781281
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\functions\math.py first seen with mtime 1742621912.3163202
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\DLLs\_ctypes.pyd first seen with mtime 1712649062.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\utils.py first seen with mtime 1742621912.3063195
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\pprint.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\autoreload.py first seen with mtime 1742621912.4823995
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\sqlparse\engine\__init__.py first seen with mtime 1740153088.8276136
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\decimal.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\contenttypes\fields.py first seen with mtime 1742621909.814139
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\files\storage\handler.py first seen with mtime 1742621912.154043
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\asyncio\locks.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\servers\__init__.py first seen with mtime 1742621912.206247
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\messages\storage\__init__.py first seen with mtime 1742621911.0285933
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\email\charset.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\sqlite3\_functions.py first seen with mtime 1742621912.2654912
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\sessions\middleware.py first seen with mtime 1742621911.530669
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\sqlite3\client.py first seen with mtime 1742621912.2705867
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\base.py first seen with mtime 1742621912.2918098
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\DLLs\_overlapped.pyd first seen with mtime 1712649062.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\templatetags\i18n.py first seen with mtime 1742621912.514553
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\signals.py first seen with mtime 1742621912.3063195
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\asyncio\queues.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\email\utils.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\checks\compatibility\django_4_0.py first seen with mtime 1742621912.1387465
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\loader_tags.py first seen with mtime 1742621912.4930172
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\DLLs\_zoneinfo.pyd first seen with mtime 1712649062.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\apps\config.py first seen with mtime 1742621908.1362295
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\ctypes\_endian.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\struct.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\traceback.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\_weakrefset.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\migrations\migration.py first seen with mtime 1742621912.2810948
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\fields\files.py first seen with mtime 1742621912.3063195
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\wsgiref\util.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\asyncio\base_tasks.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\utils\formats.py first seen with mtime 1742621912.5687788
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\asyncio\trsock.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\apps\registry.py first seen with mtime 1742621908.1362295
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\sqlite3\__init__.py first seen with mtime 1742621912.2654912
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\conf\locale\__init__.py first seen with mtime 1742621908.146337
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\copyreg.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\asyncio\exceptions.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\functions\text.py first seen with mtime 1742621912.3213127
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\urllib\parse.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\colorama\initialise.py first seen with mtime 1740153231.355421
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\logging\__init__.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\enums.py first seen with mtime 1742621912.2963207
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\sqlparse\keywords.py first seen with mtime 1740153088.82356
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\utils\translation\__init__.py first seen with mtime 1742621912.5986946
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\asyncio\staggered.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\base\creation.py first seen with mtime 1742621912.2253933
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\utils\itercompat.py first seen with mtime 1742621912.5787017
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\encodings\utf_8.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\utils\translation\reloader.py first seen with mtime 1742621912.5986946
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\sqlparse\engine\statement_splitter.py first seen with mtime 1740153088.8296201
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\loader.py first seen with mtime 1742621912.4930172
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\views\generic\dates.py first seen with mtime 1742621912.6400635
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\forms\widgets.py first seen with mtime 1742621912.3369963
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\zoneinfo\__init__.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\asyncio\windows_events.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\email\parser.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\fields\related.py first seen with mtime 1742621912.3113182
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\forms\forms.py first seen with mtime 1742621912.3314838
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\http\cookie.py first seen with mtime 1742621912.4674046
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\checks\caches.py first seen with mtime 1742621912.1285045
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\contextvars.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\auth\models.py first seen with mtime 1742621909.5365841
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\views\decorators\debug.py first seen with mtime 1742621912.6330445
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\views\generic\base.py first seen with mtime 1742621912.6365583
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\files\storage\__init__.py first seen with mtime 1742621912.154043
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\mail\__init__.py first seen with mtime 1742621912.1640484
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\__init__.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\urllib\__init__.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\wsgiref\simple_server.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\views\generic\detail.py first seen with mtime 1742621912.6400635
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\asyncio\threads.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\contenttypes\models.py first seen with mtime 1742621909.8196166
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\checks\compatibility\__init__.py first seen with mtime 1742621912.1387465
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\templatetags\l10n.py first seen with mtime 1742621912.5175617
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\signals.py first seen with mtime 1742621912.2153053
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\datetime.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\indexes.py first seen with mtime 1742621912.2963207
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\response.py first seen with mtime 1742621912.497523
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\sqlite3\introspection.py first seen with mtime 1742621912.2705867
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\backends\django.py first seen with mtime 1742621912.5026276
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\base.py first seen with mtime 1742621912.4823995
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\middleware\csrf.py first seen with mtime 1742621912.472401
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\types.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\random.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\auth\base_user.py first seen with mtime 1742621909.5280704
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\backends\__init__.py first seen with mtime 1742621912.497523
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\middleware\security.py first seen with mtime 1742621912.4774053
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\asgiref\local.py first seen with mtime 1740153088.8988428
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\re\_parser.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\dis.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\admin\sites.py first seen with mtime 1742621908.5591323
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\auth\middleware.py first seen with mtime 1742621909.5330675
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\sqlparse\formatter.py first seen with mtime 1740153088.8225565
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\ctypes\__init__.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\serializers\python.py first seen with mtime 1742621912.1999552
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\aggregates.py first seen with mtime 1742621912.2918098
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\utils\inspect.py first seen with mtime 1742621912.5737562
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\cache\backends\__init__.py first seen with mtime 1742621912.118436
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\utils\safestring.py first seen with mtime 1742621912.5886989
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\asgiref\sync.py first seen with mtime 1740153088.900843
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\sessions\backends\__init__.py first seen with mtime 1742621911.530669
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\copy.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\sqlparse\exceptions.py first seen with mtime 1740153088.821563
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\sites\__init__.py first seen with mtime 1742621911.8286111
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\colorama\winterm.py first seen with mtime 1740153231.356421
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\auth\hashers.py first seen with mtime 1742621909.5330675
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\html\entities.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\json\__init__.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\collections\__init__.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\DLLs\unicodedata.pyd first seen with mtime 1712649062.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\files\uploadhandler.py first seen with mtime 1742621912.149011
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\ipaddress.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\gzip.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\__init__.py first seen with mtime 1742621908.1299882
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\__init__.py first seen with mtime 1742621912.1082528
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\DLLs\_queue.pyd first seen with mtime 1712649062.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\tempfile.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\fnmatch.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\migrations\operations\base.py first seen with mtime 1742621912.2884495
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\auth\admin.py first seen with mtime 1742621909.5280704
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\admin\checks.py first seen with mtime 1742621908.5462556
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\views\generic\__init__.py first seen with mtime 1742621912.6365583
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\zoneinfo\_common.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\checks\messages.py first seen with mtime 1742621912.133736
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\files\uploadedfile.py first seen with mtime 1742621912.149011
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\encodings\aliases.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\email\encoders.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\re\_constants.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\templatetags\static.py first seen with mtime 1742621912.5175617
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\mail\utils.py first seen with mtime 1742621912.1640484
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\statistics.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\sqlparse\filters\others.py first seen with mtime 1740153088.8316164
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\wsgiref\__init__.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\admin\views\main.py first seen with mtime 1742621909.291124
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\files\storage\mixins.py first seen with mtime 1742621912.1590505
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\servers\basehttp.py first seen with mtime 1742621912.206247
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\base\operations.py first seen with mtime 1742621912.2304041
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\concurrent\futures\_base.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\DLLs\_decimal.pyd first seen with mtime 1712649062.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\staticfiles\views.py first seen with mtime 1742621912.0981245
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\calendar.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\_distutils_hack\__init__.py first seen with mtime 1740153224.8230143
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\concurrent\futures\thread.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\utils\numberformat.py first seen with mtime 1742621912.5836997
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\win32\lib\pywin32_bootstrap.py first seen with mtime 1740153222.1355784
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\checks\security\base.py first seen with mtime 1742621912.1387465
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\sqlparse\filters\__init__.py first seen with mtime 1740153088.8296201
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\secrets.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\string.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\utils\regex_helper.py first seen with mtime 1742621912.5836997
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\fields\mixins.py first seen with mtime 1742621912.3113182
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\functools.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\utils\dates.py first seen with mtime 1742621912.5587082
+File C:\Users\yanaa\trackerhabit\курсовая\django_project\urls.py first seen with mtime 1745161556.80713
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\mimetypes.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\staticfiles\management\commands\__init__.py first seen with mtime 1742621912.0981245
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\utils\datastructures.py first seen with mtime 1742621912.5556996
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\utils\ipv6.py first seen with mtime 1742621912.5737562
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\sysconfig.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\email\header.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\reduction.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\sql\where.py first seen with mtime 1742621912.326482
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\asyncio\base_futures.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\DLLs\_sqlite3.pyd first seen with mtime 1712649062.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\base.py first seen with mtime 1742621912.1590505
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\files\__init__.py first seen with mtime 1742621912.1437707
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\asyncio\protocols.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\base\validation.py first seen with mtime 1742621912.2369976
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\sql\query.py first seen with mtime 1742621912.326482
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\socket.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\wsgi.py first seen with mtime 1742621912.113309
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\conf\global_settings.py first seen with mtime 1742621908.1386423
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\sql\subqueries.py first seen with mtime 1742621912.326482
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\argparse.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\cache\utils.py first seen with mtime 1742621912.113309
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\utils\autoreload.py first seen with mtime 1742621912.548298
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\sessions\apps.py first seen with mtime 1742621911.5285082
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\functions\window.py first seen with mtime 1742621912.3213127
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\forms\boundfield.py first seen with mtime 1742621912.3314838
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\concurrent\__init__.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\staticfiles\apps.py first seen with mtime 1742621912.088042
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\sqlparse\lexer.py first seen with mtime 1740153088.82356
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\urls\exceptions.py first seen with mtime 1742621912.541143
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\quopri.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\sqlparse\__init__.py first seen with mtime 1740153088.8195589
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\sites\requests.py first seen with mtime 1742621911.838624
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\asgiref\current_thread_executor.py first seen with mtime 1740153088.8988428
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\_compat_pickle.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\pkgutil.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\urls\utils.py first seen with mtime 1742621912.5436466
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\ctypes\wintypes.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\forms\models.py first seen with mtime 1742621912.3369963
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\email\contentmanager.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\importlib\_abc.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\fields\generated.py first seen with mtime 1742621912.3063195
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\asgi.py first seen with mtime 1742621912.1590505
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\colorama\ansi.py first seen with mtime 1740153231.3544211
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\asyncio\transports.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\urls\resolvers.py first seen with mtime 1742621912.541143
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\staticfiles\management\commands\runserver.py first seen with mtime 1742621912.1032243
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\encodings\cp1251.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\utils\decorators.py first seen with mtime 1742621912.5637152
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\query_utils.py first seen with mtime 1742621912.301323
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\ssl.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\auth\management\__init__.py first seen with mtime 1742621909.7875364
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\encodings\__init__.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\sessions\exceptions.py first seen with mtime 1742621911.5285082
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\admin\templatetags\admin_list.py first seen with mtime 1742621909.2859316
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\asyncio\coroutines.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\asyncio\constants.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\admin\apps.py first seen with mtime 1742621908.5462556
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\linecache.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\files\storage\memory.py first seen with mtime 1742621912.154043
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\urllib\request.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\contenttypes\admin.py first seen with mtime 1742621909.814139
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\management\commands\runserver.py first seen with mtime 1742621912.1890314
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\files\temp.py first seen with mtime 1742621912.149011
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\loaders\__init__.py first seen with mtime 1742621912.5075252
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\logging\handlers.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\opcode.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\utils\dateformat.py first seen with mtime 1742621912.5587082
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\serializers\base.py first seen with mtime 1742621912.1999552
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\utils\termcolors.py first seen with mtime 1742621912.5886989
+File C:\Users\yanaa\trackerhabit\курсовая\accounts\views.py first seen with mtime 1745179016.953735
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\base\__init__.py first seen with mtime 1742621912.220309
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\loaders\cached.py first seen with mtime 1742621912.5075252
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\messages\apps.py first seen with mtime 1742621911.0185914
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\sqlparse\cli.py first seen with mtime 1740153088.821563
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\library.py first seen with mtime 1742621912.4930172
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\asyncio\timeouts.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\auth\forms.py first seen with mtime 1742621909.5330675
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\checks\database.py first seen with mtime 1742621912.1307273
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\heapq.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\asyncio\base_events.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\uuid.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\files\images.py first seen with mtime 1742621912.1437707
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\__init__.py first seen with mtime 1742621912.2918098
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\keyword.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\bisect.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\files\utils.py first seen with mtime 1742621912.149011
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\expressions.py first seen with mtime 1742621912.2963207
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\management\color.py first seen with mtime 1742621912.174042
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\sql\constants.py first seen with mtime 1742621912.3213127
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\DLLs\_bz2.pyd first seen with mtime 1712649062.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\sqlparse\filters\right_margin.py first seen with mtime 1740153088.8326275
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\admin\exceptions.py first seen with mtime 1742621908.5512595
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\views\decorators\common.py first seen with mtime 1742621912.6295743
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\admin\options.py first seen with mtime 1742621908.5591323
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\loaders\filesystem.py first seen with mtime 1742621912.5125437
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\email\generator.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\checks\model_checks.py first seen with mtime 1742621912.133736
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\sessions\backends\base.py first seen with mtime 1742621911.5336723
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\admin\templatetags\admin_modify.py first seen with mtime 1742621909.2859316
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\utils\__init__.py first seen with mtime 1742621912.5436466
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\migrations\operations\models.py first seen with mtime 1742621912.2918098
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\sqlite3\operations.py first seen with mtime 1742621912.2705867
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\cache\backends\filebased.py first seen with mtime 1742621912.118436
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\files\storage\filesystem.py first seen with mtime 1742621912.154043
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\admin\actions.py first seen with mtime 1742621908.5452478
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\__init__.py first seen with mtime 1742621912.2103002
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\asyncio\subprocess.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\exceptions.py first seen with mtime 1742621912.1082528
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\fields\reverse_related.py first seen with mtime 1742621912.3163202
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\defaultfilters.py first seen with mtime 1742621912.4873998
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\colorama\win32.py first seen with mtime 1740153231.356421
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\checks\security\csrf.py first seen with mtime 1742621912.1437707
+File C:\Users\yanaa\trackerhabit\курсовая\habits\views.py first seen with mtime 1745161556.8111303
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\auth\decorators.py first seen with mtime 1742621909.5330675
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\admin\templatetags\base.py first seen with mtime 1742621909.2859316
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\messages\api.py first seen with mtime 1742621911.0185914
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\views\defaults.py first seen with mtime 1742621912.6155562
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\conf\urls\__init__.py first seen with mtime 1742621908.5358386
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\views\decorators\__init__.py first seen with mtime 1742621912.6195674
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\ast.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\sqlparse\sql.py first seen with mtime 1740153088.8245666
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\sql\datastructures.py first seen with mtime 1742621912.3213127
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\email\_parseaddr.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\contenttypes\forms.py first seen with mtime 1742621909.8196166
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\sqlparse\engine\filter_stack.py first seen with mtime 1740153088.8276136
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\DLLs\_uuid.pyd first seen with mtime 1712649062.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\urls\conf.py first seen with mtime 1742621912.5382354
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\utils\module_loading.py first seen with mtime 1742621912.5836997
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\utils\lorem_ipsum.py first seen with mtime 1742621912.5787017
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\messages\utils.py first seen with mtime 1742621911.023592
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\email\mime\__init__.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\lzma.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\urllib\response.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\sqlite3\creation.py first seen with mtime 1742621912.2705867
+File C:\Users\yanaa\trackerhabit\курсовая\habits\__init__.py first seen with mtime 1745161556.80713
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\asyncio\__init__.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\checks\translation.py first seen with mtime 1742621912.1387465
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\middleware\cache.py first seen with mtime 1742621912.4674046
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\admin\__init__.py first seen with mtime 1742621908.5408418
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\admin\templatetags\log.py first seen with mtime 1742621909.291124
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\html\parser.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\collections\abc.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\enum.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\inspect.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\admin\templatetags\admin_urls.py first seen with mtime 1742621909.2859316
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\wsgiref\headers.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\bz2.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\http\server.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\sqlparse\tokens.py first seen with mtime 1740153088.8255687
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\asyncio\futures.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\hashlib.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\contextlib.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\checks\security\sessions.py first seen with mtime 1742621912.1437707
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\migrations\utils.py first seen with mtime 1742621912.2859192
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\utils\hashable.py first seen with mtime 1742621912.5687788
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\http\multipartparser.py first seen with mtime 1742621912.4674046
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\files\move.py first seen with mtime 1742621912.149011
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\admin\filters.py first seen with mtime 1742621908.5512595
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\utils.py first seen with mtime 1742621912.497523
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\sqlite3\schema.py first seen with mtime 1742621912.2754872
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\base\schema.py first seen with mtime 1742621912.2359886
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\files\storage\base.py first seen with mtime 1742621912.154043
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\utils\cache.py first seen with mtime 1742621912.5533092
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\checks\files.py first seen with mtime 1742621912.1307273
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\checks\urls.py first seen with mtime 1742621912.1387465
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\difflib.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\auth\signals.py first seen with mtime 1742621909.5391545
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\threading.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\manager.py first seen with mtime 1742621912.301323
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\shutil.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\checks\security\__init__.py first seen with mtime 1742621912.1387465
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\messages\__init__.py first seen with mtime 1742621911.0185914
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\admin\models.py first seen with mtime 1742621908.5562575
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\signing.py first seen with mtime 1742621912.113309
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\fields\proxy.py first seen with mtime 1742621912.3113182
+File C:\Users\yanaa\trackerhabit\курсовая\manage.py first seen with mtime 1745161556.8111303
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\base64.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\contenttypes\management\__init__.py first seen with mtime 1742621910.059184
+File C:\Users\yanaa\trackerhabit\курсовая\accounts\forms.py first seen with mtime 1745161556.7821271
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\checks\async_checks.py first seen with mtime 1742621912.1234677
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\forms\fields.py first seen with mtime 1742621912.3314838
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\loaders\base.py first seen with mtime 1742621912.5075252
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\signal.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\migrations\exceptions.py first seen with mtime 1742621912.2754872
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\http\client.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\email\message.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\email\mime\base.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\admin\helpers.py first seen with mtime 1742621908.5562575
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\email\mime\message.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\trackerhabit\курсовая\habits\apps.py first seen with mtime 1745161556.80814
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\utils\functional.py first seen with mtime 1742621912.5687788
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\fields\json.py first seen with mtime 1742621912.3063195
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\utils\crypto.py first seen with mtime 1742621912.5556996
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\views\static.py first seen with mtime 1742621912.6195674
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\_compression.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\http\__init__.py first seen with mtime 1742621912.4624112
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\process.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\messages\storage\base.py first seen with mtime 1742621911.0285933
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\http\__init__.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\json\decoder.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\functions\mixins.py first seen with mtime 1742621912.3163202
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\gettext.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\sqlparse\filters\reindent.py first seen with mtime 1740153088.8326275
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\files\locks.py first seen with mtime 1742621912.149011
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\staticfiles\__init__.py first seen with mtime 1742621912.088042
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\smartif.py first seen with mtime 1742621912.497523
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\operator.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\serializers\__init__.py first seen with mtime 1742621912.1999552
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\http\cookies.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\logging\config.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\pickle.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\constants.py first seen with mtime 1742621912.2918098
+File C:\Users\yanaa\trackerhabit\курсовая\habits\models.py first seen with mtime 1745161556.8091402
+File C:\Users\yanaa\trackerhabit\курсовая\accounts\admin.py first seen with mtime 1745161556.7811282
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\utils\text.py first seen with mtime 1742621912.5886989
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\DLLs\_lzma.pyd first seen with mtime 1712649062.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\asyncio\streams.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\utils\asyncio.py first seen with mtime 1742621912.548298
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\asyncio\mixins.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\socketserver.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\ddl_references.py first seen with mtime 1742621912.2153053
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\fields\__init__.py first seen with mtime 1742621912.3063195
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\selectors.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\typing.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\admin\decorators.py first seen with mtime 1742621908.5462556
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\auth\backends.py first seen with mtime 1742621909.5280704
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\views\decorators\csrf.py first seen with mtime 1742621912.6308346
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\staticfiles\checks.py first seen with mtime 1742621912.088042
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\sqlite3\features.py first seen with mtime 1742621912.2705867
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\options.py first seen with mtime 1742621912.301323
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\textwrap.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\contenttypes\__init__.py first seen with mtime 1742621909.8111334
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\migrations\operations\special.py first seen with mtime 1742621912.2918098
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\platform.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\asyncio\base_subprocess.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\auth\checks.py first seen with mtime 1742621909.5280704
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\email\__init__.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\urls\converters.py first seen with mtime 1742621912.5393116
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\admin\utils.py first seen with mtime 1742621908.5635147
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\management\__init__.py first seen with mtime 1742621912.1690452
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\utils\translation\trans_real.py first seen with mtime 1742621912.6040895
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\shortcuts.py first seen with mtime 1742621908.1299882
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\__init__.py first seen with mtime 1742621912.1590505
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\email\errors.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\DLLs\_hashlib.pyd first seen with mtime 1712649062.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\staticfiles\utils.py first seen with mtime 1742621912.093075
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\query.py first seen with mtime 1742621912.301323
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\warnings.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\http\response.py first seen with mtime 1742621912.4674046
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\email\quoprimime.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\migrations\state.py first seen with mtime 1742621912.2859192
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\functions\datetime.py first seen with mtime 1742621912.3163202
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\utils\encoding.py first seen with mtime 1742621912.5637152
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\sqlite3\dbapi2.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\numbers.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\cache\__init__.py first seen with mtime 1742621912.113309
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\auth\validators.py first seen with mtime 1742621909.5391545
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\forms\__init__.py first seen with mtime 1742621912.3314838
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\sessions\__init__.py first seen with mtime 1742621911.5234988
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\utils\duration.py first seen with mtime 1742621912.5637152
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\nturl2path.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\email\_header_value_parser.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\colorama\ansitowin32.py first seen with mtime 1740153231.3544211
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\email\base64mime.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\forms\renderers.py first seen with mtime 1742621912.3369963
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\middleware\__init__.py first seen with mtime 1742621912.4674046
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\context.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\mail\message.py first seen with mtime 1742621912.1640484
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\zoneinfo\_tzpath.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\hmac.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\getpass.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\asyncio\log.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\staticfiles\handlers.py first seen with mtime 1742621912.093075
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\sqlparse\engine\grouping.py first seen with mtime 1740153088.8286176
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\migrations\operations\fields.py first seen with mtime 1742621912.2909539
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\asyncio\selector_events.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\dispatch\dispatcher.py first seen with mtime 1742621912.326482
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\templatetags\cache.py first seen with mtime 1742621912.514553
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\validators.py first seen with mtime 1742621912.113309
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\loaders\app_directories.py first seen with mtime 1742621912.5075252
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\constraints.py first seen with mtime 1742621912.2963207
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\views\__init__.py first seen with mtime 1742621912.6090941
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\html\__init__.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\checks\templates.py first seen with mtime 1742621912.1367414
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\asgiref\__init__.py first seen with mtime 1740153088.8968432
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\auth\__init__.py first seen with mtime 1742621909.5230706
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\DLLs\select.pyd first seen with mtime 1712649062.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\serializers\json.py first seen with mtime 1742621912.1999552
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\signals.py first seen with mtime 1742621912.1082528
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\utils\_os.py first seen with mtime 1742621912.5462165
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\utils\choices.py first seen with mtime 1742621912.5533092
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\email\headerregistry.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\fractions.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\email\_policybase.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\concurrent\futures\__init__.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\tokenize.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\__init__.py first seen with mtime 1742621912.2153053
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\utils\timezone.py first seen with mtime 1742621912.5936983
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\auth\password_validation.py first seen with mtime 1742621909.5380945
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\deletion.py first seen with mtime 1742621912.2963207
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\reprlib.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\checks\__init__.py first seen with mtime 1742621912.1234677
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\asyncio\sslproto.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\conf\urls\static.py first seen with mtime 1742621908.5408418
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\checks\registry.py first seen with mtime 1742621912.1367414
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\email\iterators.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\DLLs\_wmi.pyd first seen with mtime 1712649062.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\email\mime\nonmultipart.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\backends\base.py first seen with mtime 1742621912.497523
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\sessions\models.py first seen with mtime 1742621911.530669
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\utils\html.py first seen with mtime 1742621912.5737562
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\views\generic\list.py first seen with mtime 1742621912.6458933
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\urllib\error.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\colorama\__init__.py first seen with mtime 1740153231.353431
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\utils\connection.py first seen with mtime 1742621912.5556996
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\dataclasses.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\admin\views\__init__.py first seen with mtime 1742621909.291124
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\templatetags\tz.py first seen with mtime 1742621912.5175617
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\utils\deprecation.py first seen with mtime 1742621912.5637152
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\email\policy.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\trackerhabit\курсовая\accounts\urls.py first seen with mtime 1745161556.7911272
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\contenttypes\views.py first seen with mtime 1742621909.8196166
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\admin\views\autocomplete.py first seen with mtime 1742621909.291124
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\asyncio\windows_utils.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\migrations\operations\__init__.py first seen with mtime 1742621912.2884495
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\views\i18n.py first seen with mtime 1742621912.6195674
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\exceptions.py first seen with mtime 1742621912.4930172
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\locale.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\staticfiles\finders.py first seen with mtime 1742621912.093075
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\sqlite3\base.py first seen with mtime 1742621912.2705867
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\re\__init__.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\token.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\forms\utils.py first seen with mtime 1742621912.3369963
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\views\generic\edit.py first seen with mtime 1742621912.6450727
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\transaction.py first seen with mtime 1742621912.211176
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\json\scanner.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\utils.py first seen with mtime 1742621912.2133012
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\conf\__init__.py first seen with mtime 1742621908.1386423
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\exception.py first seen with mtime 1742621912.1590505
+File C:\Users\yanaa\trackerhabit\курсовая\django_project\settings.py first seen with mtime 1745161556.8061302
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\wsgi.py first seen with mtime 1742621912.1640484
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\dispatch\__init__.py first seen with mtime 1742621912.326482
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\utils\tree.py first seen with mtime 1742621912.5936983
+File C:\Users\yanaa\trackerhabit\курсовая\django_project\__init__.py first seen with mtime 1745161556.8041303
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\staticfiles\management\__init__.py first seen with mtime 1742621912.0981245
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\__init__.py first seen with mtime 1742621912.4774053
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\paginator.py first seen with mtime 1742621912.1082528
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\utils\deconstruct.py first seen with mtime 1742621912.5587082
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\re\_casefix.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\views\decorators\cache.py first seen with mtime 1742621912.6245694
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\graphlib.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\auth\tokens.py first seen with mtime 1742621909.5391545
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py first seen with mtime 1742621912.2153053
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\email\mime\multipart.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\utils\log.py first seen with mtime 1742621912.5787017
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\views\debug.py first seen with mtime 1742621912.6155562
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\_markupbase.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\DLLs\_ssl.pyd first seen with mtime 1712649062.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\management\base.py first seen with mtime 1742621912.174042
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\email\_encoded_words.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\urls\base.py first seen with mtime 1742621912.5367212
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\functions\comparison.py first seen with mtime 1742621912.3163202
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\re\_compiler.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\sqlparse\filters\tokens.py first seen with mtime 1740153088.833617
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\admin\templatetags\__init__.py first seen with mtime 1742621909.2859316
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\pathlib.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\management\commands\__init__.py first seen with mtime 1742621912.174042
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\utils\dateparse.py first seen with mtime 1742621912.5587082
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\sqlparse\utils.py first seen with mtime 1740153088.8265793
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\sql\__init__.py first seen with mtime 1742621912.3213127
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\sqlparse\filters\aligned_indent.py first seen with mtime 1740153088.8306167
+File C:\Users\yanaa\trackerhabit\курсовая\habits\admin.py first seen with mtime 1745161556.80814
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\lookups.py first seen with mtime 1742621912.301323
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\contenttypes\apps.py first seen with mtime 1742621909.814139
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\utils\http.py first seen with mtime 1742621912.5737562
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\__init__.py first seen with mtime 1742621908.5408418
+File C:\Users\yanaa\trackerhabit\курсовая\accounts\apps.py first seen with mtime 1745161556.7821271
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\apps\__init__.py first seen with mtime 1742621908.1299882
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\asyncio\events.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\sites\shortcuts.py first seen with mtime 1742621911.838624
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\context.py first seen with mtime 1742621912.4823995
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\queue.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\trackerhabit\курсовая\accounts\models.py first seen with mtime 1745161556.7851276
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\forms\formsets.py first seen with mtime 1742621912.3369963
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\messages\constants.py first seen with mtime 1742621911.023592
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\auth\apps.py first seen with mtime 1742621909.5280704
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\defaulttags.py first seen with mtime 1742621912.4873998
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\cache\backends\base.py first seen with mtime 1742621912.118436
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\glob.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\files\base.py first seen with mtime 1742621912.1437707
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\sqlite3\__init__.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\utils\version.py first seen with mtime 1742621912.5936983
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\DLLs\_asyncio.pyd first seen with mtime 1712649062.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\admin\widgets.py first seen with mtime 1742621908.5645595
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\http\request.py first seen with mtime 1742621912.4674046
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\asyncio\proactor_events.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\email\mime\text.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\wsgiref\handlers.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\trackerhabit\курсовая\habits\templates\habits first seen with mtime 1745167263.5852034
+File C:\Users\yanaa\trackerhabit\курсовая\habits\templates\habits\add_habits.html first seen with mtime 1745167263.5852034
+File C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts first seen with mtime 1745179954.0443082
+File C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts\change_password.html first seen with mtime 1745161556.7861273
+File C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts\edit_profile.html first seen with mtime 1745161556.7871277
+File C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts\forgot_password.html first seen with mtime 1745161556.7871277
+File C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts\home.html first seen with mtime 1745179954.0431335
+File C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts\login.html first seen with mtime 1745161556.7881272
+File C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts\profile.html first seen with mtime 1745161556.7881272
+File C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts\register.html first seen with mtime 1745161556.7891273
+File C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts\reset_password.html first seen with mtime 1745161556.7891273
+File C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts\verify.html first seen with mtime 1745161556.7901273
+File C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts\welcome.html first seen with mtime 1745161556.7901273
+File C:\Users\yanaa\trackerhabit\курсовая\templates\base.html first seen with mtime 1745167165.6802716
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\contenttypes\migrations\0001_initial.py first seen with mtime 1742621910.0637176
+File C:\Users\yanaa\trackerhabit\курсовая\accounts\migrations\__init__.py first seen with mtime 1745161556.783127
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\admin\migrations\__init__.py first seen with mtime 1742621909.0883665
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\auth\migrations\__init__.py first seen with mtime 1742621909.8036687
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\migrations\executor.py first seen with mtime 1742621912.2754872
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\PIL\TiffTags.py first seen with mtime 1740157708.3799324
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\sessions\migrations\__init__.py first seen with mtime 1742621911.823336
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\PIL\_typing.py first seen with mtime 1740157708.5812435
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\stringprep.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\migrations\loader.py first seen with mtime 1742621912.2810948
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\migrations\graph.py first seen with mtime 1742621912.2810948
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\DLLs\pyexpat.pyd first seen with mtime 1712649062.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\middleware\clickjacking.py first seen with mtime 1742621912.472401
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\DLLs\_elementtree.pyd first seen with mtime 1712649062.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\auth\migrations\0005_alter_user_last_login_null.py first seen with mtime 1742621909.7929819
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\auth\migrations\0009_alter_user_last_name_max_length.py first seen with mtime 1742621909.798436
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\PIL\_deprecate.py first seen with mtime 1740157708.4104958
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\messages\middleware.py first seen with mtime 1742621911.023592
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\auth\migrations\0006_require_contenttypes_0002.py first seen with mtime 1742621909.7929819
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\sql\compiler.py first seen with mtime 1742621912.3213127
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\defusedxml\ElementTree.py first seen with mtime 1740153229.983747
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\sessions\backends\db.py first seen with mtime 1742621911.5386868
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\PIL\ImageMode.py first seen with mtime 1740157708.1968017
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\PIL\Image.py first seen with mtime 1740157708.128091
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\xml\etree\__init__.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\auth\migrations\0011_update_proxy_permissions.py first seen with mtime 1742621909.8036687
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\defusedxml\common.py first seen with mtime 1740153229.9857366
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\PIL\__init__.py first seen with mtime 1740157708.400986
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\defusedxml\__init__.py first seen with mtime 1740153229.9847372
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\auth\migrations\0001_initial.py first seen with mtime 1742621909.7875364
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\PIL\_version.py first seen with mtime 1740157708.5871792
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\xml\__init__.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\auth\migrations\0007_alter_validators_add_error_messages.py first seen with mtime 1742621909.798436
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\migrations\recorder.py first seen with mtime 1742621912.2844124
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\__future__.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\views\csrf.py first seen with mtime 1742621912.6090941
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\contenttypes\migrations\__init__.py first seen with mtime 1742621910.0637176
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\admin\migrations\0003_logentry_add_action_flag_choices.py first seen with mtime 1742621909.0848625
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\auth\migrations\0004_alter_user_username_opts.py first seen with mtime 1742621909.7929819
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\PIL\_util.py first seen with mtime 1740157708.5841722
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\admin\migrations\0001_initial.py first seen with mtime 1742621909.084004
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\PIL\ExifTags.py first seen with mtime 1740157708.0424423
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\admin\migrations\0002_logentry_remove_auto_add.py first seen with mtime 1742621909.0848625
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\xml\etree\ElementPath.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\xml\parsers\expat.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\xml\etree\ElementTree.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\auth\migrations\0008_alter_user_username_max_length.py first seen with mtime 1742621909.798436
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\middleware\common.py first seen with mtime 1742621912.472401
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\auth\migrations\0003_alter_user_email_max_length.py first seen with mtime 1742621909.7929819
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\cache\backends\locmem.py first seen with mtime 1742621912.118436
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\xml\parsers\__init__.py first seen with mtime 1712649018.0
+File C:\Users\yanaa\trackerhabit\курсовая\django_project\wsgi.py first seen with mtime 1745161556.80713
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\contenttypes\migrations\0002_remove_content_type_name.py first seen with mtime 1742621910.0637176
+File C:\Users\yanaa\trackerhabit\курсовая\habits\migrations\__init__.py first seen with mtime 1745161556.8091402
+File C:\Users\yanaa\trackerhabit\курсовая\accounts\migrations\0001_initial.py first seen with mtime 1745161556.783127
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\auth\migrations\0010_alter_group_name_max_length.py first seen with mtime 1742621909.798436
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\auth\migrations\0012_alter_user_first_name_max_length.py first seen with mtime 1742621909.8036687
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\auth\migrations\0002_alter_permission_name_max_length.py first seen with mtime 1742621909.7875364
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\PIL\_binary.py first seen with mtime 1740157708.4074855
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\sessions\migrations\0001_initial.py first seen with mtime 1742621911.818333
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\PIL\_imaging.cp312-win_amd64.pyd first seen with mtime 1740157708.4618776
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\encodings\idna.py first seen with mtime 1712649018.0
+(0.000) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2025-04-21 09:18:28.287263' AND "django_session"."session_key" = 'wfpi61l8aemvtu7fvvqup2f3wypervgx') LIMIT 21; args=('2025-04-21 09:18:28.287263', 'wfpi61l8aemvtu7fvvqup2f3wypervgx'); alias=default
+(0.000) SELECT "accounts_user"."id", "accounts_user"."password", "accounts_user"."last_login", "accounts_user"."is_superuser", "accounts_user"."username", "accounts_user"."first_name", "accounts_user"."last_name", "accounts_user"."is_staff", "accounts_user"."is_active", "accounts_user"."date_joined", "accounts_user"."email", "accounts_user"."verification_code", "accounts_user"."verification_attempts", "accounts_user"."verification_code_sent_at", "accounts_user"."avatar" FROM "accounts_user" WHERE "accounts_user"."id" = 3 LIMIT 21; args=(3,); alias=default
+"GET / HTTP/1.1" 302 0
+(0.000) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2025-04-21 09:18:28.302720' AND "django_session"."session_key" = 'wfpi61l8aemvtu7fvvqup2f3wypervgx') LIMIT 21; args=('2025-04-21 09:18:28.302720', 'wfpi61l8aemvtu7fvvqup2f3wypervgx'); alias=default
+(0.000) SELECT "accounts_user"."id", "accounts_user"."password", "accounts_user"."last_login", "accounts_user"."is_superuser", "accounts_user"."username", "accounts_user"."first_name", "accounts_user"."last_name", "accounts_user"."is_staff", "accounts_user"."is_active", "accounts_user"."date_joined", "accounts_user"."email", "accounts_user"."verification_code", "accounts_user"."verification_attempts", "accounts_user"."verification_code_sent_at", "accounts_user"."avatar" FROM "accounts_user" WHERE "accounts_user"."id" = 3 LIMIT 21; args=(3,); alias=default
+"GET /home/ HTTP/1.1" 200 8836
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\messages\storage\session.py first seen with mtime 1742621911.0285933
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\messages\storage\cookie.py first seen with mtime 1742621911.0285933
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\context_processors.py first seen with mtime 1742621912.4823995
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\messages\storage\fallback.py first seen with mtime 1742621911.0285933
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\staticfiles\storage.py first seen with mtime 1742621912.093075
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\messages\context_processors.py first seen with mtime 1742621911.023592
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\sessions\serializers.py first seen with mtime 1742621911.530669
+File C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\auth\context_processors.py first seen with mtime 1742621909.5280704
+"GET /static/images/image1.png HTTP/1.1" 304 0
+Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    callback, callback_args, callback_kwargs = self.resolve_request(request)
+                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\base.py", line 313, in resolve_request
+    resolver_match = resolver.resolve(request.path_info)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\urls\resolvers.py", line 722, in resolve
+    raise Resolver404({"tried": tried, "path": new_path})
+django.urls.exceptions.Resolver404: {'tried': [[<URLResolver <URLPattern list> (admin:admin) 'admin/'>], [<URLResolver <module 'accounts.urls' from 'C:\\Users\\yanaa\\trackerhabit\\курсовая\\accounts\\urls.py'> (None:None) ''>, <URLPattern '' [name='welcome']>], [<URLResolver <module 'accounts.urls' from 'C:\\Users\\yanaa\\trackerhabit\\курсовая\\accounts\\urls.py'> (None:None) ''>, <URLPattern 'home/' [name='home']>], [<URLResolver <module 'accounts.urls' from 'C:\\Users\\yanaa\\trackerhabit\\курсовая\\accounts\\urls.py'> (None:None) ''>, <URLPattern 'register/' [name='register']>], [<URLResolver <module 'accounts.urls' from 'C:\\Users\\yanaa\\trackerhabit\\курсовая\\accounts\\urls.py'> (None:None) ''>, <URLPattern 'login/' [name='login']>], [<URLResolver <module 'accounts.urls' from 'C:\\Users\\yanaa\\trackerhabit\\курсовая\\accounts\\urls.py'> (None:None) ''>, <URLPattern 'logout/' [name='logout']>], [<URLResolver <module 'accounts.urls' from 'C:\\Users\\yanaa\\trackerhabit\\курсовая\\accounts\\urls.py'> (None:None) ''>, <URLPattern 'verify/' [name='verify']>], [<URLResolver <module 'accounts.urls' from 'C:\\Users\\yanaa\\trackerhabit\\курсовая\\accounts\\urls.py'> (None:None) ''>, <URLPattern 'resend-code/' [name='resend_code']>], [<URLResolver <module 'accounts.urls' from 'C:\\Users\\yanaa\\trackerhabit\\курсовая\\accounts\\urls.py'> (None:None) ''>, <URLPattern 'forgot-password/' [name='forgot_password']>], [<URLResolver <module 'accounts.urls' from 'C:\\Users\\yanaa\\trackerhabit\\курсовая\\accounts\\urls.py'> (None:None) ''>, <URLPattern 'reset-password/' [name='reset_password']>], [<URLResolver <module 'accounts.urls' from 'C:\\Users\\yanaa\\trackerhabit\\курсовая\\accounts\\urls.py'> (None:None) ''>, <URLPattern 'profile/' [name='profile']>], [<URLResolver <module 'accounts.urls' from 'C:\\Users\\yanaa\\trackerhabit\\курсовая\\accounts\\urls.py'> (None:None) ''>, <URLPattern 'profile/edit/' [name='edit_profile']>], [<URLResolver <module 'accounts.urls' from 'C:\\Users\\yanaa\\trackerhabit\\курсовая\\accounts\\urls.py'> (None:None) ''>, <URLPattern 'profile/delete-avatar/' [name='delete_avatar']>], [<URLResolver <module 'accounts.urls' from 'C:\\Users\\yanaa\\trackerhabit\\курсовая\\accounts\\urls.py'> (None:None) ''>, <URLPattern 'profile/change-password/' [name='change_password']>], [<URLResolver <module 'habits.urls' from 'C:\\Users\\yanaa\\trackerhabit\\курсовая\\habits\\urls.py'> (None:None) ''>, <URLPattern 'habits/' [name='habits']>], [<URLPattern '^media/(?P<path>.*)$'>]], 'path': 'favicon.ico'}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\base.py", line 875, in _resolve_lookup
+    current = current[bit]
+              ~~~~~~~^^^^^
+TypeError: 'URLResolver' object is not subscriptable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\base.py", line 885, in _resolve_lookup
+    current = getattr(current, bit)
+              ^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'URLResolver' object has no attribute 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\base.py", line 891, in _resolve_lookup
+    current = current[int(bit)]
+                      ^^^^^^^^
+ValueError: invalid literal for int() with base 10: 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\yanaa\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\base.py", line 898, in _resolve_lookup
+    raise VariableDoesNotExist(
+django.template.base.VariableDoesNotExist: Failed lookup for key [name] in <URLResolver <URLPattern list> (admin:admin) 'admin/'>
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 4708
+(0.000) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2025-04-21 09:23:30.809178' AND "django_session"."session_key" = 'wfpi61l8aemvtu7fvvqup2f3wypervgx') LIMIT 21; args=('2025-04-21 09:23:30.809178', 'wfpi61l8aemvtu7fvvqup2f3wypervgx'); alias=default
+(0.000) SELECT "accounts_user"."id", "accounts_user"."password", "accounts_user"."last_login", "accounts_user"."is_superuser", "accounts_user"."username", "accounts_user"."first_name", "accounts_user"."last_name", "accounts_user"."is_staff", "accounts_user"."is_active", "accounts_user"."date_joined", "accounts_user"."email", "accounts_user"."verification_code", "accounts_user"."verification_attempts", "accounts_user"."verification_code_sent_at", "accounts_user"."avatar" FROM "accounts_user" WHERE "accounts_user"."id" = 3 LIMIT 21; args=(3,); alias=default
+"GET /home/ HTTP/1.1" 200 8844
+File C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts previous mtime: 1745179954.0443082, current mtime: 1745227542.7869418
+C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts notified as changed. Signal results: [(<function template_changed at 0x0000021F126BFE20>, True), (<function translation_file_changed at 0x0000021F137DBCE0>, None)].
+File C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts\home.html previous mtime: 1745179954.0431335, current mtime: 1745227542.7869418
+C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts\home.html notified as changed. Signal results: [(<function template_changed at 0x0000021F126BFE20>, True), (<function translation_file_changed at 0x0000021F137DBCE0>, None)].
+(0.000) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2025-04-21 09:25:44.225570' AND "django_session"."session_key" = 'wfpi61l8aemvtu7fvvqup2f3wypervgx') LIMIT 21; args=('2025-04-21 09:25:44.225570', 'wfpi61l8aemvtu7fvvqup2f3wypervgx'); alias=default
+(0.000) SELECT "accounts_user"."id", "accounts_user"."password", "accounts_user"."last_login", "accounts_user"."is_superuser", "accounts_user"."username", "accounts_user"."first_name", "accounts_user"."last_name", "accounts_user"."is_staff", "accounts_user"."is_active", "accounts_user"."date_joined", "accounts_user"."email", "accounts_user"."verification_code", "accounts_user"."verification_attempts", "accounts_user"."verification_code_sent_at", "accounts_user"."avatar" FROM "accounts_user" WHERE "accounts_user"."id" = 3 LIMIT 21; args=(3,); alias=default
+"GET /home/ HTTP/1.1" 200 8836
+File C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts previous mtime: 1745227542.7869418, current mtime: 1745227548.7166982
+C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts notified as changed. Signal results: [(<function template_changed at 0x0000021F126BFE20>, True), (<function translation_file_changed at 0x0000021F137DBCE0>, None)].
+File C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts\home.html previous mtime: 1745227542.7869418, current mtime: 1745227548.7166982
+C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts\home.html notified as changed. Signal results: [(<function template_changed at 0x0000021F126BFE20>, True), (<function translation_file_changed at 0x0000021F137DBCE0>, None)].
+(0.000) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2025-04-21 09:25:53.309144' AND "django_session"."session_key" = 'wfpi61l8aemvtu7fvvqup2f3wypervgx') LIMIT 21; args=('2025-04-21 09:25:53.309144', 'wfpi61l8aemvtu7fvvqup2f3wypervgx'); alias=default
+(0.000) SELECT "accounts_user"."id", "accounts_user"."password", "accounts_user"."last_login", "accounts_user"."is_superuser", "accounts_user"."username", "accounts_user"."first_name", "accounts_user"."last_name", "accounts_user"."is_staff", "accounts_user"."is_active", "accounts_user"."date_joined", "accounts_user"."email", "accounts_user"."verification_code", "accounts_user"."verification_attempts", "accounts_user"."verification_code_sent_at", "accounts_user"."avatar" FROM "accounts_user" WHERE "accounts_user"."id" = 3 LIMIT 21; args=(3,); alias=default
+"GET /home/ HTTP/1.1" 200 8836
+File C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts previous mtime: 1745227548.7166982, current mtime: 1745227552.5609906
+C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts notified as changed. Signal results: [(<function template_changed at 0x0000021F126BFE20>, True), (<function translation_file_changed at 0x0000021F137DBCE0>, None)].
+File C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts\home.html previous mtime: 1745227548.7166982, current mtime: 1745227552.5609906
+C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts\home.html notified as changed. Signal results: [(<function template_changed at 0x0000021F126BFE20>, True), (<function translation_file_changed at 0x0000021F137DBCE0>, None)].
+(0.000) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2025-04-21 09:25:59.393341' AND "django_session"."session_key" = 'wfpi61l8aemvtu7fvvqup2f3wypervgx') LIMIT 21; args=('2025-04-21 09:25:59.393341', 'wfpi61l8aemvtu7fvvqup2f3wypervgx'); alias=default
+(0.000) SELECT "accounts_user"."id", "accounts_user"."password", "accounts_user"."last_login", "accounts_user"."is_superuser", "accounts_user"."username", "accounts_user"."first_name", "accounts_user"."last_name", "accounts_user"."is_staff", "accounts_user"."is_active", "accounts_user"."date_joined", "accounts_user"."email", "accounts_user"."verification_code", "accounts_user"."verification_attempts", "accounts_user"."verification_code_sent_at", "accounts_user"."avatar" FROM "accounts_user" WHERE "accounts_user"."id" = 3 LIMIT 21; args=(3,); alias=default
+"GET /home/ HTTP/1.1" 200 8837
+File C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts previous mtime: 1745227552.5609906, current mtime: 1745227558.5606585
+C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts notified as changed. Signal results: [(<function template_changed at 0x0000021F126BFE20>, True), (<function translation_file_changed at 0x0000021F137DBCE0>, None)].
+File C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts\home.html previous mtime: 1745227552.5609906, current mtime: 1745227558.5606585
+C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts\home.html notified as changed. Signal results: [(<function template_changed at 0x0000021F126BFE20>, True), (<function translation_file_changed at 0x0000021F137DBCE0>, None)].
+(0.000) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2025-04-21 09:26:00.420910' AND "django_session"."session_key" = 'wfpi61l8aemvtu7fvvqup2f3wypervgx') LIMIT 21; args=('2025-04-21 09:26:00.420910', 'wfpi61l8aemvtu7fvvqup2f3wypervgx'); alias=default
+(0.000) SELECT "accounts_user"."id", "accounts_user"."password", "accounts_user"."last_login", "accounts_user"."is_superuser", "accounts_user"."username", "accounts_user"."first_name", "accounts_user"."last_name", "accounts_user"."is_staff", "accounts_user"."is_active", "accounts_user"."date_joined", "accounts_user"."email", "accounts_user"."verification_code", "accounts_user"."verification_attempts", "accounts_user"."verification_code_sent_at", "accounts_user"."avatar" FROM "accounts_user" WHERE "accounts_user"."id" = 3 LIMIT 21; args=(3,); alias=default
+"GET /home/ HTTP/1.1" 200 8844
+(0.000) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2025-04-21 09:26:00.705260' AND "django_session"."session_key" = 'wfpi61l8aemvtu7fvvqup2f3wypervgx') LIMIT 21; args=('2025-04-21 09:26:00.705260', 'wfpi61l8aemvtu7fvvqup2f3wypervgx'); alias=default
+(0.000) SELECT "accounts_user"."id", "accounts_user"."password", "accounts_user"."last_login", "accounts_user"."is_superuser", "accounts_user"."username", "accounts_user"."first_name", "accounts_user"."last_name", "accounts_user"."is_staff", "accounts_user"."is_active", "accounts_user"."date_joined", "accounts_user"."email", "accounts_user"."verification_code", "accounts_user"."verification_attempts", "accounts_user"."verification_code_sent_at", "accounts_user"."avatar" FROM "accounts_user" WHERE "accounts_user"."id" = 3 LIMIT 21; args=(3,); alias=default
+"GET /home/ HTTP/1.1" 200 8837
+(0.016) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2025-04-21 09:26:00.895726' AND "django_session"."session_key" = 'wfpi61l8aemvtu7fvvqup2f3wypervgx') LIMIT 21; args=('2025-04-21 09:26:00.895726', 'wfpi61l8aemvtu7fvvqup2f3wypervgx'); alias=default
+(0.000) SELECT "accounts_user"."id", "accounts_user"."password", "accounts_user"."last_login", "accounts_user"."is_superuser", "accounts_user"."username", "accounts_user"."first_name", "accounts_user"."last_name", "accounts_user"."is_staff", "accounts_user"."is_active", "accounts_user"."date_joined", "accounts_user"."email", "accounts_user"."verification_code", "accounts_user"."verification_attempts", "accounts_user"."verification_code_sent_at", "accounts_user"."avatar" FROM "accounts_user" WHERE "accounts_user"."id" = 3 LIMIT 21; args=(3,); alias=default
+"GET /home/ HTTP/1.1" 200 8844
+(0.000) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2025-04-21 09:26:01.069634' AND "django_session"."session_key" = 'wfpi61l8aemvtu7fvvqup2f3wypervgx') LIMIT 21; args=('2025-04-21 09:26:01.069634', 'wfpi61l8aemvtu7fvvqup2f3wypervgx'); alias=default
+(0.000) SELECT "accounts_user"."id", "accounts_user"."password", "accounts_user"."last_login", "accounts_user"."is_superuser", "accounts_user"."username", "accounts_user"."first_name", "accounts_user"."last_name", "accounts_user"."is_staff", "accounts_user"."is_active", "accounts_user"."date_joined", "accounts_user"."email", "accounts_user"."verification_code", "accounts_user"."verification_attempts", "accounts_user"."verification_code_sent_at", "accounts_user"."avatar" FROM "accounts_user" WHERE "accounts_user"."id" = 3 LIMIT 21; args=(3,); alias=default
+"GET /home/ HTTP/1.1" 200 8837
+(0.000) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2025-04-21 09:26:01.252156' AND "django_session"."session_key" = 'wfpi61l8aemvtu7fvvqup2f3wypervgx') LIMIT 21; args=('2025-04-21 09:26:01.252156', 'wfpi61l8aemvtu7fvvqup2f3wypervgx'); alias=default
+(0.000) SELECT "accounts_user"."id", "accounts_user"."password", "accounts_user"."last_login", "accounts_user"."is_superuser", "accounts_user"."username", "accounts_user"."first_name", "accounts_user"."last_name", "accounts_user"."is_staff", "accounts_user"."is_active", "accounts_user"."date_joined", "accounts_user"."email", "accounts_user"."verification_code", "accounts_user"."verification_attempts", "accounts_user"."verification_code_sent_at", "accounts_user"."avatar" FROM "accounts_user" WHERE "accounts_user"."id" = 3 LIMIT 21; args=(3,); alias=default
+"GET /home/ HTTP/1.1" 200 8831
+(0.000) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2025-04-21 09:26:01.428327' AND "django_session"."session_key" = 'wfpi61l8aemvtu7fvvqup2f3wypervgx') LIMIT 21; args=('2025-04-21 09:26:01.428327', 'wfpi61l8aemvtu7fvvqup2f3wypervgx'); alias=default
+(0.000) SELECT "accounts_user"."id", "accounts_user"."password", "accounts_user"."last_login", "accounts_user"."is_superuser", "accounts_user"."username", "accounts_user"."first_name", "accounts_user"."last_name", "accounts_user"."is_staff", "accounts_user"."is_active", "accounts_user"."date_joined", "accounts_user"."email", "accounts_user"."verification_code", "accounts_user"."verification_attempts", "accounts_user"."verification_code_sent_at", "accounts_user"."avatar" FROM "accounts_user" WHERE "accounts_user"."id" = 3 LIMIT 21; args=(3,); alias=default
+"GET /home/ HTTP/1.1" 200 8831
+(0.000) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2025-04-21 09:26:01.609012' AND "django_session"."session_key" = 'wfpi61l8aemvtu7fvvqup2f3wypervgx') LIMIT 21; args=('2025-04-21 09:26:01.609012', 'wfpi61l8aemvtu7fvvqup2f3wypervgx'); alias=default
+(0.000) SELECT "accounts_user"."id", "accounts_user"."password", "accounts_user"."last_login", "accounts_user"."is_superuser", "accounts_user"."username", "accounts_user"."first_name", "accounts_user"."last_name", "accounts_user"."is_staff", "accounts_user"."is_active", "accounts_user"."date_joined", "accounts_user"."email", "accounts_user"."verification_code", "accounts_user"."verification_attempts", "accounts_user"."verification_code_sent_at", "accounts_user"."avatar" FROM "accounts_user" WHERE "accounts_user"."id" = 3 LIMIT 21; args=(3,); alias=default
+"GET /home/ HTTP/1.1" 200 8807
+(0.000) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2025-04-21 09:26:02.131108' AND "django_session"."session_key" = 'wfpi61l8aemvtu7fvvqup2f3wypervgx') LIMIT 21; args=('2025-04-21 09:26:02.131108', 'wfpi61l8aemvtu7fvvqup2f3wypervgx'); alias=default
+(0.000) SELECT "accounts_user"."id", "accounts_user"."password", "accounts_user"."last_login", "accounts_user"."is_superuser", "accounts_user"."username", "accounts_user"."first_name", "accounts_user"."last_name", "accounts_user"."is_staff", "accounts_user"."is_active", "accounts_user"."date_joined", "accounts_user"."email", "accounts_user"."verification_code", "accounts_user"."verification_attempts", "accounts_user"."verification_code_sent_at", "accounts_user"."avatar" FROM "accounts_user" WHERE "accounts_user"."id" = 3 LIMIT 21; args=(3,); alias=default
+"GET /home/ HTTP/1.1" 200 8831
+File C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts previous mtime: 1745227558.5606585, current mtime: 1745227566.3827276
+C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts notified as changed. Signal results: [(<function template_changed at 0x0000021F126BFE20>, True), (<function translation_file_changed at 0x0000021F137DBCE0>, None)].
+File C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts\home.html previous mtime: 1745227558.5606585, current mtime: 1745227566.3814256
+C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts\home.html notified as changed. Signal results: [(<function template_changed at 0x0000021F126BFE20>, True), (<function translation_file_changed at 0x0000021F137DBCE0>, None)].
+(0.000) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2025-04-21 09:26:08.110665' AND "django_session"."session_key" = 'wfpi61l8aemvtu7fvvqup2f3wypervgx') LIMIT 21; args=('2025-04-21 09:26:08.110665', 'wfpi61l8aemvtu7fvvqup2f3wypervgx'); alias=default
+(0.000) SELECT "accounts_user"."id", "accounts_user"."password", "accounts_user"."last_login", "accounts_user"."is_superuser", "accounts_user"."username", "accounts_user"."first_name", "accounts_user"."last_name", "accounts_user"."is_staff", "accounts_user"."is_active", "accounts_user"."date_joined", "accounts_user"."email", "accounts_user"."verification_code", "accounts_user"."verification_attempts", "accounts_user"."verification_code_sent_at", "accounts_user"."avatar" FROM "accounts_user" WHERE "accounts_user"."id" = 3 LIMIT 21; args=(3,); alias=default
+"GET /home/ HTTP/1.1" 200 8837
+File C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts previous mtime: 1745227566.3827276, current mtime: 1745227576.1359153
+C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts notified as changed. Signal results: [(<function template_changed at 0x0000021F126BFE20>, True), (<function translation_file_changed at 0x0000021F137DBCE0>, None)].
+File C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts\home.html previous mtime: 1745227566.3814256, current mtime: 1745227576.1349137
+C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts\home.html notified as changed. Signal results: [(<function template_changed at 0x0000021F126BFE20>, True), (<function translation_file_changed at 0x0000021F137DBCE0>, None)].
+(0.016) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2025-04-21 09:26:17.051089' AND "django_session"."session_key" = 'wfpi61l8aemvtu7fvvqup2f3wypervgx') LIMIT 21; args=('2025-04-21 09:26:17.051089', 'wfpi61l8aemvtu7fvvqup2f3wypervgx'); alias=default
+(0.000) SELECT "accounts_user"."id", "accounts_user"."password", "accounts_user"."last_login", "accounts_user"."is_superuser", "accounts_user"."username", "accounts_user"."first_name", "accounts_user"."last_name", "accounts_user"."is_staff", "accounts_user"."is_active", "accounts_user"."date_joined", "accounts_user"."email", "accounts_user"."verification_code", "accounts_user"."verification_attempts", "accounts_user"."verification_code_sent_at", "accounts_user"."avatar" FROM "accounts_user" WHERE "accounts_user"."id" = 3 LIMIT 21; args=(3,); alias=default
+"GET /home/ HTTP/1.1" 200 8827
+(0.000) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2025-04-21 09:26:23.579651' AND "django_session"."session_key" = 'wfpi61l8aemvtu7fvvqup2f3wypervgx') LIMIT 21; args=('2025-04-21 09:26:23.579651', 'wfpi61l8aemvtu7fvvqup2f3wypervgx'); alias=default
+(0.000) SELECT "accounts_user"."id", "accounts_user"."password", "accounts_user"."last_login", "accounts_user"."is_superuser", "accounts_user"."username", "accounts_user"."first_name", "accounts_user"."last_name", "accounts_user"."is_staff", "accounts_user"."is_active", "accounts_user"."date_joined", "accounts_user"."email", "accounts_user"."verification_code", "accounts_user"."verification_attempts", "accounts_user"."verification_code_sent_at", "accounts_user"."avatar" FROM "accounts_user" WHERE "accounts_user"."id" = 3 LIMIT 21; args=(3,); alias=default
+"GET /home/ HTTP/1.1" 200 8831
+File C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts previous mtime: 1745227576.1359153, current mtime: 1745227582.6982727
+C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts notified as changed. Signal results: [(<function template_changed at 0x0000021F126BFE20>, True), (<function translation_file_changed at 0x0000021F137DBCE0>, None)].
+File C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts\home.html previous mtime: 1745227576.1349137, current mtime: 1745227582.6970778
+C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts\home.html notified as changed. Signal results: [(<function template_changed at 0x0000021F126BFE20>, True), (<function translation_file_changed at 0x0000021F137DBCE0>, None)].
+(0.000) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2025-04-21 09:26:24.364150' AND "django_session"."session_key" = 'wfpi61l8aemvtu7fvvqup2f3wypervgx') LIMIT 21; args=('2025-04-21 09:26:24.364150', 'wfpi61l8aemvtu7fvvqup2f3wypervgx'); alias=default
+(0.000) SELECT "accounts_user"."id", "accounts_user"."password", "accounts_user"."last_login", "accounts_user"."is_superuser", "accounts_user"."username", "accounts_user"."first_name", "accounts_user"."last_name", "accounts_user"."is_staff", "accounts_user"."is_active", "accounts_user"."date_joined", "accounts_user"."email", "accounts_user"."verification_code", "accounts_user"."verification_attempts", "accounts_user"."verification_code_sent_at", "accounts_user"."avatar" FROM "accounts_user" WHERE "accounts_user"."id" = 3 LIMIT 21; args=(3,); alias=default
+"GET /home/ HTTP/1.1" 200 8836
+(0.000) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2025-04-21 09:26:24.584637' AND "django_session"."session_key" = 'wfpi61l8aemvtu7fvvqup2f3wypervgx') LIMIT 21; args=('2025-04-21 09:26:24.584637', 'wfpi61l8aemvtu7fvvqup2f3wypervgx'); alias=default
+(0.000) SELECT "accounts_user"."id", "accounts_user"."password", "accounts_user"."last_login", "accounts_user"."is_superuser", "accounts_user"."username", "accounts_user"."first_name", "accounts_user"."last_name", "accounts_user"."is_staff", "accounts_user"."is_active", "accounts_user"."date_joined", "accounts_user"."email", "accounts_user"."verification_code", "accounts_user"."verification_attempts", "accounts_user"."verification_code_sent_at", "accounts_user"."avatar" FROM "accounts_user" WHERE "accounts_user"."id" = 3 LIMIT 21; args=(3,); alias=default
+"GET /home/ HTTP/1.1" 200 8827
+File C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts previous mtime: 1745227582.6982727, current mtime: 1745227588.89825
+C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts notified as changed. Signal results: [(<function template_changed at 0x0000021F126BFE20>, True), (<function translation_file_changed at 0x0000021F137DBCE0>, None)].
+File C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts\home.html previous mtime: 1745227582.6970778, current mtime: 1745227588.8967574
+C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts\home.html notified as changed. Signal results: [(<function template_changed at 0x0000021F126BFE20>, True), (<function translation_file_changed at 0x0000021F137DBCE0>, None)].
+(0.000) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2025-04-21 09:26:30.815330' AND "django_session"."session_key" = 'wfpi61l8aemvtu7fvvqup2f3wypervgx') LIMIT 21; args=('2025-04-21 09:26:30.815330', 'wfpi61l8aemvtu7fvvqup2f3wypervgx'); alias=default
+(0.000) SELECT "accounts_user"."id", "accounts_user"."password", "accounts_user"."last_login", "accounts_user"."is_superuser", "accounts_user"."username", "accounts_user"."first_name", "accounts_user"."last_name", "accounts_user"."is_staff", "accounts_user"."is_active", "accounts_user"."date_joined", "accounts_user"."email", "accounts_user"."verification_code", "accounts_user"."verification_attempts", "accounts_user"."verification_code_sent_at", "accounts_user"."avatar" FROM "accounts_user" WHERE "accounts_user"."id" = 3 LIMIT 21; args=(3,); alias=default
+"GET /home/ HTTP/1.1" 200 8837
+File C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts previous mtime: 1745227588.89825, current mtime: 1745228257.727257
+C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts notified as changed. Signal results: [(<function template_changed at 0x0000021F126BFE20>, True), (<function translation_file_changed at 0x0000021F137DBCE0>, None)].
+File C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts\home.html previous mtime: 1745227588.8967574, current mtime: 1745228257.7262566
+C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts\home.html notified as changed. Signal results: [(<function template_changed at 0x0000021F126BFE20>, True), (<function translation_file_changed at 0x0000021F137DBCE0>, None)].
+(0.000) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2025-04-21 09:37:39.648587' AND "django_session"."session_key" = 'wfpi61l8aemvtu7fvvqup2f3wypervgx') LIMIT 21; args=('2025-04-21 09:37:39.648587', 'wfpi61l8aemvtu7fvvqup2f3wypervgx'); alias=default
+(0.000) SELECT "accounts_user"."id", "accounts_user"."password", "accounts_user"."last_login", "accounts_user"."is_superuser", "accounts_user"."username", "accounts_user"."first_name", "accounts_user"."last_name", "accounts_user"."is_staff", "accounts_user"."is_active", "accounts_user"."date_joined", "accounts_user"."email", "accounts_user"."verification_code", "accounts_user"."verification_attempts", "accounts_user"."verification_code_sent_at", "accounts_user"."avatar" FROM "accounts_user" WHERE "accounts_user"."id" = 3 LIMIT 21; args=(3,); alias=default
+"GET /home/ HTTP/1.1" 200 8601
+File C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts previous mtime: 1745228257.727257, current mtime: 1745228314.4894545
+C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts notified as changed. Signal results: [(<function template_changed at 0x0000021F126BFE20>, True), (<function translation_file_changed at 0x0000021F137DBCE0>, None)].
+File C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts\home.html previous mtime: 1745228257.7262566, current mtime: 1745228314.488458
+C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts\home.html notified as changed. Signal results: [(<function template_changed at 0x0000021F126BFE20>, True), (<function translation_file_changed at 0x0000021F137DBCE0>, None)].
+(0.000) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2025-04-21 09:38:35.531715' AND "django_session"."session_key" = 'wfpi61l8aemvtu7fvvqup2f3wypervgx') LIMIT 21; args=('2025-04-21 09:38:35.531715', 'wfpi61l8aemvtu7fvvqup2f3wypervgx'); alias=default
+(0.000) SELECT "accounts_user"."id", "accounts_user"."password", "accounts_user"."last_login", "accounts_user"."is_superuser", "accounts_user"."username", "accounts_user"."first_name", "accounts_user"."last_name", "accounts_user"."is_staff", "accounts_user"."is_active", "accounts_user"."date_joined", "accounts_user"."email", "accounts_user"."verification_code", "accounts_user"."verification_attempts", "accounts_user"."verification_code_sent_at", "accounts_user"."avatar" FROM "accounts_user" WHERE "accounts_user"."id" = 3 LIMIT 21; args=(3,); alias=default
+"GET /home/ HTTP/1.1" 200 8592
+(0.000) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2025-04-21 09:38:38.136909' AND "django_session"."session_key" = 'wfpi61l8aemvtu7fvvqup2f3wypervgx') LIMIT 21; args=('2025-04-21 09:38:38.136909', 'wfpi61l8aemvtu7fvvqup2f3wypervgx'); alias=default
+(0.000) SELECT "accounts_user"."id", "accounts_user"."password", "accounts_user"."last_login", "accounts_user"."is_superuser", "accounts_user"."username", "accounts_user"."first_name", "accounts_user"."last_name", "accounts_user"."is_staff", "accounts_user"."is_active", "accounts_user"."date_joined", "accounts_user"."email", "accounts_user"."verification_code", "accounts_user"."verification_attempts", "accounts_user"."verification_code_sent_at", "accounts_user"."avatar" FROM "accounts_user" WHERE "accounts_user"."id" = 3 LIMIT 21; args=(3,); alias=default
+"GET /home/ HTTP/1.1" 200 8609
+File C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts previous mtime: 1745228314.4894545, current mtime: 1745228327.6501162
+C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts notified as changed. Signal results: [(<function template_changed at 0x0000021F126BFE20>, True), (<function translation_file_changed at 0x0000021F137DBCE0>, None)].
+File C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts\home.html previous mtime: 1745228314.488458, current mtime: 1745228327.6501162
+C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts\home.html notified as changed. Signal results: [(<function template_changed at 0x0000021F126BFE20>, True), (<function translation_file_changed at 0x0000021F137DBCE0>, None)].
+(0.000) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2025-04-21 09:38:48.603358' AND "django_session"."session_key" = 'wfpi61l8aemvtu7fvvqup2f3wypervgx') LIMIT 21; args=('2025-04-21 09:38:48.603358', 'wfpi61l8aemvtu7fvvqup2f3wypervgx'); alias=default
+(0.000) SELECT "accounts_user"."id", "accounts_user"."password", "accounts_user"."last_login", "accounts_user"."is_superuser", "accounts_user"."username", "accounts_user"."first_name", "accounts_user"."last_name", "accounts_user"."is_staff", "accounts_user"."is_active", "accounts_user"."date_joined", "accounts_user"."email", "accounts_user"."verification_code", "accounts_user"."verification_attempts", "accounts_user"."verification_code_sent_at", "accounts_user"."avatar" FROM "accounts_user" WHERE "accounts_user"."id" = 3 LIMIT 21; args=(3,); alias=default
+"GET /home/ HTTP/1.1" 200 8602
+File C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts previous mtime: 1745228327.6501162, current mtime: 1745228463.8407168
+C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts notified as changed. Signal results: [(<function template_changed at 0x0000021F126BFE20>, True), (<function translation_file_changed at 0x0000021F137DBCE0>, None)].
+File C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts\home.html previous mtime: 1745228327.6501162, current mtime: 1745228463.8399923
+C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts\home.html notified as changed. Signal results: [(<function template_changed at 0x0000021F126BFE20>, True), (<function translation_file_changed at 0x0000021F137DBCE0>, None)].
+(0.000) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2025-04-21 09:41:04.738212' AND "django_session"."session_key" = 'wfpi61l8aemvtu7fvvqup2f3wypervgx') LIMIT 21; args=('2025-04-21 09:41:04.738212', 'wfpi61l8aemvtu7fvvqup2f3wypervgx'); alias=default
+(0.000) SELECT "accounts_user"."id", "accounts_user"."password", "accounts_user"."last_login", "accounts_user"."is_superuser", "accounts_user"."username", "accounts_user"."first_name", "accounts_user"."last_name", "accounts_user"."is_staff", "accounts_user"."is_active", "accounts_user"."date_joined", "accounts_user"."email", "accounts_user"."verification_code", "accounts_user"."verification_attempts", "accounts_user"."verification_code_sent_at", "accounts_user"."avatar" FROM "accounts_user" WHERE "accounts_user"."id" = 3 LIMIT 21; args=(3,); alias=default
+"GET /home/ HTTP/1.1" 200 8633
+File C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts previous mtime: 1745228463.8407168, current mtime: 1745228486.4567003
+C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts notified as changed. Signal results: [(<function template_changed at 0x0000021F126BFE20>, True), (<function translation_file_changed at 0x0000021F137DBCE0>, None)].
+File C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts\home.html previous mtime: 1745228463.8399923, current mtime: 1745228486.4557471
+C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts\home.html notified as changed. Signal results: [(<function template_changed at 0x0000021F126BFE20>, True), (<function translation_file_changed at 0x0000021F137DBCE0>, None)].
+(0.000) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2025-04-21 09:41:27.688248' AND "django_session"."session_key" = 'wfpi61l8aemvtu7fvvqup2f3wypervgx') LIMIT 21; args=('2025-04-21 09:41:27.688248', 'wfpi61l8aemvtu7fvvqup2f3wypervgx'); alias=default
+(0.000) SELECT "accounts_user"."id", "accounts_user"."password", "accounts_user"."last_login", "accounts_user"."is_superuser", "accounts_user"."username", "accounts_user"."first_name", "accounts_user"."last_name", "accounts_user"."is_staff", "accounts_user"."is_active", "accounts_user"."date_joined", "accounts_user"."email", "accounts_user"."verification_code", "accounts_user"."verification_attempts", "accounts_user"."verification_code_sent_at", "accounts_user"."avatar" FROM "accounts_user" WHERE "accounts_user"."id" = 3 LIMIT 21; args=(3,); alias=default
+"GET /home/ HTTP/1.1" 200 8618
+File C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts previous mtime: 1745228486.4567003, current mtime: 1745228588.2658148
+C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts notified as changed. Signal results: [(<function template_changed at 0x0000021F126BFE20>, True), (<function translation_file_changed at 0x0000021F137DBCE0>, None)].
+File C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts\home.html previous mtime: 1745228486.4557471, current mtime: 1745228588.2648184
+C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts\home.html notified as changed. Signal results: [(<function template_changed at 0x0000021F126BFE20>, True), (<function translation_file_changed at 0x0000021F137DBCE0>, None)].
+(0.000) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2025-04-21 09:43:09.870082' AND "django_session"."session_key" = 'wfpi61l8aemvtu7fvvqup2f3wypervgx') LIMIT 21; args=('2025-04-21 09:43:09.870082', 'wfpi61l8aemvtu7fvvqup2f3wypervgx'); alias=default
+(0.000) SELECT "accounts_user"."id", "accounts_user"."password", "accounts_user"."last_login", "accounts_user"."is_superuser", "accounts_user"."username", "accounts_user"."first_name", "accounts_user"."last_name", "accounts_user"."is_staff", "accounts_user"."is_active", "accounts_user"."date_joined", "accounts_user"."email", "accounts_user"."verification_code", "accounts_user"."verification_attempts", "accounts_user"."verification_code_sent_at", "accounts_user"."avatar" FROM "accounts_user" WHERE "accounts_user"."id" = 3 LIMIT 21; args=(3,); alias=default
+"GET /home/ HTTP/1.1" 200 8595
+File C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts previous mtime: 1745228588.2658148, current mtime: 1745228742.247996
+C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts notified as changed. Signal results: [(<function template_changed at 0x0000021F126BFE20>, True), (<function translation_file_changed at 0x0000021F137DBCE0>, None)].
+File C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts\home.html previous mtime: 1745228588.2648184, current mtime: 1745228742.247996
+C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts\home.html notified as changed. Signal results: [(<function template_changed at 0x0000021F126BFE20>, True), (<function translation_file_changed at 0x0000021F137DBCE0>, None)].
+(0.000) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2025-04-21 09:45:47.323551' AND "django_session"."session_key" = 'wfpi61l8aemvtu7fvvqup2f3wypervgx') LIMIT 21; args=('2025-04-21 09:45:47.323551', 'wfpi61l8aemvtu7fvvqup2f3wypervgx'); alias=default
+(0.000) SELECT "accounts_user"."id", "accounts_user"."password", "accounts_user"."last_login", "accounts_user"."is_superuser", "accounts_user"."username", "accounts_user"."first_name", "accounts_user"."last_name", "accounts_user"."is_staff", "accounts_user"."is_active", "accounts_user"."date_joined", "accounts_user"."email", "accounts_user"."verification_code", "accounts_user"."verification_attempts", "accounts_user"."verification_code_sent_at", "accounts_user"."avatar" FROM "accounts_user" WHERE "accounts_user"."id" = 3 LIMIT 21; args=(3,); alias=default
+"GET /home/ HTTP/1.1" 200 9699
+File C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts previous mtime: 1745228742.247996, current mtime: 1745228832.8252392
+C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts notified as changed. Signal results: [(<function template_changed at 0x0000021F126BFE20>, True), (<function translation_file_changed at 0x0000021F137DBCE0>, None)].
+File C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts\home.html previous mtime: 1745228742.247996, current mtime: 1745228832.8252392
+C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts\home.html notified as changed. Signal results: [(<function template_changed at 0x0000021F126BFE20>, True), (<function translation_file_changed at 0x0000021F137DBCE0>, None)].
+(0.000) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2025-04-21 09:47:13.705054' AND "django_session"."session_key" = 'wfpi61l8aemvtu7fvvqup2f3wypervgx') LIMIT 21; args=('2025-04-21 09:47:13.705054', 'wfpi61l8aemvtu7fvvqup2f3wypervgx'); alias=default
+(0.000) SELECT "accounts_user"."id", "accounts_user"."password", "accounts_user"."last_login", "accounts_user"."is_superuser", "accounts_user"."username", "accounts_user"."first_name", "accounts_user"."last_name", "accounts_user"."is_staff", "accounts_user"."is_active", "accounts_user"."date_joined", "accounts_user"."email", "accounts_user"."verification_code", "accounts_user"."verification_attempts", "accounts_user"."verification_code_sent_at", "accounts_user"."avatar" FROM "accounts_user" WHERE "accounts_user"."id" = 3 LIMIT 21; args=(3,); alias=default
+"GET /home/ HTTP/1.1" 200 9749
+File C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts previous mtime: 1745228832.8252392, current mtime: 1745228850.6520557
+C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts notified as changed. Signal results: [(<function template_changed at 0x0000021F126BFE20>, True), (<function translation_file_changed at 0x0000021F137DBCE0>, None)].
+File C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts\home.html previous mtime: 1745228832.8252392, current mtime: 1745228850.6520557
+C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts\home.html notified as changed. Signal results: [(<function template_changed at 0x0000021F126BFE20>, True), (<function translation_file_changed at 0x0000021F137DBCE0>, None)].
+(0.000) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2025-04-21 09:48:08.206812' AND "django_session"."session_key" = 'wfpi61l8aemvtu7fvvqup2f3wypervgx') LIMIT 21; args=('2025-04-21 09:48:08.206812', 'wfpi61l8aemvtu7fvvqup2f3wypervgx'); alias=default
+(0.000) SELECT "accounts_user"."id", "accounts_user"."password", "accounts_user"."last_login", "accounts_user"."is_superuser", "accounts_user"."username", "accounts_user"."first_name", "accounts_user"."last_name", "accounts_user"."is_staff", "accounts_user"."is_active", "accounts_user"."date_joined", "accounts_user"."email", "accounts_user"."verification_code", "accounts_user"."verification_attempts", "accounts_user"."verification_code_sent_at", "accounts_user"."avatar" FROM "accounts_user" WHERE "accounts_user"."id" = 3 LIMIT 21; args=(3,); alias=default
+"GET /home/ HTTP/1.1" 200 9690
+File C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts previous mtime: 1745228850.6520557, current mtime: 1745229002.1530666
+C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts notified as changed. Signal results: [(<function template_changed at 0x0000021F126BFE20>, True), (<function translation_file_changed at 0x0000021F137DBCE0>, None)].
+File C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts\home.html previous mtime: 1745228850.6520557, current mtime: 1745229002.15207
+C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts\home.html notified as changed. Signal results: [(<function template_changed at 0x0000021F126BFE20>, True), (<function translation_file_changed at 0x0000021F137DBCE0>, None)].
+(0.000) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2025-04-21 09:50:03.333861' AND "django_session"."session_key" = 'wfpi61l8aemvtu7fvvqup2f3wypervgx') LIMIT 21; args=('2025-04-21 09:50:03.333861', 'wfpi61l8aemvtu7fvvqup2f3wypervgx'); alias=default
+(0.000) SELECT "accounts_user"."id", "accounts_user"."password", "accounts_user"."last_login", "accounts_user"."is_superuser", "accounts_user"."username", "accounts_user"."first_name", "accounts_user"."last_name", "accounts_user"."is_staff", "accounts_user"."is_active", "accounts_user"."date_joined", "accounts_user"."email", "accounts_user"."verification_code", "accounts_user"."verification_attempts", "accounts_user"."verification_code_sent_at", "accounts_user"."avatar" FROM "accounts_user" WHERE "accounts_user"."id" = 3 LIMIT 21; args=(3,); alias=default
+"GET /home/ HTTP/1.1" 200 10870
+File C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts previous mtime: 1745229002.1530666, current mtime: 1745229193.948352
+C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts notified as changed. Signal results: [(<function template_changed at 0x0000021F126BFE20>, True), (<function translation_file_changed at 0x0000021F137DBCE0>, None)].
+File C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts\home.html previous mtime: 1745229002.15207, current mtime: 1745229193.9473548
+C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts\home.html notified as changed. Signal results: [(<function template_changed at 0x0000021F126BFE20>, True), (<function translation_file_changed at 0x0000021F137DBCE0>, None)].
+(0.000) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2025-04-21 09:53:16.981955' AND "django_session"."session_key" = 'wfpi61l8aemvtu7fvvqup2f3wypervgx') LIMIT 21; args=('2025-04-21 09:53:16.981955', 'wfpi61l8aemvtu7fvvqup2f3wypervgx'); alias=default
+(0.000) SELECT "accounts_user"."id", "accounts_user"."password", "accounts_user"."last_login", "accounts_user"."is_superuser", "accounts_user"."username", "accounts_user"."first_name", "accounts_user"."last_name", "accounts_user"."is_staff", "accounts_user"."is_active", "accounts_user"."date_joined", "accounts_user"."email", "accounts_user"."verification_code", "accounts_user"."verification_attempts", "accounts_user"."verification_code_sent_at", "accounts_user"."avatar" FROM "accounts_user" WHERE "accounts_user"."id" = 3 LIMIT 21; args=(3,); alias=default
+"GET /home/ HTTP/1.1" 200 10764
+File C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts previous mtime: 1745229193.948352, current mtime: 1745229218.2041278
+C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts notified as changed. Signal results: [(<function template_changed at 0x0000021F126BFE20>, True), (<function translation_file_changed at 0x0000021F137DBCE0>, None)].
+File C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts\home.html previous mtime: 1745229193.9473548, current mtime: 1745229218.2030702
+C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts\home.html notified as changed. Signal results: [(<function template_changed at 0x0000021F126BFE20>, True), (<function translation_file_changed at 0x0000021F137DBCE0>, None)].
+(0.000) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2025-04-21 09:53:39.085884' AND "django_session"."session_key" = 'wfpi61l8aemvtu7fvvqup2f3wypervgx') LIMIT 21; args=('2025-04-21 09:53:39.085884', 'wfpi61l8aemvtu7fvvqup2f3wypervgx'); alias=default
+(0.000) SELECT "accounts_user"."id", "accounts_user"."password", "accounts_user"."last_login", "accounts_user"."is_superuser", "accounts_user"."username", "accounts_user"."first_name", "accounts_user"."last_name", "accounts_user"."is_staff", "accounts_user"."is_active", "accounts_user"."date_joined", "accounts_user"."email", "accounts_user"."verification_code", "accounts_user"."verification_attempts", "accounts_user"."verification_code_sent_at", "accounts_user"."avatar" FROM "accounts_user" WHERE "accounts_user"."id" = 3 LIMIT 21; args=(3,); alias=default
+"GET /home/ HTTP/1.1" 200 10299
+File C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts previous mtime: 1745229218.2041278, current mtime: 1745229232.69295
+C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts notified as changed. Signal results: [(<function template_changed at 0x0000021F126BFE20>, True), (<function translation_file_changed at 0x0000021F137DBCE0>, None)].
+File C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts\home.html previous mtime: 1745229218.2030702, current mtime: 1745229232.69295
+C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts\home.html notified as changed. Signal results: [(<function template_changed at 0x0000021F126BFE20>, True), (<function translation_file_changed at 0x0000021F137DBCE0>, None)].
+File C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts previous mtime: 1745229232.69295, current mtime: 1745229342.4486313
+C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts notified as changed. Signal results: [(<function template_changed at 0x0000021F126BFE20>, True), (<function translation_file_changed at 0x0000021F137DBCE0>, None)].
+File C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts\home.html previous mtime: 1745229232.69295, current mtime: 1745229342.4476364
+C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts\home.html notified as changed. Signal results: [(<function template_changed at 0x0000021F126BFE20>, True), (<function translation_file_changed at 0x0000021F137DBCE0>, None)].
+(0.000) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2025-04-21 09:55:43.477348' AND "django_session"."session_key" = 'wfpi61l8aemvtu7fvvqup2f3wypervgx') LIMIT 21; args=('2025-04-21 09:55:43.477348', 'wfpi61l8aemvtu7fvvqup2f3wypervgx'); alias=default
+(0.000) SELECT "accounts_user"."id", "accounts_user"."password", "accounts_user"."last_login", "accounts_user"."is_superuser", "accounts_user"."username", "accounts_user"."first_name", "accounts_user"."last_name", "accounts_user"."is_staff", "accounts_user"."is_active", "accounts_user"."date_joined", "accounts_user"."email", "accounts_user"."verification_code", "accounts_user"."verification_attempts", "accounts_user"."verification_code_sent_at", "accounts_user"."avatar" FROM "accounts_user" WHERE "accounts_user"."id" = 3 LIMIT 21; args=(3,); alias=default
+"GET /home/ HTTP/1.1" 200 10364
+File C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts previous mtime: 1745229342.4486313, current mtime: 1745229349.2210524
+C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts notified as changed. Signal results: [(<function template_changed at 0x0000021F126BFE20>, True), (<function translation_file_changed at 0x0000021F137DBCE0>, None)].
+File C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts\home.html previous mtime: 1745229342.4476364, current mtime: 1745229349.2200518
+C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts\home.html notified as changed. Signal results: [(<function template_changed at 0x0000021F126BFE20>, True), (<function translation_file_changed at 0x0000021F137DBCE0>, None)].
+(0.000) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2025-04-21 09:55:51.549021' AND "django_session"."session_key" = 'wfpi61l8aemvtu7fvvqup2f3wypervgx') LIMIT 21; args=('2025-04-21 09:55:51.549021', 'wfpi61l8aemvtu7fvvqup2f3wypervgx'); alias=default
+(0.000) SELECT "accounts_user"."id", "accounts_user"."password", "accounts_user"."last_login", "accounts_user"."is_superuser", "accounts_user"."username", "accounts_user"."first_name", "accounts_user"."last_name", "accounts_user"."is_staff", "accounts_user"."is_active", "accounts_user"."date_joined", "accounts_user"."email", "accounts_user"."verification_code", "accounts_user"."verification_attempts", "accounts_user"."verification_code_sent_at", "accounts_user"."avatar" FROM "accounts_user" WHERE "accounts_user"."id" = 3 LIMIT 21; args=(3,); alias=default
+"GET /home/ HTTP/1.1" 200 10764
+File C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts previous mtime: 1745229349.2210524, current mtime: 1745229435.9333792
+C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts notified as changed. Signal results: [(<function template_changed at 0x0000021F126BFE20>, True), (<function translation_file_changed at 0x0000021F137DBCE0>, None)].
+File C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts\home.html previous mtime: 1745229349.2200518, current mtime: 1745229435.932377
+C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts\home.html notified as changed. Signal results: [(<function template_changed at 0x0000021F126BFE20>, True), (<function translation_file_changed at 0x0000021F137DBCE0>, None)].
+(0.000) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2025-04-21 09:57:16.604660' AND "django_session"."session_key" = 'wfpi61l8aemvtu7fvvqup2f3wypervgx') LIMIT 21; args=('2025-04-21 09:57:16.604660', 'wfpi61l8aemvtu7fvvqup2f3wypervgx'); alias=default
+(0.000) SELECT "accounts_user"."id", "accounts_user"."password", "accounts_user"."last_login", "accounts_user"."is_superuser", "accounts_user"."username", "accounts_user"."first_name", "accounts_user"."last_name", "accounts_user"."is_staff", "accounts_user"."is_active", "accounts_user"."date_joined", "accounts_user"."email", "accounts_user"."verification_code", "accounts_user"."verification_attempts", "accounts_user"."verification_code_sent_at", "accounts_user"."avatar" FROM "accounts_user" WHERE "accounts_user"."id" = 3 LIMIT 21; args=(3,); alias=default
+"GET /home/ HTTP/1.1" 200 9200
+File C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts previous mtime: 1745229435.9333792, current mtime: 1745229445.4809391
+C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts notified as changed. Signal results: [(<function template_changed at 0x0000021F126BFE20>, True), (<function translation_file_changed at 0x0000021F137DBCE0>, None)].
+File C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts\home.html previous mtime: 1745229435.932377, current mtime: 1745229445.4798996
+C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts\home.html notified as changed. Signal results: [(<function template_changed at 0x0000021F126BFE20>, True), (<function translation_file_changed at 0x0000021F137DBCE0>, None)].
+(0.016) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2025-04-21 09:57:26.394987' AND "django_session"."session_key" = 'wfpi61l8aemvtu7fvvqup2f3wypervgx') LIMIT 21; args=('2025-04-21 09:57:26.394987', 'wfpi61l8aemvtu7fvvqup2f3wypervgx'); alias=default
+(0.000) SELECT "accounts_user"."id", "accounts_user"."password", "accounts_user"."last_login", "accounts_user"."is_superuser", "accounts_user"."username", "accounts_user"."first_name", "accounts_user"."last_name", "accounts_user"."is_staff", "accounts_user"."is_active", "accounts_user"."date_joined", "accounts_user"."email", "accounts_user"."verification_code", "accounts_user"."verification_attempts", "accounts_user"."verification_code_sent_at", "accounts_user"."avatar" FROM "accounts_user" WHERE "accounts_user"."id" = 3 LIMIT 21; args=(3,); alias=default
+"GET /home/ HTTP/1.1" 200 10764
+File C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts previous mtime: 1745229445.4809391, current mtime: 1745229449.8712988
+C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts notified as changed. Signal results: [(<function template_changed at 0x0000021F126BFE20>, True), (<function translation_file_changed at 0x0000021F137DBCE0>, None)].
+File C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts\home.html previous mtime: 1745229445.4798996, current mtime: 1745229449.8703022
+C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts\home.html notified as changed. Signal results: [(<function template_changed at 0x0000021F126BFE20>, True), (<function translation_file_changed at 0x0000021F137DBCE0>, None)].
+(0.000) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2025-04-21 09:57:30.769190' AND "django_session"."session_key" = 'wfpi61l8aemvtu7fvvqup2f3wypervgx') LIMIT 21; args=('2025-04-21 09:57:30.769190', 'wfpi61l8aemvtu7fvvqup2f3wypervgx'); alias=default
+(0.000) SELECT "accounts_user"."id", "accounts_user"."password", "accounts_user"."last_login", "accounts_user"."is_superuser", "accounts_user"."username", "accounts_user"."first_name", "accounts_user"."last_name", "accounts_user"."is_staff", "accounts_user"."is_active", "accounts_user"."date_joined", "accounts_user"."email", "accounts_user"."verification_code", "accounts_user"."verification_attempts", "accounts_user"."verification_code_sent_at", "accounts_user"."avatar" FROM "accounts_user" WHERE "accounts_user"."id" = 3 LIMIT 21; args=(3,); alias=default
+"GET /home/ HTTP/1.1" 200 9193
+File C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts previous mtime: 1745229449.8712988, current mtime: 1745229695.2356422
+C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts notified as changed. Signal results: [(<function template_changed at 0x0000021F126BFE20>, True), (<function translation_file_changed at 0x0000021F137DBCE0>, None)].
+File C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts\home.html previous mtime: 1745229449.8703022, current mtime: 1745229695.2346416
+C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts\home.html notified as changed. Signal results: [(<function template_changed at 0x0000021F126BFE20>, True), (<function translation_file_changed at 0x0000021F137DBCE0>, None)].
+(0.000) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2025-04-21 10:01:37.863596' AND "django_session"."session_key" = 'wfpi61l8aemvtu7fvvqup2f3wypervgx') LIMIT 21; args=('2025-04-21 10:01:37.863596', 'wfpi61l8aemvtu7fvvqup2f3wypervgx'); alias=default
+(0.000) SELECT "accounts_user"."id", "accounts_user"."password", "accounts_user"."last_login", "accounts_user"."is_superuser", "accounts_user"."username", "accounts_user"."first_name", "accounts_user"."last_name", "accounts_user"."is_staff", "accounts_user"."is_active", "accounts_user"."date_joined", "accounts_user"."email", "accounts_user"."verification_code", "accounts_user"."verification_attempts", "accounts_user"."verification_code_sent_at", "accounts_user"."avatar" FROM "accounts_user" WHERE "accounts_user"."id" = 3 LIMIT 21; args=(3,); alias=default
+"GET /home/ HTTP/1.1" 200 9657
+File C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts previous mtime: 1745229695.2356422, current mtime: 1745229704.147191
+C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts notified as changed. Signal results: [(<function template_changed at 0x0000021F126BFE20>, True), (<function translation_file_changed at 0x0000021F137DBCE0>, None)].
+File C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts\home.html previous mtime: 1745229695.2346416, current mtime: 1745229704.1461933
+C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts\home.html notified as changed. Signal results: [(<function template_changed at 0x0000021F126BFE20>, True), (<function translation_file_changed at 0x0000021F137DBCE0>, None)].
+(0.000) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2025-04-21 10:01:45.180654' AND "django_session"."session_key" = 'wfpi61l8aemvtu7fvvqup2f3wypervgx') LIMIT 21; args=('2025-04-21 10:01:45.180654', 'wfpi61l8aemvtu7fvvqup2f3wypervgx'); alias=default
+(0.000) SELECT "accounts_user"."id", "accounts_user"."password", "accounts_user"."last_login", "accounts_user"."is_superuser", "accounts_user"."username", "accounts_user"."first_name", "accounts_user"."last_name", "accounts_user"."is_staff", "accounts_user"."is_active", "accounts_user"."date_joined", "accounts_user"."email", "accounts_user"."verification_code", "accounts_user"."verification_attempts", "accounts_user"."verification_code_sent_at", "accounts_user"."avatar" FROM "accounts_user" WHERE "accounts_user"."id" = 3 LIMIT 21; args=(3,); alias=default
+"GET /home/ HTTP/1.1" 200 9200
+File C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts previous mtime: 1745229704.147191, current mtime: 1745229713.7428167
+C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts notified as changed. Signal results: [(<function template_changed at 0x0000021F126BFE20>, True), (<function translation_file_changed at 0x0000021F137DBCE0>, None)].
+File C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts\home.html previous mtime: 1745229704.1461933, current mtime: 1745229713.7428167
+C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts\home.html notified as changed. Signal results: [(<function template_changed at 0x0000021F126BFE20>, True), (<function translation_file_changed at 0x0000021F137DBCE0>, None)].
+(0.000) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2025-04-21 10:01:54.730765' AND "django_session"."session_key" = 'wfpi61l8aemvtu7fvvqup2f3wypervgx') LIMIT 21; args=('2025-04-21 10:01:54.730765', 'wfpi61l8aemvtu7fvvqup2f3wypervgx'); alias=default
+(0.000) SELECT "accounts_user"."id", "accounts_user"."password", "accounts_user"."last_login", "accounts_user"."is_superuser", "accounts_user"."username", "accounts_user"."first_name", "accounts_user"."last_name", "accounts_user"."is_staff", "accounts_user"."is_active", "accounts_user"."date_joined", "accounts_user"."email", "accounts_user"."verification_code", "accounts_user"."verification_attempts", "accounts_user"."verification_code_sent_at", "accounts_user"."avatar" FROM "accounts_user" WHERE "accounts_user"."id" = 3 LIMIT 21; args=(3,); alias=default
+"GET /home/ HTTP/1.1" 200 10773
+File C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts previous mtime: 1745229713.7428167, current mtime: 1745229742.8051126
+C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts notified as changed. Signal results: [(<function template_changed at 0x0000021F126BFE20>, True), (<function translation_file_changed at 0x0000021F137DBCE0>, None)].
+File C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts\home.html previous mtime: 1745229713.7428167, current mtime: 1745229742.8051126
+C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts\home.html notified as changed. Signal results: [(<function template_changed at 0x0000021F126BFE20>, True), (<function translation_file_changed at 0x0000021F137DBCE0>, None)].
+(0.000) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2025-04-21 10:02:23.881033' AND "django_session"."session_key" = 'wfpi61l8aemvtu7fvvqup2f3wypervgx') LIMIT 21; args=('2025-04-21 10:02:23.881033', 'wfpi61l8aemvtu7fvvqup2f3wypervgx'); alias=default
+(0.000) SELECT "accounts_user"."id", "accounts_user"."password", "accounts_user"."last_login", "accounts_user"."is_superuser", "accounts_user"."username", "accounts_user"."first_name", "accounts_user"."last_name", "accounts_user"."is_staff", "accounts_user"."is_active", "accounts_user"."date_joined", "accounts_user"."email", "accounts_user"."verification_code", "accounts_user"."verification_attempts", "accounts_user"."verification_code_sent_at", "accounts_user"."avatar" FROM "accounts_user" WHERE "accounts_user"."id" = 3 LIMIT 21; args=(3,); alias=default
+"GET /home/ HTTP/1.1" 200 10765
+(0.000) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2025-04-21 10:02:36.706422' AND "django_session"."session_key" = 'wfpi61l8aemvtu7fvvqup2f3wypervgx') LIMIT 21; args=('2025-04-21 10:02:36.706422', 'wfpi61l8aemvtu7fvvqup2f3wypervgx'); alias=default
+(0.000) SELECT "accounts_user"."id", "accounts_user"."password", "accounts_user"."last_login", "accounts_user"."is_superuser", "accounts_user"."username", "accounts_user"."first_name", "accounts_user"."last_name", "accounts_user"."is_staff", "accounts_user"."is_active", "accounts_user"."date_joined", "accounts_user"."email", "accounts_user"."verification_code", "accounts_user"."verification_attempts", "accounts_user"."verification_code_sent_at", "accounts_user"."avatar" FROM "accounts_user" WHERE "accounts_user"."id" = 3 LIMIT 21; args=(3,); alias=default
+"GET /home/ HTTP/1.1" 200 10736
+File C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts previous mtime: 1745229742.8051126, current mtime: 1745229761.1792657
+C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts notified as changed. Signal results: [(<function template_changed at 0x0000021F126BFE20>, True), (<function translation_file_changed at 0x0000021F137DBCE0>, None)].
+File C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts\home.html previous mtime: 1745229742.8051126, current mtime: 1745229761.1778364
+C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts\home.html notified as changed. Signal results: [(<function template_changed at 0x0000021F126BFE20>, True), (<function translation_file_changed at 0x0000021F137DBCE0>, None)].
+(0.000) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2025-04-21 10:02:42.085474' AND "django_session"."session_key" = 'wfpi61l8aemvtu7fvvqup2f3wypervgx') LIMIT 21; args=('2025-04-21 10:02:42.085474', 'wfpi61l8aemvtu7fvvqup2f3wypervgx'); alias=default
+(0.000) SELECT "accounts_user"."id", "accounts_user"."password", "accounts_user"."last_login", "accounts_user"."is_superuser", "accounts_user"."username", "accounts_user"."first_name", "accounts_user"."last_name", "accounts_user"."is_staff", "accounts_user"."is_active", "accounts_user"."date_joined", "accounts_user"."email", "accounts_user"."verification_code", "accounts_user"."verification_attempts", "accounts_user"."verification_code_sent_at", "accounts_user"."avatar" FROM "accounts_user" WHERE "accounts_user"."id" = 3 LIMIT 21; args=(3,); alias=default
+"GET /home/ HTTP/1.1" 200 10773
+(0.000) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2025-04-21 10:02:59.928554' AND "django_session"."session_key" = 'wfpi61l8aemvtu7fvvqup2f3wypervgx') LIMIT 21; args=('2025-04-21 10:02:59.928554', 'wfpi61l8aemvtu7fvvqup2f3wypervgx'); alias=default
+(0.000) SELECT "accounts_user"."id", "accounts_user"."password", "accounts_user"."last_login", "accounts_user"."is_superuser", "accounts_user"."username", "accounts_user"."first_name", "accounts_user"."last_name", "accounts_user"."is_staff", "accounts_user"."is_active", "accounts_user"."date_joined", "accounts_user"."email", "accounts_user"."verification_code", "accounts_user"."verification_attempts", "accounts_user"."verification_code_sent_at", "accounts_user"."avatar" FROM "accounts_user" WHERE "accounts_user"."id" = 3 LIMIT 21; args=(3,); alias=default
+"GET /home/ HTTP/1.1" 200 10773
+File C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts previous mtime: 1745229761.1792657, current mtime: 1745229779.0224562
+C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts notified as changed. Signal results: [(<function template_changed at 0x0000021F126BFE20>, True), (<function translation_file_changed at 0x0000021F137DBCE0>, None)].
+File C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts\home.html previous mtime: 1745229761.1778364, current mtime: 1745229779.0200863
+C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts\home.html notified as changed. Signal results: [(<function template_changed at 0x0000021F126BFE20>, True), (<function translation_file_changed at 0x0000021F137DBCE0>, None)].
+(0.000) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2025-04-21 10:03:09.984301' AND "django_session"."session_key" = 'wfpi61l8aemvtu7fvvqup2f3wypervgx') LIMIT 21; args=('2025-04-21 10:03:09.984301', 'wfpi61l8aemvtu7fvvqup2f3wypervgx'); alias=default
+(0.000) SELECT "accounts_user"."id", "accounts_user"."password", "accounts_user"."last_login", "accounts_user"."is_superuser", "accounts_user"."username", "accounts_user"."first_name", "accounts_user"."last_name", "accounts_user"."is_staff", "accounts_user"."is_active", "accounts_user"."date_joined", "accounts_user"."email", "accounts_user"."verification_code", "accounts_user"."verification_attempts", "accounts_user"."verification_code_sent_at", "accounts_user"."avatar" FROM "accounts_user" WHERE "accounts_user"."id" = 3 LIMIT 21; args=(3,); alias=default
+"GET /home/ HTTP/1.1" 200 10766
+(0.000) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2025-04-21 10:03:12.208392' AND "django_session"."session_key" = 'wfpi61l8aemvtu7fvvqup2f3wypervgx') LIMIT 21; args=('2025-04-21 10:03:12.208392', 'wfpi61l8aemvtu7fvvqup2f3wypervgx'); alias=default
+(0.000) SELECT "accounts_user"."id", "accounts_user"."password", "accounts_user"."last_login", "accounts_user"."is_superuser", "accounts_user"."username", "accounts_user"."first_name", "accounts_user"."last_name", "accounts_user"."is_staff", "accounts_user"."is_active", "accounts_user"."date_joined", "accounts_user"."email", "accounts_user"."verification_code", "accounts_user"."verification_attempts", "accounts_user"."verification_code_sent_at", "accounts_user"."avatar" FROM "accounts_user" WHERE "accounts_user"."id" = 3 LIMIT 21; args=(3,); alias=default
+"GET /home/ HTTP/1.1" 200 10760
+(0.000) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2025-04-21 10:03:14.325740' AND "django_session"."session_key" = 'wfpi61l8aemvtu7fvvqup2f3wypervgx') LIMIT 21; args=('2025-04-21 10:03:14.325740', 'wfpi61l8aemvtu7fvvqup2f3wypervgx'); alias=default
+(0.000) SELECT "accounts_user"."id", "accounts_user"."password", "accounts_user"."last_login", "accounts_user"."is_superuser", "accounts_user"."username", "accounts_user"."first_name", "accounts_user"."last_name", "accounts_user"."is_staff", "accounts_user"."is_active", "accounts_user"."date_joined", "accounts_user"."email", "accounts_user"."verification_code", "accounts_user"."verification_attempts", "accounts_user"."verification_code_sent_at", "accounts_user"."avatar" FROM "accounts_user" WHERE "accounts_user"."id" = 3 LIMIT 21; args=(3,); alias=default
+"GET /home/ HTTP/1.1" 200 10760
+(0.000) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2025-04-21 10:03:15.619326' AND "django_session"."session_key" = 'wfpi61l8aemvtu7fvvqup2f3wypervgx') LIMIT 21; args=('2025-04-21 10:03:15.619326', 'wfpi61l8aemvtu7fvvqup2f3wypervgx'); alias=default
+(0.000) SELECT "accounts_user"."id", "accounts_user"."password", "accounts_user"."last_login", "accounts_user"."is_superuser", "accounts_user"."username", "accounts_user"."first_name", "accounts_user"."last_name", "accounts_user"."is_staff", "accounts_user"."is_active", "accounts_user"."date_joined", "accounts_user"."email", "accounts_user"."verification_code", "accounts_user"."verification_attempts", "accounts_user"."verification_code_sent_at", "accounts_user"."avatar" FROM "accounts_user" WHERE "accounts_user"."id" = 3 LIMIT 21; args=(3,); alias=default
+"GET /home/ HTTP/1.1" 200 10736
+File C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts previous mtime: 1745229779.0224562, current mtime: 1745229959.350462
+C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts notified as changed. Signal results: [(<function template_changed at 0x0000021F126BFE20>, True), (<function translation_file_changed at 0x0000021F137DBCE0>, None)].
+File C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts\home.html previous mtime: 1745229779.0200863, current mtime: 1745229959.350462
+C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts\home.html notified as changed. Signal results: [(<function template_changed at 0x0000021F126BFE20>, True), (<function translation_file_changed at 0x0000021F137DBCE0>, None)].
+(0.000) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2025-04-21 10:06:00.289923' AND "django_session"."session_key" = 'wfpi61l8aemvtu7fvvqup2f3wypervgx') LIMIT 21; args=('2025-04-21 10:06:00.289923', 'wfpi61l8aemvtu7fvvqup2f3wypervgx'); alias=default
+(0.000) SELECT "accounts_user"."id", "accounts_user"."password", "accounts_user"."last_login", "accounts_user"."is_superuser", "accounts_user"."username", "accounts_user"."first_name", "accounts_user"."last_name", "accounts_user"."is_staff", "accounts_user"."is_active", "accounts_user"."date_joined", "accounts_user"."email", "accounts_user"."verification_code", "accounts_user"."verification_attempts", "accounts_user"."verification_code_sent_at", "accounts_user"."avatar" FROM "accounts_user" WHERE "accounts_user"."id" = 3 LIMIT 21; args=(3,); alias=default
+"GET /home/ HTTP/1.1" 200 10845
+File C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts previous mtime: 1745229959.350462, current mtime: 1745229965.4464734
+C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts notified as changed. Signal results: [(<function template_changed at 0x0000021F126BFE20>, True), (<function translation_file_changed at 0x0000021F137DBCE0>, None)].
+File C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts\home.html previous mtime: 1745229959.350462, current mtime: 1745229965.4464734
+C:\Users\yanaa\trackerhabit\курсовая\accounts\templates\accounts\home.html notified as changed. Signal results: [(<function template_changed at 0x0000021F126BFE20>, True), (<function translation_file_changed at 0x0000021F137DBCE0>, None)].
+(0.000) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2025-04-21 10:06:06.621121' AND "django_session"."session_key" = 'wfpi61l8aemvtu7fvvqup2f3wypervgx') LIMIT 21; args=('2025-04-21 10:06:06.621121', 'wfpi61l8aemvtu7fvvqup2f3wypervgx'); alias=default
+(0.000) SELECT "accounts_user"."id", "accounts_user"."password", "accounts_user"."last_login", "accounts_user"."is_superuser", "accounts_user"."username", "accounts_user"."first_name", "accounts_user"."last_name", "accounts_user"."is_staff", "accounts_user"."is_active", "accounts_user"."date_joined", "accounts_user"."email", "accounts_user"."verification_code", "accounts_user"."verification_attempts", "accounts_user"."verification_code_sent_at", "accounts_user"."avatar" FROM "accounts_user" WHERE "accounts_user"."id" = 3 LIMIT 21; args=(3,); alias=default
+"GET /home/ HTTP/1.1" 200 10765
