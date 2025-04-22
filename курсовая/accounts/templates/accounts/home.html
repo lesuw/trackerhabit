@@ -3,126 +3,164 @@
 <head>
     <meta charset="UTF-8">
     <title>Трекер Привычек</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
-<body class="bg-gray-50 text-gray-800 font-sans">
+<body>
     <!-- Навигационная панель -->
-    <header class="bg-white shadow sticky top-0 z-50">
-        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
-                <div class="flex items-center space-x-4">
-                    <a href="/" class="text-xl font-bold text-indigo-600 hover:text-indigo-800 transition">HabitHub</a>
-                    <a href="/habits" class="text-gray-700 hover:text-indigo-600 transition font-medium">Привычки</a>
-                    <a href="/calendar" class="text-gray-700 hover:text-indigo-600 transition font-medium">Календарь</a>
-                    <a href="/forum" class="text-gray-700 hover:text-indigo-600 transition font-medium">Форум</a>
-                    <a href="/notes" class="text-gray-700 hover:text-indigo-600 transition font-medium">Заметки</a>
-                    <a href="/faq" class="text-gray-700 hover:text-indigo-600 transition font-medium">FAQ</a>
-                    <a href="/rating" class="text-gray-700 hover:text-indigo-600 transition font-medium">Рейтинг</a>
+    <header>
+        <nav>
+            <div class="nav-container">
+                <div class="nav-links">
+                    <a href="/" class="logo">HabitHub</a>
+                    <a href="/habits" class="nav-link">Привычки</a>
+                    <a href="/calendar" class="nav-link">Календарь</a>
+                    <a href="/forum" class="nav-link">Форум</a>
+                    <a href="/notes" class="nav-link">Заметки</a>
+                    <a href="/faq" class="nav-link">FAQ</a>
+                    <a href="/rating" class="nav-link">Рейтинг</a>
                 </div>
-                <div class="flex items-center space-x-4">
-                    <a href="/profile" class="text-gray-700 hover:text-indigo-600 transition">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <div class="user-actions">
+                    <a href="/profile" class="nav-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                         </svg>
                     </a>
-                    <a href="{% url 'logout' %}?next={% url 'welcome' %}" class="bg-indigo-600 text-white px-4 py-2 rounded-xl hover:bg-indigo-700 transition text-sm">Выйти</a>
+                    <a href="{% url 'logout' %}?next={% url 'welcome' %}" class="logout-btn">Выйти</a>
                 </div>
             </div>
         </nav>
     </header>
 
     <!-- Контент главной страницы -->
-    <main class="max-w-4xl mx-auto mt-10 px-4">
-        <h1 class="text-3xl font-bold mb-6 text-center">Добро пожаловать, {{ user.username }}!</h1>
-        <p class="text-gray-600 text-center mb-10">Отслеживайте привычки, устанавливайте цели и достигайте успеха каждый день.</p>
+    <main>
+        <h1>Добро пожаловать, {{ user.username }}!</h1>
+        <p class="subtitle">Отслеживайте привычки, устанавливайте цели и достигайте успеха каждый день.</p>
 
         <!-- Кнопка добавления привычки -->
-        <div class="text-center mb-10">
-            <a href="/habits" class="bg-indigo-600 text-white px-6 py-3 rounded-xl hover:bg-indigo-700 transition text-lg font-medium inline-block">
+        <div style="text-align: center; margin-bottom: 2.5rem;">
+            <a href="/habits" class="add-habit-btn">
                 Добавить новую привычку
             </a>
         </div>
 
         <!-- Блок карточек + изображение в строку -->
-        <div class="flex flex-col md:flex-row gap-6">
+        <div class="content-container">
             <!-- Левая колонка с карточками -->
-            <div class="flex flex-col flex-1 gap-6">
-                <div class="bg-white shadow-lg rounded-2xl p-6">
-                    <h2 class="text-xl font-semibold text-indigo-600 mb-2">Ваши привычки</h2>
-                    <p class="text-gray-600">Просматривайте и управляйте своими ежедневными привычками.</p>
-                    <a href="/habits" class="mt-4 inline-block text-indigo-600 hover:underline">Перейти →</a>
+            <div class="cards-column">
+                <div class="card">
+                    <h2>Ваши привычки</h2>
+                    <p>Просматривайте и управляйте своими ежедневными привычками.</p>
+                    <a href="/habits" class="card-link">Перейти →</a>
                 </div>
-                <div class="bg-white shadow-lg rounded-2xl p-6">
-                    <h2 class="text-xl font-semibold text-indigo-600 mb-2">Прогресс</h2>
-                    <p class="text-gray-600">Следите за статистикой выполнения ваших целей.</p>
-                    <a href="/calendar" class="mt-4 inline-block text-indigo-600 hover:underline">Перейти →</a>
+                <div class="card">
+                    <h2>Прогресс</h2>
+                    <p>Следите за статистикой выполнения ваших целей.</p>
+                    <a href="/calendar" class="card-link">Перейти →</a>
                 </div>
             </div>
 
             <!-- Правая колонка с изображением -->
-            <div class="w-full md:w-80 flex-shrink-0">
-                <div class="relative bg-cover bg-center rounded-2xl shadow-xl p-6 flex items-end text-white text-lg leading-snug text-left"
-                     style="background-image: url('{% static 'images/image1.png' %}'); min-height: 115%;">
+            <div class="image-column">
+                <div class="image-card" style="background-image: url('{% static 'images/image1.png' %}');">
                     <!-- Совет дня -->
-                    <div class="absolute top-6 left-0 right-0 px-4 py-3">
-                        <p class="text-white text-2xl font-serif font-semibold text-center drop-shadow-md">
+                    <div class="tip-container">
+                        <p class="tip-text">
                             {{ random_tip }}
                         </p>
                     </div>
                 </div>
             </div>
         </div>
-<div class="text-center mt-20 mb-12 px-4">
-    <h2 class="text-4xl sm:text-5xl font-extrabold leading-tight">
-        Почему важно <span class="text-lime-600">осознанно<br>формировать привычки?</span>
-    </h2>
-    <p class="mt-6 text-lg sm:text-xl text-gray-800">
-        Привычки — это действия на автомате, <span class="font-semibold">без дополнительных усилий</span>. Осознаём мы их или нет,
-        они формируют нашу ежедневную реальность.
-        <span class="font-semibold">От совокупности привычек</span> зависит как долго и <span class="font-semibold">счастливо мы живем</span>.
-    </p>
-</div>
+
+        <div class="why-important">
+            <h2>Почему важно <span style="color: #1CD6E7;">осознанно<br>формировать привычки?</span></h2>
+            <p>
+                Привычки — это действия на автомате, <span style="font-weight: 600;">без дополнительных усилий</span>. Осознаём мы их или нет,
+                они формируют нашу ежедневную реальность.
+                <span style="font-weight: 600;">От совокупности привычек</span> зависит как долго и <span style="font-weight: 600;">счастливо мы живем</span>.
+            </p>
+        </div>
+
         <!-- Блок с таблицами привычек -->
-        <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="habits-grid">
             <!-- Вредные привычки -->
-            <div class="bg-white rounded-2xl shadow p-6">
-                <h2 class="text-2xl font-bold text-orange-600 mb-6 text-center">Вредные привычки</h2>
-                <div class="space-y-4">
-                    <div class="grid grid-cols-2 gap-4 items-center">
-                        <div class="bg-gray-50 p-4 rounded-xl">Просмотр социальных сетей после сна и за едой</div>
-                        <div class="bg-orange-100 p-4 rounded-xl">Слабая концентрация, напряжение и тревога</div>
+            <div class="habits-card bad-habits">
+                <h2>Вредные привычки</h2>
+                <div class="habits-list">
+                    <!-- Строка 1 -->
+                    <div class="habit-row">
+                        <div class="habit-cause">Просмотр социальных сетей после сна и за едой</div>
+                        <div class="habit-arrow">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <path d="M4 12h16M16 8l4 4-4 4" stroke="#FF6B6B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <div class="habit-effect bad-effect">Слабая концентрация, напряжение и тревога</div>
                     </div>
-                    <div class="grid grid-cols-2 gap-4 items-center">
-                        <div class="bg-gray-50 p-4 rounded-xl">Большое количество сладкой и вредной еды в рационе</div>
-                        <div class="bg-orange-100 p-4 rounded-xl">Проблемы с кожей и лишним весом</div>
+
+                    <!-- Строка 2 -->
+                    <div class="habit-row">
+                        <div class="habit-cause">Большое количество сладкой и вредной еды в рационе</div>
+                        <div class="habit-arrow">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <path d="M4 12h16M16 8l4 4-4 4" stroke="#FF6B6B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <div class="habit-effect bad-effect">Проблемы с кожей и лишним весом</div>
                     </div>
-                    <div class="grid grid-cols-2 gap-4 items-center">
-                        <div class="bg-gray-50 p-4 rounded-xl">Недосып и малоподвижность</div>
-                        <div class="bg-orange-100 p-4 rounded-xl">Слабость, усталость, апатия</div>
+
+                    <!-- Строка 3 -->
+                    <div class="habit-row">
+                        <div class="habit-cause">Недосып и малоподвижность</div>
+                        <div class="habit-arrow">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <path d="M4 12h16M16 8l4 4-4 4" stroke="#FF6B6B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <div class="habit-effect bad-effect">Слабость, усталость, апатия</div>
                     </div>
                 </div>
             </div>
 
             <!-- Полезные привычки -->
-            <div class="bg-white rounded-2xl shadow p-6">
-                <h2 class="text-2xl font-bold text-green-600 mb-6 text-center">Полезные привычки</h2>
-                <div class="space-y-4">
-                    <div class="grid grid-cols-2 gap-4 items-center">
-                        <div class="bg-gray-50 p-4 rounded-xl">Постоянное чтение и изучение чего-то нового</div>
-                        <div class="bg-green-100 p-4 rounded-xl">Рост в карьере и в финансовых возможностях</div>
+            <div class="habits-card good-habits">
+                <h2>Полезные привычки</h2>
+                <div class="habits-list">
+                    <!-- Строка 1 -->
+                    <div class="habit-row">
+                        <div class="habit-cause">Постоянное чтение и изучение чего-то нового</div>
+                        <div class="habit-arrow">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <path d="M4 12h16M16 8l4 4-4 4" stroke="#1CD6E7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <div class="habit-effect good-effect">Рост в карьере и в финансовых возможностях</div>
                     </div>
-                    <div class="grid grid-cols-2 gap-4 items-center">
-                        <div class="bg-gray-50 p-4 rounded-xl">Система здорового питания и регулярный спорт</div>
-                        <div class="bg-green-100 p-4 rounded-xl">Стройное, подтянутое тело и уверенность в себе</div>
+
+                    <!-- Строка 2 -->
+                    <div class="habit-row">
+                        <div class="habit-cause">Система здорового питания и регулярный спорт</div>
+                        <div class="habit-arrow">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <path d="M4 12h16M16 8l4 4-4 4" stroke="#1CD6E7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <div class="habit-effect good-effect">Стройное, подтянутое тело и уверенность в себе</div>
                     </div>
-                    <div class="grid grid-cols-2 gap-4 items-center">
-                        <div class="bg-gray-50 p-4 rounded-xl">Налаженный сон, правильный отдых</div>
-                        <div class="bg-green-100 p-4 rounded-xl">Энергичность и стабильное эмоциональное состояние</div>
+
+                    <!-- Строка 3 -->
+                    <div class="habit-row">
+                        <div class="habit-cause">Налаженный сон, правильный отдых</div>
+                        <div class="habit-arrow">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <path d="M4 12h16M16 8l4 4-4 4" stroke="#1CD6E7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <div class="habit-effect good-effect">Энергичность и стабильное эмоциональное состояние</div>
                     </div>
                 </div>
             </div>
         </div>
-
     </main>
 </body>
 </html>

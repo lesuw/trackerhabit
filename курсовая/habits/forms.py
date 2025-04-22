@@ -1,6 +1,7 @@
+# forms.py
 from django import forms
+from .models import MoodEntry
 from .models import Habit
-
 
 class HabitForm(forms.ModelForm):
     class Meta:
@@ -17,3 +18,20 @@ class HabitForm(forms.ModelForm):
         if days_goal < 1:
             raise forms.ValidationError("Цель по дням должна быть больше нуля.")
         return days_goal
+
+
+class MoodEntryForm(forms.ModelForm):
+    class Meta:
+        model = MoodEntry
+        fields = ['mood', 'notes']
+        widgets = {
+            'notes': forms.Textarea(attrs={
+                'rows': 4,
+                'placeholder': 'Опишите, что повлияло на ваше настроение сегодня...',
+                'class': 'form-textarea'
+            }),
+        }
+        labels = {
+            'mood': 'Настроение',
+            'notes': 'Заметка'
+        }
