@@ -15,6 +15,13 @@ document.addEventListener('DOMContentLoaded', function() {
         { name: 'Розовый', value: 'bg-pink-100 text-pink-800' },
     ];
 
+    // Функция для получения CSRF-токена из cookies
+function getCSRFToken() {
+    const csrfToken = document.cookie.match(/csrftoken=([\w-]+)/);
+    return csrfToken ? csrfToken[1] : null;
+}
+
+
     // Функция для отображения календаря
     function renderCalendar() {
         const weekDays = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'];
@@ -106,11 +113,14 @@ document.addEventListener('DOMContentLoaded', function() {
             });
     }
 
+
+
     // Создание элемента привычки (только категория окрашивается)
     function createHabitElement(habit, withDaysInfo) {
         const element = document.createElement('div');
         element.className = 'p-4 hover:bg-gray-50 transition bg-white border-b';
         element.dataset.habitId = habit.id;
+
 
         // Получаем дни недели для привычки
         const daysMap = {0: 'Вс', 1: 'Пн', 2: 'Вт', 3: 'Ср', 4: 'Чт', 5: 'Пт', 6: 'Сб'};
@@ -129,12 +139,12 @@ document.addEventListener('DOMContentLoaded', function() {
                     ${daysHtml}
                 </div>
                 <div class="flex items-center space-x-2">
-                    <button class="text-gray-400 hover:text-indigo-600 edit-habit" data-id="${habit.id}">
+                    <button class="text-gray-400 hover:text-indigo-600" onclick="editHabit(${habit.id})">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                             <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
                         </svg>
                     </button>
-                    <button class="text-gray-400 hover:text-red-600 delete-habit" data-id="${habit.id}">
+                    <button class="text-gray-400 hover:text-red-600" onclick="deleteHabit(${habit.id})">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                             <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
                         </svg>
@@ -148,6 +158,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 <span class="text-xs text-gray-500">${habit.days_goal} дней</span>
             </div>
         `;
+        const editBtn = element.querySelector('.edit-habit');
+        if (editBtn) editBtn.addEventListener('click', () => editHabit(habit.id));
+
+        const deleteBtn = element.querySelector('.delete-habit');
+        if (deleteBtn) deleteBtn.addEventListener('click', () => deleteHabit(habit.id));
+
 
         return element;
     }
@@ -238,6 +254,13 @@ document.addEventListener('DOMContentLoaded', function() {
     // Функция сохранения привычки
    function saveHabit() {
     const form = document.getElementById('habit-form');
+    const csrfTokenElement = document.querySelector('[name=csrfmiddlewaretoken]');
+    const csrfToken = csrfTokenElement ? csrfTokenElement.value : null;
+
+    if (!csrfToken) {
+        console.warn('CSRF токен не найден! Проверь наличие тега {% csrf_token %} внутри формы или шаблона.');
+        return;
+    }
 
     const habitData = {
         habit_id: document.getElementById('habit-id').value,
@@ -254,7 +277,7 @@ document.addEventListener('DOMContentLoaded', function() {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value,
+            'X-CSRFToken': csrfToken,
             'X-Requested-With': 'XMLHttpRequest'
         },
         body: JSON.stringify(habitData)
@@ -274,6 +297,7 @@ document.addEventListener('DOMContentLoaded', function() {
         console.error('Ошибка запроса:', error);
     });
 }
+
 
 
 
@@ -347,28 +371,41 @@ document.addEventListener('DOMContentLoaded', function() {
     };
 
     window.deleteHabit = function(id) {
-        if (confirm('Вы уверены, что хотите удалить эту привычку?')) {
-            fetch(`/habits/delete/${id}/`, {
-                method: 'POST',
-                headers: {
-                    'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value,
-                    'X-Requested-With': 'XMLHttpRequest'
-                }
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    const allHabitsList = document.getElementById('all-habits-list');
-                    const habitsList = document.getElementById('habits-list');
+    if (confirm('Вы уверены, что хотите удалить эту привычку?')) {
+        fetch(`/habits/delete/${id}/`, {
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': getCSRFToken(),
+                'Content-Type': 'application/json',
+            }
+        })
+        .then(response => {
+            if (!response.ok) {
+                // Выводим ошибку если сервер не вернул успешный статус
+                return response.text().then(text => {
+                    throw new Error('Ошибка на сервере: ' + text);
+                });
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (data.status === 'success') {
+                console.log('Привычка удалена успешно');
+                // Убираем элемент привычки с UI
+                const habitElement = document.querySelector(`[data-habit-id="${id}"]`);
+                if (habitElement) habitElement.remove();
+            } else {
+                throw new Error('Ошибка при удалении привычки: ' + data.message);
+            }
+        })
+        .catch(error => {
+            console.error('Ошибка при удалении привычки:', error);
+        });
+    }
+};
 
-                    // Удаляем из обоих списков
-                    allHabitsList.querySelector(`[data-habit-id="${id}"]`)?.remove();
-                    habitsList.querySelector(`[data-habit-id="${id}"]`)?.remove();
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
-        }
-    };
+
+
+
+
 });

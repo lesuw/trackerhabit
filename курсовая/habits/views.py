@@ -171,6 +171,7 @@ def serialize_habit(habit):
         'color_class': habit.color_class,
         'schedule_days': list(habit.schedule.values_list('day_of_week', flat=True)),
     }
+
 @require_GET
 def get_all_habits(request):
     habits = Habit.objects.filter(user=request.user).prefetch_related('schedule')
@@ -220,6 +221,7 @@ def get_habits_by_day(request):
 
     return JsonResponse({'success': True, 'habits': habits_data})
 
+# //////////////////////////////////
 @login_required
 @require_POST
 def add_habit(request):
@@ -247,7 +249,7 @@ def get_habits(request):
     habits = Habit.objects.filter(user=request.user).prefetch_related('schedule')
     return JsonResponse({'habits': [_habit_full(h) for h in habits]})
 
-
+#////////////////////////
 @login_required
 def get_habits_for_day(request):
     day_of_week = int(request.GET.get('day', 0))
@@ -256,21 +258,14 @@ def get_habits_for_day(request):
 
 
 @login_required
-@require_http_methods(["DELETE"])
-def delete_habit(request, habit_id):
-    habit = Habit.objects.filter(id=habit_id, user=request.user).first()
+@require_http_methods(["POST"])
+def delete_habit(request, id):
+    habit = Habit.objects.filter(id=id, user=request.user).first()
     if habit:
         habit.delete()
         return JsonResponse({'status': 'success'})
     return JsonResponse({'status': 'error', 'message': 'Habit not found'}, status=404)
 
-
-@login_required
-def get_habit(request, pk):
-    habit = Habit.objects.filter(id=pk, user=request.user).prefetch_related('schedule').first()
-    if habit:
-        return JsonResponse(_habit_full(habit))
-    return JsonResponse({'status': 'error', 'message': 'Habit not found'}, status=404)
 
 
 @login_required
@@ -281,8 +276,8 @@ def update_habit(request, pk):
         habit = get_object_or_404(Habit, id=pk, user=request.user)
 
         for field in ['name', 'category', 'description', 'days_goal', 'color_class', 'reminder']:
-            setattr(habit, field, data.get(field, getattr(habit, field)))
-        habit.save()
+            if field in data:
+                setattr(habit, field, data[field])
 
         habit.schedule.all().delete()
         HabitSchedule.objects.bulk_create([
@@ -293,6 +288,13 @@ def update_habit(request, pk):
     except Exception as e:
         return JsonResponse({'status': 'error', 'message': str(e)}, status=400)
 
+
+@login_required
+def get_habit(request, pk):
+    habit = Habit.objects.filter(id=pk, user=request.user).prefetch_related('schedule').first()
+    if habit:
+        return JsonResponse(_habit_full(habit))
+    return JsonResponse({'status': 'error', 'message': 'Habit not found'}, status=404)
 
 @login_required
 @require_POST
