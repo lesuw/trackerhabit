@@ -332,7 +332,7 @@ function getCSRFToken() {
         const selectedDay = selectedDate.getDay();
 
         // Проверяем, есть ли выбранный день в расписании привычки
-        const hasDay = habit.schedule_days ? habit.schedule_days.includes(selectedDay.toString()) : false;
+        const hasDay = habit.schedule_days ? habit.schedule_days.includes(selectedDay) : false;
 
         if (habitsList && hasDay) {
             const habitElement = createHabitElement(habit, false);
@@ -359,12 +359,19 @@ function getCSRFToken() {
    window.editHabit = function(id) {
     console.log('Попытка редактировать привычку с ID:', id);
 
+    // Удаляем старую привычку из списков
+    const oldHabitElementAll = document.querySelector(`[data-habit-id="${id}"]`);
+    if (oldHabitElementAll) oldHabitElementAll.remove();
+
+    const oldHabitElementDay = document.querySelector(`[data-habit-id="${id}"]`);
+    if (oldHabitElementDay) oldHabitElementDay.remove();
+
     fetch(`/habits/get/${id}/`)
         .then(response => response.json())
         .then(data => {
             if (data.id) {
                 const habit = data;
-                console.log('Полученные данные привычки:', habit); // Добавим лог для отладки
+                console.log('Полученные данные привычки:', habit);
 
                 // Заполнение формы данными привычки
                 document.getElementById('name').value = habit.name;
@@ -381,15 +388,12 @@ function getCSRFToken() {
 
                 // Установка выбранных дней
                 const scheduleDays = habit.schedule_days || [];
-                console.log('Дни привычки:', scheduleDays); // Лог дней привычки
+                console.log('Дни привычки:', scheduleDays);
 
                 document.querySelectorAll('input[name="days"]').forEach(input => {
-                    // Преобразуем значение чекбокса в число и проверяем наличие в scheduleDays
                     const dayValue = parseInt(input.value);
-
-                   input.checked = scheduleDays.includes(parseInt(input.value));
-
-                    console.log(`Чекбокс ${dayValue}: ${input.checked}`); // Лог состояния чекбоксов
+                    input.checked = scheduleDays.includes(dayValue);
+                    console.log(`Чекбокс ${dayValue}: ${input.checked}`);
                 });
 
                 // Открытие модального окна
@@ -407,6 +411,7 @@ function getCSRFToken() {
 
 
 
+
     window.deleteHabit = function(id) {
     if (confirm('Вы уверены, что хотите удалить эту привычку?')) {
         fetch(`/habits/delete/${id}/`, {
@@ -418,7 +423,6 @@ function getCSRFToken() {
         })
         .then(response => {
             if (!response.ok) {
-                // Выводим ошибку если сервер не вернул успешный статус
                 return response.text().then(text => {
                     throw new Error('Ошибка на сервере: ' + text);
                 });
@@ -428,9 +432,28 @@ function getCSRFToken() {
         .then(data => {
             if (data.status === 'success') {
                 console.log('Привычка удалена успешно');
-                // Убираем элемент привычки с UI
+
                 const habitElement = document.querySelector(`[data-habit-id="${id}"]`);
                 if (habitElement) habitElement.remove();
+
+                // После удаления — проверяем остались ли привычки на этот день
+                const habitsList = document.getElementById('habits-list');
+                if (habitsList && habitsList.children.length === 0) {
+                    habitsList.innerHTML = `
+                        <div class="text-center py-8 text-gray-500">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto mb-2 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            <p>На этот день нет запланированных привычек</p>
+                        </div>
+                    `;
+                }
+
+                // Также можно убрать привычку из списка "все привычки"
+                const allHabitsList = document.getElementById('all-habits-list');
+                const habitInAllList = allHabitsList?.querySelector(`[data-habit-id="${id}"]`);
+                if (habitInAllList) habitInAllList.remove();
+
             } else {
                 throw new Error('Ошибка при удалении привычки: ' + data.message);
             }
@@ -440,6 +463,8 @@ function getCSRFToken() {
         });
     }
 };
+
+
 
 
 
