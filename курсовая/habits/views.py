@@ -244,10 +244,10 @@ def add_habit(request):
         return JsonResponse({'status': 'error', 'message': str(e)}, status=400)
 
 
-@login_required
-def get_habits(request):
-    habits = Habit.objects.filter(user=request.user).prefetch_related('schedule')
-    return JsonResponse({'habits': [_habit_full(h) for h in habits]})
+# @login_required
+# def get_habits(request):
+#     habits = Habit.objects.filter(user=request.user).prefetch_related('schedule')
+#     return JsonResponse({'habits': [_habit_full(h) for h in habits]})
 
 #////////////////////////
 @login_required
@@ -269,11 +269,11 @@ def delete_habit(request, id):
 
 
 @login_required
-@require_http_methods(["PUT"])
-def update_habit(request, pk):
+@require_http_methods(["POST"])
+def update_habit(request, id):
     try:
         data = json.loads(request.body)
-        habit = get_object_or_404(Habit, id=pk, user=request.user)
+        habit = get_object_or_404(Habit, id=id, user=request.user)
 
         for field in ['name', 'category', 'description', 'days_goal', 'color_class', 'reminder']:
             if field in data:
@@ -290,8 +290,8 @@ def update_habit(request, pk):
 
 
 @login_required
-def get_habit(request, pk):
-    habit = Habit.objects.filter(id=pk, user=request.user).prefetch_related('schedule').first()
+def get_habit(request, id):
+    habit = Habit.objects.filter(id=id, user=request.user).prefetch_related('schedule').first()
     if habit:
         return JsonResponse(_habit_full(habit))
     return JsonResponse({'status': 'error', 'message': 'Habit not found'}, status=404)

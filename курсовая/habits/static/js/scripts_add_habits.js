@@ -114,7 +114,6 @@ function getCSRFToken() {
     }
 
 
-
     // Создание элемента привычки (только категория окрашивается)
     function createHabitElement(habit, withDaysInfo) {
         const element = document.createElement('div');
@@ -125,6 +124,7 @@ function getCSRFToken() {
         // Получаем дни недели для привычки
         const daysMap = {0: 'Вс', 1: 'Пн', 2: 'Вт', 3: 'Ср', 4: 'Чт', 5: 'Пт', 6: 'Сб'};
         const activeDays = habit.schedule_days ? habit.schedule_days.map(day => daysMap[day]) : [];
+
 
         let daysHtml = '';
         if (withDaysInfo && activeDays.length > 0) {
@@ -158,6 +158,7 @@ function getCSRFToken() {
                 <span class="text-xs text-gray-500">${habit.days_goal} дней</span>
             </div>
         `;
+
         const editBtn = element.querySelector('.edit-habit');
         if (editBtn) editBtn.addEventListener('click', () => editHabit(habit.id));
 
@@ -167,6 +168,7 @@ function getCSRFToken() {
 
         return element;
     }
+
 
     // Функции для модального окна
     function openModal() {
@@ -262,15 +264,18 @@ function getCSRFToken() {
         return;
     }
 
+    const habitId = document.getElementById('habit-id').value;
+    const isEdit = !!habitId;
+
     const habitData = {
-        habit_id: document.getElementById('habit-id').value,
+        habit_id: habitId,
         name: document.getElementById('name').value,
         category: document.getElementById('category').value,
         description: document.getElementById('description').value,
         days_goal: document.getElementById('days_goal').value,
         reminder: document.getElementById('reminder').checked,
         color_class: document.getElementById('color').value,
-        schedule_days: Array.from(document.querySelectorAll('input[name="days"]:checked')).map(cb => cb.value)
+        schedule_days: Array.from(document.querySelectorAll('input[name="days"]:checked')).map(cb => parseInt(cb.value))
     };
 
     fetch('/habits/save/', {
@@ -286,8 +291,18 @@ function getCSRFToken() {
     .then(data => {
         if (data.success) {
             console.log('Привычка сохранена!', data.habit);
+
+            // Обновляем UI
+            if (isEdit) {
+                // Удаляем старую версию привычки
+                const oldHabitElement = document.querySelector(`[data-habit-id="${habitId}"]`);
+                if (oldHabitElement) oldHabitElement.remove();
+            }
+
+            // Добавляем обновленную привычку
             addHabitToAllHabitsList(data.habit);
             addHabitToSelectedDayList(data.habit);
+
             closeModal();
         } else {
             console.error('Ошибка сохранения:', data.error);
@@ -341,34 +356,56 @@ function getCSRFToken() {
     document.getElementById('generate-habit').addEventListener('click', generateHabit);
 
     // Глобальные функции для кнопок
-    window.editHabit = function(id) {
-        fetch(`/habits/get/${id}/`)
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    const habit = data.habit;
-                    document.getElementById('name').value = habit.name;
-                    document.getElementById('category').value = habit.category;
-                    document.getElementById('days_goal').value = habit.days_goal;
-                    document.getElementById('description').value = habit.description || '';
-                    document.getElementById('habit-id').value = habit.id;
-                    document.getElementById('reminder').checked = habit.reminder;
+   window.editHabit = function(id) {
+    console.log('Попытка редактировать привычку с ID:', id);
 
-                    // Устанавливаем цвет
+    fetch(`/habits/get/${id}/`)
+        .then(response => response.json())
+        .then(data => {
+            if (data.id) {
+                const habit = data;
+                console.log('Полученные данные привычки:', habit); // Добавим лог для отладки
+
+                // Заполнение формы данными привычки
+                document.getElementById('name').value = habit.name;
+                document.getElementById('category').value = habit.category;
+                document.getElementById('days_goal').value = habit.days_goal;
+                document.getElementById('description').value = habit.description || '';
+                document.getElementById('habit-id').value = habit.id;
+                document.getElementById('reminder').checked = habit.reminder;
+
+                // Установка цвета
+                if (habit.color_class) {
                     selectColor(habit.color_class);
-
-                    // Устанавливаем выбранные дни
-                    document.querySelectorAll('input[name="days"]').forEach(input => {
-                        input.checked = habit.schedule_days ? habit.schedule_days.includes(input.value) : false;
-                    });
-
-                    openModal();
                 }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
-    };
+
+                // Установка выбранных дней
+                const scheduleDays = habit.schedule_days || [];
+                console.log('Дни привычки:', scheduleDays); // Лог дней привычки
+
+                document.querySelectorAll('input[name="days"]').forEach(input => {
+                    // Преобразуем значение чекбокса в число и проверяем наличие в scheduleDays
+                    const dayValue = parseInt(input.value);
+
+                   input.checked = scheduleDays.includes(parseInt(input.value));
+
+                    console.log(`Чекбокс ${dayValue}: ${input.checked}`); // Лог состояния чекбоксов
+                });
+
+                // Открытие модального окна
+                openModal();
+            } else {
+                console.error('Ошибка получения данных о привычке:', data.message || 'Неизвестная ошибка');
+            }
+        })
+        .catch(error => {
+            console.error('Ошибка при запросе данных о привычке:', error);
+        });
+};
+
+
+
+
 
     window.deleteHabit = function(id) {
     if (confirm('Вы уверены, что хотите удалить эту привычку?')) {
