@@ -21,6 +21,30 @@ function getCSRFToken() {
     return csrfToken ? csrfToken[1] : null;
 }
 
+ // Функция для отображения уведомления
+    function showNotification(message) {
+    const notification = document.createElement('div');
+    notification.classList.add(
+        'fixed', 'top-4', 'right-4',
+        'text-white', 'p-4', 'rounded-lg', 'shadow-lg',
+        'transition', 'opacity-0', 'z-50'
+    );
+    notification.style.backgroundColor = '#4F46E5'; // Синий фон
+
+    notification.innerHTML = `<p>${message}</p>`;
+    document.body.appendChild(notification);
+
+    // Плавное появление уведомления
+    setTimeout(() => notification.classList.remove('opacity-0'), 100);
+
+    // Автоматическое скрытие через 3 секунды
+    setTimeout(() => {
+        notification.classList.add('opacity-0');
+        setTimeout(() => notification.remove(), 300); // Удаляем элемент после скрытия
+    }, 3000);
+}
+
+
 
     // Функция для отображения календаря
     function renderCalendar() {
@@ -202,18 +226,24 @@ function getCSRFToken() {
     }
 
     // Функция выбора цвета
-    function selectColor(colorClass) {
+function selectColor(colorClass) {
     const colorInput = document.getElementById('color');
     const selectedColor = document.getElementById('selected-color');
+    const container = document.getElementById('color-options'); // Контейнер с цветами
 
-    if (!colorInput || !selectedColor) {
-        console.warn('Цветовой input или индикатор не найден!');
+    if (!colorInput || !selectedColor || !container) {
+        console.warn('Цветовой input, индикатор или контейнер с цветами не найден!');
         return;
     }
 
+    // Устанавливаем выбранный цвет
     colorInput.value = colorClass;
     selectedColor.className = `w-6 h-6 rounded-full ${colorClass}`;
+
+    // Закрываем список с цветами
+    container.classList.add('hidden');
 }
+
 
 
     // Генерация случайной привычки
@@ -254,13 +284,14 @@ function getCSRFToken() {
 
 
     // Функция сохранения привычки
-   function saveHabit() {
+   // Функция сохранения привычки
+function saveHabit() {
     const form = document.getElementById('habit-form');
     const csrfTokenElement = document.querySelector('[name=csrfmiddlewaretoken]');
     const csrfToken = csrfTokenElement ? csrfTokenElement.value : null;
 
     if (!csrfToken) {
-        console.warn('CSRF токен не найден! Проверь наличие тега {% csrf_token %} внутри формы или шаблона.');
+        console.warn('CSRF токен не найден!');
         return;
     }
 
@@ -292,6 +323,14 @@ function getCSRFToken() {
         if (data.success) {
             console.log('Привычка сохранена!', data.habit);
 
+            // Уведомление в зависимости от типа (добавление или редактирование)
+            if (isEdit) {
+                showNotification('Привычка успешно отредактирована!', 'edit');
+                /////нужно обновление страницв=ы
+            } else {
+                showNotification('Привычка успешно добавлена!', 'add');
+            }
+
             // Обновляем UI
             if (isEdit) {
                 // Удаляем старую версию привычки
@@ -312,11 +351,6 @@ function getCSRFToken() {
         console.error('Ошибка запроса:', error);
     });
 }
-
-
-
-
-
     // Добавление привычки в список "Все ваши привычки"
     function addHabitToAllHabitsList(habit) {
         const allHabitsList = document.getElementById('all-habits-list');
@@ -359,13 +393,6 @@ function getCSRFToken() {
    window.editHabit = function(id) {
     console.log('Попытка редактировать привычку с ID:', id);
 
-    // Удаляем старую привычку из списков
-    const oldHabitElementAll = document.querySelector(`[data-habit-id="${id}"]`);
-    if (oldHabitElementAll) oldHabitElementAll.remove();
-
-    const oldHabitElementDay = document.querySelector(`[data-habit-id="${id}"]`);
-    if (oldHabitElementDay) oldHabitElementDay.remove();
-
     fetch(`/habits/get/${id}/`)
         .then(response => response.json())
         .then(data => {
@@ -373,12 +400,14 @@ function getCSRFToken() {
                 const habit = data;
                 console.log('Полученные данные привычки:', habit);
 
+                // Сохраняем ID редактируемой привычки
+                document.getElementById('habit-id').value = habit.id;
+
                 // Заполнение формы данными привычки
                 document.getElementById('name').value = habit.name;
                 document.getElementById('category').value = habit.category;
                 document.getElementById('days_goal').value = habit.days_goal;
                 document.getElementById('description').value = habit.description || '';
-                document.getElementById('habit-id').value = habit.id;
                 document.getElementById('reminder').checked = habit.reminder;
 
                 // Установка цвета
@@ -388,12 +417,8 @@ function getCSRFToken() {
 
                 // Установка выбранных дней
                 const scheduleDays = habit.schedule_days || [];
-                console.log('Дни привычки:', scheduleDays);
-
                 document.querySelectorAll('input[name="days"]').forEach(input => {
-                    const dayValue = parseInt(input.value);
-                    input.checked = scheduleDays.includes(dayValue);
-                    console.log(`Чекбокс ${dayValue}: ${input.checked}`);
+                    input.checked = scheduleDays.includes(parseInt(input.value));
                 });
 
                 // Открытие модального окна
@@ -406,10 +431,6 @@ function getCSRFToken() {
             console.error('Ошибка при запросе данных о привычке:', error);
         });
 };
-
-
-
-
 
 
     window.deleteHabit = function(id) {
@@ -462,12 +483,7 @@ function getCSRFToken() {
             console.error('Ошибка при удалении привычки:', error);
         });
     }
+    showNotification('Привычка успешно удалена!', 'success');
 };
-
-
-
-
-
-
 
 });

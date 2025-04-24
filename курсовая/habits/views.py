@@ -331,3 +331,25 @@ def _habit_full(habit):
         'reminder': habit.reminder,
         'repeat_days': list(habit.schedule.values_list('day_of_week', flat=True)),
     }
+
+
+# views.py
+@require_POST
+def update_schedule(request, habit_id):
+    try:
+        habit = Habit.objects.get(id=habit_id, user=request.user)
+        data = json.loads(request.body)
+        day = data.get('day')
+        action = data.get('action')
+
+        if action == 'add':
+            if day not in habit.schedule_days:
+                habit.schedule_days.append(day)
+        elif action == 'remove':
+            if day in habit.schedule_days:
+                habit.schedule_days.remove(day)
+
+        habit.save()
+        return JsonResponse({'success': True})
+    except Exception as e:
+        return JsonResponse({'success': False, 'error': str(e)})

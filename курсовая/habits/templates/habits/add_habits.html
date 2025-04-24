@@ -5,6 +5,111 @@
     <meta charset="UTF-8">
     <title>Привычки | Трекер Привычек</title>
     <script src="https://cdn.tailwindcss.com"></script>
+<!--    <style>-->
+<!--    /* Стили для перетаскивания */-->
+<!--    [draggable="true"] {-->
+<!--        cursor: grab;-->
+<!--        user-select: none;-->
+<!--        transition: transform 0.2s, opacity 0.2s;-->
+<!--    }-->
+
+<!--    [draggable="true"]:active {-->
+<!--        cursor: grabbing;-->
+<!--        transform: scale(1.02);-->
+<!--    }-->
+
+<!--    /* Элемент при перетаскивании */-->
+<!--    .dragging {-->
+<!--        opacity: 0.5;-->
+<!--        border: 2px dashed #6366f1;-->
+<!--        background-color: #f3f4f6;-->
+<!--    }-->
+
+<!--    /* Зона, куда можно бросать */-->
+<!--    .drop-zone {-->
+<!--        transition: all 0.2s;-->
+<!--        position: relative;-->
+<!--    }-->
+
+<!--    .drop-zone::before {-->
+<!--        content: '';-->
+<!--        position: absolute;-->
+<!--        top: -2px;-->
+<!--        left: -2px;-->
+<!--        right: -2px;-->
+<!--        bottom: -2px;-->
+<!--        border: 2px dashed #6366f1;-->
+<!--        border-radius: 0.5rem;-->
+<!--        opacity: 0;-->
+<!--        transition: opacity 0.2s;-->
+<!--    }-->
+
+<!--    /* Активная зона (когда над ней элемент) */-->
+<!--    .drop-zone.active {-->
+<!--        background-color: #eef2ff;-->
+<!--    }-->
+
+<!--    .drop-zone.active::before {-->
+<!--        opacity: 1;-->
+<!--    }-->
+
+<!--    /* Эффект при наведении на элемент, который можно перетащить */-->
+<!--    .draggable:hover {-->
+<!--        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);-->
+<!--    }-->
+
+<!--    /* Стили для списка привычек */-->
+<!--    #all-habits-list {-->
+<!--        scrollbar-width: thin;-->
+<!--        scrollbar-color: #c7d2fe #f3f4f6;-->
+<!--    }-->
+
+<!--    #all-habits-list::-webkit-scrollbar {-->
+<!--        width: 6px;-->
+<!--    }-->
+
+<!--    #all-habits-list::-webkit-scrollbar-track {-->
+<!--        background: #f3f4f6;-->
+<!--    }-->
+
+<!--    #all-habits-list::-webkit-scrollbar-thumb {-->
+<!--        background-color: #c7d2fe;-->
+<!--        border-radius: 3px;-->
+<!--    }-->
+
+<!--    /* Анимация для уведомлений */-->
+<!--    @keyframes fadeIn {-->
+<!--        from { opacity: 0; transform: translateY(10px); }-->
+<!--        to { opacity: 1; transform: translateY(0); }-->
+<!--    }-->
+
+<!--    @keyframes fadeOut {-->
+<!--        from { opacity: 1; transform: translateY(0); }-->
+<!--        to { opacity: 0; transform: translateY(-10px); }-->
+<!--    }-->
+
+<!--    .notification {-->
+<!--        animation: fadeIn 0.3s ease-out forwards;-->
+<!--    }-->
+
+<!--    .notification.hiding {-->
+<!--        animation: fadeOut 0.3s ease-in forwards;-->
+<!--    }-->
+
+<!--    /* Дополнительные стили для дней недели в календаре */-->
+<!--    #week-calendar > div {-->
+<!--        transition: all 0.2s;-->
+<!--    }-->
+
+<!--    #week-calendar > div:hover {-->
+<!--        transform: translateY(-2px);-->
+<!--    }-->
+
+<!--    /* Стили для выбранного дня */-->
+<!--    .bg-indigo-100 {-->
+<!--        background-color: #e0e7ff;-->
+<!--    }-->
+<!--</style>-->
 </head>
 <body class="bg-gray-50 text-gray-800 font-sans">
     <!-- Навигационная панель -->
