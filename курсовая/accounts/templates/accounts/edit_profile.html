@@ -4,10 +4,10 @@
 {% block content %}
 <div class="max-w-md mx-auto my-10 bg-white p-8 rounded-xl shadow-lg">
     <h2 class="text-2xl font-bold text-center text-indigo-600 mb-6">Редактирование профиля</h2>
-    
-    <form method="post" enctype="multipart/form-data" class="space-y-4">
+
+    <form method="post" enctype="multipart/form-data" class="space-y-6">
         {% csrf_token %}
-        
+
         {% if form.errors %}
             <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
                 {% for field, errors in form.errors.items %}
@@ -17,53 +17,63 @@
                 {% endfor %}
             </div>
         {% endif %}
-        
+
         <div class="flex flex-col items-center">
-            <div class="relative mb-4">
-                <img src="{{ user.avatar.url }}" alt="Текущий аватар" class="w-24 h-24 rounded-full object-cover border-4 border-indigo-100 mb-2">
-                <label class="cursor-pointer">
-                    {{ form.avatar }}
-                </label>
+            <!-- Аватар по центру и увеличен -->
+            <div class="relative mb-4 flex flex-col items-center">
+                <img src="{{ user.avatar.url }}" alt="Аватар" class="w-32 h-32 md:w-40 md:h-40 rounded-full object-cover border-4 border-indigo-100 shadow mb-4">
+
+                <!-- Кнопка загрузки файла -->
+                <div class="relative inline-block">
+                    <label for="id_avatar" class="cursor-pointer bg-indigo-600 text-white px-4 py-2 rounded-lg text-sm hover:bg-indigo-700 transition mb-2 inline-block">
+                        Выбрать файл
+                    </label>
+                    <input type="file" name="avatar" id="id_avatar" class="hidden">
+                </div>
+
+
                 {% if user.avatar and user.avatar.name != 'avatars/default_avatar.jpg' %}
                 <button type="button" id="delete-avatar" class="mt-2 text-sm text-red-600 hover:underline">
                     Удалить аватар
                 </button>
-                {% endif %}
+            {% endif %}
+
             </div>
         </div>
-        
+
         <div>
-            <label class="block text-gray-700 text-sm font-medium mb-1">Имя пользователя</label>
+            <label for="{{ form.username.id_for_label }}" class="block text-gray-700 text-sm font-medium mb-1">Имя пользователя</label>
             {{ form.username }}
         </div>
-        
+
         <div>
-            <label class="block text-gray-700 text-sm font-medium mb-1">Email</label>
+            <label for="{{ form.email.id_for_label }}" class="block text-gray-700 text-sm font-medium mb-1">Email</label>
             {{ form.email }}
         </div>
-        
+
         <button type="submit" class="w-full bg-indigo-600 text-white py-2 px-4 rounded-lg hover:bg-indigo-700 transition">
             Сохранить изменения
         </button>
     </form>
 </div>
 
+<!-- Скрипт удаления аватара -->
 <script>
-document.getElementById('delete-avatar').addEventListener('click', function() {
-    fetch("{% url 'delete_avatar' %}", {
-        method: 'POST',
-        headers: {
-            'X-CSRFToken': '{{ csrf_token }}',
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({})
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            location.reload();
-        }
+    document.getElementById('delete-avatar')?.addEventListener('click', function () {
+        fetch("{% url 'delete_avatar' %}", {
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': '{{ csrf_token }}',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({})
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                location.reload();
+            }
+        });
     });
-});
 </script>
 {% endblock %}

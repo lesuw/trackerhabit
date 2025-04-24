@@ -106,6 +106,9 @@ def delete_note(request, pk):
             'error': str(e)
         })
 
+@login_required
+def faq_page(request):
+    return render(request, 'faq/faq.html')
 
 @login_required
 def habits_page(request):

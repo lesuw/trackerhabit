@@ -1,51 +1,58 @@
 {% extends 'base.html' %}
- {% load static %}
- 
- {% block content %}
- <div class="max-w-4xl mx-auto my-10 bg-white p-8 rounded-xl shadow-lg">
-     <div class="flex flex-col md:flex-row gap-8">
-         <div class="w-full md:w-1/3 flex flex-col items-center">
-             <div class="relative mb-4">
-                 <img src="{{ user.avatar.url }}" alt="Аватар" class="w-32 h-32 rounded-full object-cover border-4 border-indigo-100">
-             </div>
-             <h2 class="text-2xl font-bold text-gray-800">{{ user.username }}</h2>
-             <p class="text-gray-600">{{ user.email }}</p>
-             
-             <div class="mt-6 w-full space-y-2">
-                 <a href="{% url 'edit_profile' %}" class="block w-full text-center bg-indigo-600 text-white py-2 px-4 rounded-lg hover:bg-indigo-700 transition">
-                     Редактировать профиль
-                 </a>
-                 <a href="{% url 'change_password' %}" class="block w-full text-center bg-white text-indigo-600 border border-indigo-600 py-2 px-4 rounded-lg hover:bg-indigo-50 transition">
-                     Сменить пароль
-                 </a>
-             </div>
-         </div>
-         
-         <div class="w-full md:w-2/3">
-             <h3 class="text-xl font-semibold text-gray-800 mb-4">Мои данные</h3>
-             
-             <div class="bg-gray-50 p-6 rounded-lg">
-                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                     <div>
-                         <p class="text-sm text-gray-500">Имя пользователя</p>
-                         <p class="font-medium">{{ user.username }}</p>
-                     </div>
-                     <div>
-                         <p class="text-sm text-gray-500">Email</p>
-                         <p class="font-medium">{{ user.email }}</p>
-                     </div>
-                     <div>
-                         <p class="text-sm text-gray-500">Дата регистрации</p>
-                         <p class="font-medium">{{ user.date_joined|date:"d.m.Y" }}</p>
-                     </div>
-                 </div>
-             </div>
-             
-             <h3 class="text-xl font-semibold text-gray-800 mt-8 mb-4">Мои привычки</h3>
-             <div class="bg-gray-50 p-6 rounded-lg">
-                 <p class="text-gray-600">Здесь будет статистика по привычкам...</p>
-             </div>
-         </div>
-     </div>
- </div>
- {% endblock %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/profile.css' %}">
+<div class="profile-container">
+    <div class="profile-flex">
+        <div class="profile-sidebar">
+           <div class="avatar-container">
+                {% if user.avatar and user.avatar.url %}
+                    <img src="{{ user.avatar.url }}" alt="Аватар" class="avatar-image">
+                {% else %}
+                    <div class="avatar-placeholder">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="default-avatar-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 12c2.7 0 5-2.3 5-5s-2.3-5-5-5-5 2.3-5 5 2.3 5 5 5zm0 2c-3.3 0-10 1.7-10 5v3h20v-3c0-3.3-6.7-5-10-5z"/>
+                        </svg>
+                    </div>
+                {% endif %}
+            </div>
+
+
+            <h2 class="username">{{ user.username }}</h2>
+            <p class="user-email">{{ user.email }}</p>
+
+            <div class="profile-actions">
+                <a href="{% url 'edit_profile' %}" class="btn-edit">Редактировать профиль</a>
+                <a href="{% url 'change_password' %}" class="btn-change-password">Сменить пароль</a>
+            </div>
+        </div>
+
+        <div class="profile-content">
+            <h3 class="section-title">Мои данные</h3>
+
+            <div class="info-card">
+                <div class="info-grid">
+                    <div class="info-item">
+                        <p class="info-label">Имя пользователя</p>
+                        <p class="info-value">{{ user.username }}</p>
+                    </div>
+                    <div class="info-item">
+                        <p class="info-label">Email</p>
+                        <p class="info-value">{{ user.email }}</p>
+                    </div>
+                    <div class="info-item">
+                        <p class="info-label">Дата регистрации</p>
+                        <p class="info-value">{{ user.date_joined|date:"d.m.Y" }}</p>
+                    </div>
+                </div>
+            </div>
+
+            <h3 class="section-title">Мои достижения</h3>
+            <div class="habits-card">
+                <p class="habits-placeholder">Здесь ваши награды за достижения...</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

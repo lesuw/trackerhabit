@@ -16,6 +16,8 @@ urlpatterns = [
     path('edit/<int:pk>/', views.edit_note, name='edit_note'),
     path('delete/<int:pk>/', views.delete_note, name='delete_note'),
 
+    path('faq/', views.faq_page, name='faq'),
+
 # API эндпоинты
 #     path('api/habits/', views.get_habit, name='get_habits'),  # Все привычки пользователя
     path('api/habits/day/', views.get_habits_for_day, name='get_habits_for_day'),  # Привычки по дню недели

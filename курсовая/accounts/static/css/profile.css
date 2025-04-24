@@ -1,0 +1,160 @@
+/* Основные стили контейнера */
+.profile-container {
+    max-width: 56rem;
+    margin: 2.5rem auto;
+    background-color: white;
+    padding: 2rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+/* Гибкий макет */
+.profile-flex {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+@media (min-width: 768px) {
+    .profile-flex {
+        flex-direction: row;
+    }
+}
+
+/* Сайдбар профиля */
+.profile-sidebar {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+@media (min-width: 768px) {
+    .profile-sidebar {
+        width: 33.333333%;
+    }
+}
+
+/* Аватар */
+.avatar-container {
+    position: relative;
+    margin-bottom: 1rem;
+}
+
+.avatar-image {
+    width: 8rem;
+    height: 8rem;
+    border-radius: 9999px;
+    object-fit: cover;
+    border-width: 4px;
+    border-color: #E0E7FF;
+}
+
+/* Текстовые элементы */
+.username {
+    font-size: 1.5rem;
+    line-height: 2rem;
+    font-weight: 700;
+    color: #1F2937;
+}
+
+.user-email {
+    color: #4B5563;
+}
+
+/* Кнопки действий */
+.profile-actions {
+    margin-top: 1.5rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.btn-edit {
+    display: block;
+    width: 100%;
+    text-align: center;
+    background-color: #4F46E5;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    transition: background-color 0.2s;
+}
+
+.btn-edit:hover {
+    background-color: #4338CA;
+}
+
+.btn-change-password {
+    display: block;
+    width: 100%;
+    text-align: center;
+    background-color: white;
+    color: #4F46E5;
+    border: 1px solid #4F46E5;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    transition: background-color 0.2s;
+}
+
+.btn-change-password:hover {
+    background-color: #EEF2FF;
+}
+
+/* Основное содержимое профиля */
+.profile-content {
+    width: 100%;
+}
+
+@media (min-width: 768px) {
+    .profile-content {
+        width: 66.666667%;
+    }
+}
+
+.section-title {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+    font-weight: 600;
+    color: #1F2937;
+    margin-bottom: 1rem;
+}
+
+/* Карточки с информацией */
+.info-card, .habits-card {
+    background-color: #F9FAFB;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 1rem;
+}
+
+@media (min-width: 768px) {
+    .info-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.info-item {
+    margin-bottom: 0.5rem;
+}
+
+.info-label {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    color: #6B7280;
+}
+
+.info-value {
+    font-weight: 500;
+    color: #1F2937;
+}
+
+.habits-placeholder {
+    color: #6B7280;
+}
