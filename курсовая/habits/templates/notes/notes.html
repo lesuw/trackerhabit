@@ -542,7 +542,7 @@
                 <h2>Новая заметка</h2>
                 <form method="POST" id="note-form">
                     {% csrf_token %}
-                    <input type="hidden" name="add_note" value="1">
+                    <input type="hidden" name="action" value="add">
                     <h3>Какое у вас настроение?</h3>
                     <div class="mood-selector">
                         <div class="mood-option" data-mood="ecstatic">
@@ -624,7 +624,7 @@
                     <div class="edit-form-container" id="edit-form-container-{{ entry.id }}">
                         <form method="POST" class="edit-form">
                             {% csrf_token %}
-                            <input type="hidden" name="edit_note" value="1">
+                            <input type="hidden" name="action" value="edit">
                             <input type="hidden" name="entry_id" value="{{ entry.id }}">
 
                             <div class="mood-selector">
@@ -714,7 +714,7 @@
             <p>Вы уверены, что хотите удалить эту заметку?</p>
             <form method="POST" id="delete-form">
                 {% csrf_token %}
-                <input type="hidden" name="delete_note" value="1">
+                <input type="hidden" name="action" value="delete">
                 <input type="hidden" name="entry_id" id="delete-entry-id" value="">
                 <div class="modal-actions">
                     <button type="submit" class="btn btn-danger">
@@ -793,29 +793,103 @@
             document.getElementById('delete-modal').style.display = 'none';
         });
 
-        // Обработка отправки формы удаления
-        document.getElementById('delete-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const formData = new FormData(this);
+        // Обработка отправки форм
+        function handleFormSubmit(form, successCallback) {
+            const formData = new FormData(form);
 
             fetch(window.location.href, {
                 method: 'POST',
                 body: formData,
                 headers: {
-                    'X-CSRFToken': formData.get('csrfmiddlewaretoken'),
+                    'X-Requested-With': 'XMLHttpRequest',
+                    'X-CSRFToken': formData.get('csrfmiddlewaretoken')
                 }
             })
             .then(response => response.json())
             .then(data => {
-                if (data.success) {
-                    document.getElementById('delete-modal').style.display = 'none';
-                    window.location.reload();
+                if (data.status === 'success') {
+                    if (typeof successCallback === 'function') {
+                        successCallback(data);
+                    } else {
+                        window.location.reload();
+                    }
                 } else {
-                    showToast('Ошибка при удалении заметки', 'error');
+                    showToast(data.message || 'Произошла ошибка', 'error');
                 }
             })
             .catch(error => {
-                showToast('Ошибка при удалении заметки', 'error');
+                showToast('Произошла ошибка при отправке данных', 'error');
+                console.error('Error:', error);
+            });
+        }
+
+        // Обработка формы добавления заметки
+        document.getElementById('note-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            handleFormSubmit(this);
+        });
+
+        // Обработка форм редактирования заметок
+        document.querySelectorAll('.edit-form').forEach(form => {
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const noteId = this.querySelector('input[name="entry_id"]').value;
+                handleFormSubmit(this, function(data) {
+                    // Обновляем данные заметки без перезагрузки страницы
+                    const noteView = document.getElementById(`note-view-${noteId}`);
+
+                    // Обновляем смайлик настроения
+                    const moodEmoji = noteView.querySelector('.note-mood img');
+                    moodEmoji.src = getMoodEmojiUrl(data.note.mood);
+
+                    // Обновляем текст настроения
+                    noteView.querySelector('.note-mood span').textContent = data.note.mood_display;
+
+                    // Обновляем текст заметки
+                    noteView.querySelector('.note-content').textContent = data.note.notes;
+
+                    // Обновляем дату редактирования
+                    if (data.note.last_edited) {
+                        let editedDate = noteView.querySelector('.edited-date');
+                        if (!editedDate) {
+                            editedDate = document.createElement('span');
+                            editedDate.className = 'edited-date';
+                            noteView.querySelector('.note-footer').appendChild(editedDate);
+                        }
+                        editedDate.textContent = `Изменено: ${data.note.last_edited}`;
+                    }
+
+                    cancelEditNote(noteId);
+                    showToast('Заметка успешно обновлена', 'success');
+                });
+            });
+        });
+
+        // Функция для получения URL смайлика по типу настроения
+        function getMoodEmojiUrl(mood) {
+            const emojiMap = {
+                'ecstatic': '1f604',
+                'happy': '1f642',
+                'neutral': '1f610',
+                'sad': '1f641',
+                'angry': '1f620'
+            };
+            return `https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/${emojiMap[mood]}.svg`;
+        }
+
+        // Обработка формы удаления заметки
+        document.getElementById('delete-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            handleFormSubmit(this, function(data) {
+                document.getElementById('delete-modal').style.display = 'none';
+                const noteId = document.getElementById('delete-entry-id').value;
+                document.getElementById(`note-${noteId}`).remove();
+                showToast('Заметка успешно удалена', 'success');
+
+                // Если заметок не осталось, перезагружаем страницу
+                if (document.querySelectorAll('.note-card').length === 0) {
+                    window.location.reload();
+                }
             });
         });
 

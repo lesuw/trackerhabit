@@ -16,46 +16,105 @@ from .models import Habit, HabitSchedule
 from django.views.decorators.http import require_GET
 import json
 
+
 @login_required
 def notes(request):
-    # Обработка фильтров
+    # Фильтрация заметок
+    entries = MoodEntry.objects.filter(user=request.user)
+
+    # Применение фильтров
     mood_filter = request.GET.get('mood')
     date_filter = request.GET.get('date')
-
-    # Получение записей с фильтрами
-    entries = MoodEntry.objects.filter(user=request.user)
 
     if mood_filter:
         entries = entries.filter(mood=mood_filter)
     if date_filter:
         entries = entries.filter(date__date=date_filter)
 
+    # Сортировка и пагинация
     entries = entries.order_by('-date')
-
-    # Пагинация
     paginator = Paginator(entries, 10)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
-    # Обработка формы
-    if request.method == 'POST':
-        form = MoodEntryForm(request.POST)
-        if form.is_valid():
-            entry = form.save(commit=False)
-            entry.user = request.user
-            entry.save()
-            messages.success(request, 'Запись успешно добавлена')
-            return redirect('notes')
-    else:
-        form = MoodEntryForm()
+    # Обработка AJAX-запросов
+    if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+        if request.method == 'POST':
+            return handle_note_ajax(request)
+        return JsonResponse({'status': 'error', 'message': 'Invalid request'}, status=400)
 
-    context = {
+    # Обычный GET-запрос
+    return render(request, 'notes/notes.html', {
         'page_obj': page_obj,
-        'form': form,
         'mood_filter': mood_filter,
         'date_filter': date_filter,
+    })
+
+
+def handle_note_ajax(request):
+    try:
+        data = request.POST
+        action = data.get('action')
+
+        if action == 'add':
+            form = MoodEntryForm(data)
+            if form.is_valid():
+                entry = form.save(commit=False)
+                entry.user = request.user
+                entry.save()
+                return JsonResponse({
+                    'status': 'success',
+                    'message': 'Заметка добавлена',
+                    'note': serialize_note(entry)
+                })
+            return JsonResponse({
+                'status': 'error',
+                'errors': form.errors
+            }, status=400)
+
+        elif action == 'edit':
+            entry_id = data.get('entry_id')
+            entry = get_object_or_404(MoodEntry, id=entry_id, user=request.user)
+            form = MoodEntryForm(data, instance=entry)
+            if form.is_valid():
+                entry = form.save(commit=False)
+                entry.last_edited = timezone.now()
+                entry.save()
+                return JsonResponse({
+                    'status': 'success',
+                    'message': 'Заметка обновлена',
+                    'note': serialize_note(entry)
+                })
+            return JsonResponse({
+                'status': 'error',
+                'errors': form.errors
+            }, status=400)
+
+        elif action == 'delete':
+            entry_id = data.get('entry_id')
+            entry = get_object_or_404(MoodEntry, id=entry_id, user=request.user)
+            entry.delete()
+            return JsonResponse({
+                'status': 'success',
+                'message': 'Заметка удалена'
+            })
+
+    except Exception as e:
+        return JsonResponse({
+            'status': 'error',
+            'message': str(e)
+        }, status=500)
+
+
+def serialize_note(entry):
+    return {
+        'id': entry.id,
+        'mood': entry.mood,
+        'mood_display': entry.get_mood_display(),
+        'notes': entry.notes,
+        'date': entry.date.strftime("%d.%m.%Y %H:%M"),
+        'last_edited': entry.last_edited.strftime("%d.%m.%Y %H:%M") if entry.last_edited else None,
     }
-    return render(request, 'notes/notes.html', context)
 
 
 @login_required
