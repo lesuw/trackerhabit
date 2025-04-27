@@ -21,7 +21,7 @@
         <div class="flex flex-col items-center">
             <!-- Аватар по центру и увеличен -->
             <div class="relative mb-4 flex flex-col items-center">
-                <img src="{{ user.avatar.url }}" alt="Аватар" class="w-32 h-32 md:w-40 md:h-40 rounded-full object-cover border-4 border-indigo-100 shadow mb-4">
+                <img src="{{ accounts.avatar.url }}" alt="Аватар" class="w-32 h-32 md:w-40 md:h-40 rounded-full object-cover border-4 border-indigo-100 shadow mb-4">
 
                 <!-- Кнопка загрузки файла -->
                 <div class="relative inline-block">
@@ -32,7 +32,7 @@
                 </div>
 
 
-                {% if user.avatar and user.avatar.name != 'avatars/default_avatar.jpg' %}
+                {% if accounts.avatar and accounts.avatar.name != 'avatars/default_avatar.jpg' %}
                 <button type="button" id="delete-avatar" class="mt-2 text-sm text-red-600 hover:underline">
                     Удалить аватар
                 </button>

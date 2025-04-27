@@ -7,7 +7,7 @@
     <div class="profile-flex">
         <div class="profile-sidebar">
            <div class="avatar-container">
-                {% if user.avatar and user.avatar.url %}
+                {% if accounts.avatar and accounts.avatar.url %}
                     <img src="{{ user.avatar.url }}" alt="Аватар" class="avatar-image">
                 {% else %}
                     <div class="avatar-placeholder">
@@ -19,8 +19,8 @@
             </div>
 
 
-            <h2 class="username">{{ user.username }}</h2>
-            <p class="user-email">{{ user.email }}</p>
+            <h2 class="username">{{ accounts.username }}</h2>
+            <p class="user-email">{{ accounts.email }}</p>
 
             <div class="profile-actions">
                 <a href="{% url 'edit_profile' %}" class="btn-edit">Редактировать профиль</a>
@@ -35,15 +35,15 @@
                 <div class="info-grid">
                     <div class="info-item">
                         <p class="info-label">Имя пользователя</p>
-                        <p class="info-value">{{ user.username }}</p>
+                        <p class="info-value">{{ accounts.username }}</p>
                     </div>
                     <div class="info-item">
                         <p class="info-label">Email</p>
-                        <p class="info-value">{{ user.email }}</p>
+                        <p class="info-value">{{ accounts.email }}</p>
                     </div>
                     <div class="info-item">
                         <p class="info-label">Дата регистрации</p>
-                        <p class="info-value">{{ user.date_joined|date:"d.m.Y" }}</p>
+                        <p class="info-value">{{ accounts.date_joined|date:"d.m.Y" }}</p>
                     </div>
                 </div>
             </div>
