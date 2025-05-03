@@ -1,12 +1,11 @@
 {% extends 'base.html' %}
 {% load static %}
-
 {% block content %}
 <link rel="stylesheet" href="{% static 'css/profile.css' %}">
 <div class="profile-container">
     <div class="profile-flex">
         <div class="profile-sidebar">
-           <div class="avatar-container">
+            <div class="avatar-container">
                 {% if accounts.avatar and accounts.avatar.name != 'avatars/default_avatar.png' %}
                     <img src="{{ accounts.avatar.url }}" alt="Аватар" class="avatar-image">
                 {% else %}
@@ -14,38 +13,38 @@
                 {% endif %}
             </div>
 
-            <h2 class="username">{{ accounts.username }}</h2>
-            <p class="user-email">{{ accounts.email }}</p>
+            <h2 class="profile-username">{{ accounts.username }}</h2>
+            <p class="profile-user-email">{{ accounts.email }}</p>
 
             <div class="profile-actions">
-                <a href="{% url 'edit_profile' %}" class="btn-edit">Редактировать профиль</a>
-                <a href="{% url 'change_password' %}" class="btn-change-password">Сменить пароль</a>
+                <a href="{% url 'edit_profile' %}" class="profile-btn-edit">Редактировать профиль</a>
+                <a href="{% url 'change_password' %}" class="profile-btn-change-password">Сменить пароль</a>
             </div>
         </div>
 
         <div class="profile-content">
-            <h3 class="section-title">Мои данные</h3>
+            <h3 class="profile-section-title">Мои данные</h3>
 
-            <div class="info-card">
-                <div class="info-grid">
-                    <div class="info-item">
-                        <p class="info-label">Имя пользователя</p>
-                        <p class="info-value">{{ accounts.username }}</p>
+            <div class="profile-info-card">
+                <div class="profile-info-grid">
+                    <div class="profile-info-item">
+                        <p class="profile-info-label">Имя пользователя</p>
+                        <p class="profile-info-value">{{ accounts.username }}</p>
                     </div>
-                    <div class="info-item">
-                        <p class="info-label">Email</p>
-                        <p class="info-value">{{ accounts.email }}</p>
+                    <div class="profile-info-item">
+                        <p class="profile-info-label">Email</p>
+                        <p class="profile-info-value">{{ accounts.email }}</p>
                     </div>
-                    <div class="info-item">
-                        <p class="info-label">Дата регистрации</p>
-                        <p class="info-value">{{ accounts.date_joined|date:"d.m.Y" }}</p>
+                    <div class="profile-info-item">
+                        <p class="profile-info-label">Дата регистрации</p>
+                        <p class="profile-info-value">{{ accounts.date_joined|date:"d.m.Y" }}</p>
                     </div>
                 </div>
             </div>
 
-            <h3 class="section-title">Мои достижения</h3>
-            <div class="habits-card">
-                <p class="habits-placeholder">Здесь ваши награды за достижения...</p>
+            <h3 class="profile-section-title">Мои достижения</h3>
+            <div class="profile-habits-card">
+                <p class="profile-habits-placeholder">Здесь ваши награды за достижения...</p>
             </div>
         </div>
     </div>
