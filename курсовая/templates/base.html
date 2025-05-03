@@ -40,17 +40,27 @@
         </nav>
     </header>
     {% endif %}
+    {% if not user.is_authenticated %}
+        <!-- Неаутентифицированный пользователь - показываем футер с ссылками -->
+        <header class="bg-white shadow sticky top-0 z-50">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center space-x-4">
+                    <a href="/" class="text-xl font-bold text-indigo-600 hover:text-indigo-800 transition">HabitHub</a>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <a href="{% url 'login' %}" class="text-indigo-600 hover:text-indigo-800 transition font-medium">Войти</a>
+                    <a href="{% url 'register' %}" class="bg-indigo-600 text-white px-4 py-2 rounded-xl hover:bg-indigo-700 transition text-sm">Регистрация</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+    {% endif %}
 
     <main class="flex-grow {% if not user.is_authenticated %}hero-pattern flex flex-col justify-center py-12 sm:px-6 lg:px-8{% endif %}">
         {% block content %}{% endblock %}
     </main>
 
-    {% if not user.is_authenticated %}
-        <!-- Неаутентифицированный пользователь - показываем футер с ссылками -->
-        <footer class="py-4 text-center text-sm text-gray-500">
-            <p>© {% now "Y" %} Трекер Привычек. Все права защищены.</p>
-        </footer>
-    {% endif %}
 
     {% block extra_scripts %}{% endblock %}
 </body>
