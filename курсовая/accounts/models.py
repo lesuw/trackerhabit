@@ -16,7 +16,7 @@ class User(AbstractUser):
         blank=True,
         null=True,
         verbose_name='Аватар',
-        default='avatars/default_avatar.png'
+        default='images/default_avatar.png'
     )
 
     def generate_verification_code(self):

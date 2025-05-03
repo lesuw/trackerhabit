@@ -2,14 +2,16 @@
 {% load static %}
 
 {% block content %}
-<div class="max-w-md mx-auto my-10 bg-white p-8 rounded-xl shadow-lg">
-    <h2 class="text-2xl font-bold text-center text-indigo-600 mb-6">Редактирование профиля</h2>
+<link rel="stylesheet" href="{% static 'css/edit_profile.css' %}">
 
-    <form method="post" enctype="multipart/form-data" class="space-y-6">
+<div class="edit-profile-container">
+    <h2 class="edit-title">Редактирование профиля</h2>
+
+    <form method="post" enctype="multipart/form-data" class="edit-form">
         {% csrf_token %}
 
         {% if form.errors %}
-            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
+            <div class="form-errors">
                 {% for field, errors in form.errors.items %}
                     {% for error in errors %}
                         <p>{{ error }}</p>
@@ -18,62 +20,66 @@
             </div>
         {% endif %}
 
-        <div class="flex flex-col items-center">
-            <!-- Аватар по центру и увеличен -->
-            <div class="relative mb-4 flex flex-col items-center">
-                <img src="{{ accounts.avatar.url }}" alt="Аватар" class="w-32 h-32 md:w-40 md:h-40 rounded-full object-cover border-4 border-indigo-100 shadow mb-4">
+        <div class="avatar-section">
+                {% if accounts.avatar and accounts.avatar.name != 'avatars/default_avatar.png' %}
+                    <img src="{{ accounts.avatar.url }}" alt="Аватар" class="avatar-image">
+                {% else %}
+                    <img src="{% static 'images/default_avatar.png' %}" alt="Аватар по умолчанию" class="avatar-image">
+                {% endif %}
 
-                <!-- Кнопка загрузки файла -->
-                <div class="relative inline-block">
-                    <label for="id_avatar" class="cursor-pointer bg-indigo-600 text-white px-4 py-2 rounded-lg text-sm hover:bg-indigo-700 transition mb-2 inline-block">
-                        Выбрать файл
-                    </label>
-                    <input type="file" name="avatar" id="id_avatar" class="hidden">
-                </div>
-
-
-                {% if accounts.avatar and accounts.avatar.name != 'avatars/default_avatar.jpg' %}
-                <button type="button" id="delete-avatar" class="mt-2 text-sm text-red-600 hover:underline">
+            <div class="button-row">
+                <label for="id_avatar" class="upload-avatar-btn">
+                    Выбрать файл
+                </label>
+                <button type="button" id="delete-avatar" class="delete-avatar-btn">
                     Удалить аватар
                 </button>
-            {% endif %}
-
             </div>
+            <input type="file" name="avatar" id="id_avatar" class="hidden">
         </div>
 
-        <div>
-            <label for="{{ form.username.id_for_label }}" class="block text-gray-700 text-sm font-medium mb-1">Имя пользователя</label>
+        <div class="form-group">
+            <label for="{{ form.username.id_for_label }}">Имя пользователя</label>
             {{ form.username }}
         </div>
 
-        <div>
-            <label for="{{ form.email.id_for_label }}" class="block text-gray-700 text-sm font-medium mb-1">Email</label>
+        <div class="form-group">
+            <label for="{{ form.email.id_for_label }}">Email</label>
             {{ form.email }}
         </div>
 
-        <button type="submit" class="w-full bg-indigo-600 text-white py-2 px-4 rounded-lg hover:bg-indigo-700 transition">
-            Сохранить изменения
-        </button>
+        <button type="submit" class="submit-btn">Сохранить изменения</button>
     </form>
-</div>
 
-<!-- Скрипт удаления аватара -->
-<script>
-    document.getElementById('delete-avatar')?.addEventListener('click', function () {
-        fetch("{% url 'delete_avatar' %}", {
-            method: 'POST',
-            headers: {
-                'X-CSRFToken': '{{ csrf_token }}',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({})
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                location.reload();
+    <script>
+        document.getElementById('delete-avatar')?.addEventListener('click', function () {
+            fetch("{% url 'delete_avatar' %}", {
+                method: 'POST',
+                headers: {
+                    'X-CSRFToken': '{{ csrf_token }}',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({})
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    location.reload();
+                }
+            });
+        });
+
+        document.getElementById('id_avatar')?.addEventListener('change', function (event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    const imgElement = document.querySelector('.avatar-image');
+                    imgElement.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
             }
         });
-    });
-</script>
+    </script>
+</div>
 {% endblock %}

@@ -311,7 +311,7 @@ def edit_profile(request):
     else:
         form = UserEditForm(instance=request.user)
 
-    return render(request, 'accounts/edit_profile.html', {'form': form})
+    return render(request, 'accounts/edit_profile.html', {'form': form, 'accounts': request.user})
 
 @login_required
 def delete_avatar(request):

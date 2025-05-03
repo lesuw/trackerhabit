@@ -7,17 +7,12 @@
     <div class="profile-flex">
         <div class="profile-sidebar">
            <div class="avatar-container">
-                {% if accounts.avatar and accounts.avatar.url %}
-                    <img src="{{ user.avatar.url }}" alt="Аватар" class="avatar-image">
+                {% if accounts.avatar and accounts.avatar.name != 'avatars/default_avatar.png' %}
+                    <img src="{{ accounts.avatar.url }}" alt="Аватар" class="avatar-image">
                 {% else %}
-                    <div class="avatar-placeholder">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="default-avatar-icon" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M12 12c2.7 0 5-2.3 5-5s-2.3-5-5-5-5 2.3-5 5 2.3 5 5 5zm0 2c-3.3 0-10 1.7-10 5v3h20v-3c0-3.3-6.7-5-10-5z"/>
-                        </svg>
-                    </div>
+                    <img src="{% static 'images/default_avatar.png' %}" alt="Аватар по умолчанию" class="avatar-image">
                 {% endif %}
             </div>
-
 
             <h2 class="username">{{ accounts.username }}</h2>
             <p class="user-email">{{ accounts.email }}</p>
