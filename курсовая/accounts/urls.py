@@ -21,4 +21,5 @@ urlpatterns = [
     path('profile/edit/', views.edit_profile, name='edit_profile'),
     path('profile/delete-avatar/', views.delete_avatar, name='delete_avatar'),
     path('profile/change-password/', views.change_password, name='change_password'),
+    path('achievements/', views.achievements_view, name='achievements'),
 ]

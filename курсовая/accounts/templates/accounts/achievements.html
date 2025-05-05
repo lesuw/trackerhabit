@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="achievements-container">
+    <h1>Ваши достижения</h1>
+    <p class="subtitle">
+        Разблокировано {{ unlocked_count }} из {{ total_count }} достижений
+    </p>
+
+    <div class="progress-container">
+        <div class="progress-bar" style="width: {{ progress_percentage }}%"></div>
+    </div>
+
+    <div class="achievements-grid">
+        {% for achievement in achievements %}
+        <div class="achievement-card {% if not achievement.is_unlocked %}locked{% endif %}">
+            <div class="achievement-icon">
+                {% if achievement.is_unlocked %}
+                    {{ achievement.icon }}
+                {% else %}
+                    🔒
+                {% endif %}
+            </div>
+            <div class="achievement-info">
+                <h3>{{ achievement.title }}</h3>
+                <p>{{ achievement.description }}</p>
+                {% if achievement.is_unlocked %}
+                    <small>Получено: {{ achievement.achieved_at|date:"d.m.Y" }}</small>
+                {% else %}
+                    <small>Еще не разблокировано</small>
+                {% endif %}
+            </div>
+        </div>
+        {% empty %}
+        <p class="no-achievements">У вас пока нет достижений. Продолжайте работать над привычками!</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

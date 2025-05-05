@@ -19,6 +19,7 @@
                     <a href="/notes" class="nav-link">Заметки</a>
                     <a href="/faq" class="nav-link">FAQ</a>
                     <a href="/rating" class="nav-link">Рейтинг</a>
+                    <a href="{% url 'achievements' %}" class="nav-link">Достижения</a>
                 </div>
                 <div class="user-actions">
                     <a href="/profile" class="nav-link">
@@ -60,6 +61,8 @@
                 </div>
             </div>
 
+
+
             <!-- Правая колонка с изображением -->
             <div class="image-column">
                 <div class="image-card" style="background-image: url('{% static 'images/image1.png' %}');">
@@ -71,6 +74,26 @@
                     </div>
                 </div>
             </div>
+        </div>
+
+        <!-- Вставьте этот блок для достижений -->
+            {% if recent_achievements %}
+            <div class="card">
+                <h2>Последние достижения</h2>
+                <div class="recent-achievements">
+                    {% for achievement in recent_achievements %}
+                    <div class="recent-achievement">
+                        <span class="achievement-icon">{{ achievement.icon }}</span>
+                        <div>
+                            <strong>{{ achievement.title }}</strong>
+                            <small>{{ achievement.achieved_at|date:"d.m.Y" }}</small>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                <a href="{% url 'achievements' %}" class="card-link">Все достижения →</a>
+            </div>
+            {% endif %}
         </div>
 
         <div class="why-important">

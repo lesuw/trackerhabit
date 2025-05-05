@@ -9,6 +9,7 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 from django.core.mail import send_mail
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import JsonResponse
+
 import random
 
 from django_project.settings import DEBUG_EMAIL_MODE
@@ -17,6 +18,7 @@ from .forms import (
     ResetPasswordForm, NewPasswordForm, UserEditForm,
     PasswordChangeForm
 )
+from .models import Achievement
 
 User = get_user_model()
 
@@ -40,9 +42,13 @@ def home_view(request):
     ]
     random_tip = random.choice(tips)
 
+    # Получаем последние 3 разблокированных достижения
+    recent_achievements = request.user.achievements.filter(is_unlocked=True).order_by('-achieved_at')[:3]
+
     return render(request, 'accounts/home.html', {
         'accounts': request.user,
-        'random_tip': random_tip
+        'random_tip': random_tip,
+        'recent_achievements': recent_achievements
     })
 
 def send_verification_email(email, verification_code):
@@ -344,3 +350,130 @@ def change_password(request):
         form = PasswordChangeForm()
 
     return render(request, 'accounts/change_password.html', {'form': form})
+
+
+@login_required
+def achievements_view(request):
+    # Стандартные достижения
+    default_achievements = [
+        {
+            'title': 'Первый шаг',
+            'description': 'Вы успешно зарегистрировались в системе!',
+            'icon': '🎉',
+            'condition': lambda user: True  # Всегда true для зарегистрированных
+        },
+        {
+            'title': 'Стартовый рывок',
+            'description': 'Выполнить привычку 5 раз подряд без пропусков',
+            'icon': '🚀',
+            'condition': lambda user: hasattr(user, 'habits') and user.habits.filter(streak__gte=1).exists()
+        },
+        {
+            'title': 'Месяц мастерства',
+            'description': 'Выполнять привычку 30 дней подряд без пропусков',
+            'icon': '🏆',
+            'condition': lambda user: hasattr(user, 'habits') and user.habits.filter(streak__gte=30).exists()
+        },
+        {
+            'title': 'Легендарная серия',
+            'description': '100 дней непрерывного выполнения привычки',
+            'icon': '🌟',
+            'condition': lambda user: hasattr(user, 'habits') and user.habits.filter(streak__gte=100).exists()
+        },
+        {
+            'title': 'Мультитаскер',
+            'description': 'Создать 5 разных привычек',
+            'icon': '🌀',
+            'condition': lambda user: hasattr(user, 'habits') and user.habits.count() >= 5
+        },
+        {
+            'title': 'Перфекционист',
+            'description': 'Выполнить привычку идеально 7 дней подряд',
+            'icon': '✨',
+            'condition': lambda user: hasattr(user, 'habits') and user.habits.filter(perfect_streak__gte=7).exists()
+        },
+        {
+            'title': 'Неудержимый',
+            'description': 'Выполнить привычку в выходной день',
+            'icon': '💪',
+            'condition': lambda user: hasattr(user, 'habits') and user.habits.filter(completed_on_weekend=True).exists()
+        },
+
+    ]
+
+    # Проверяем и создаем достижения
+    for achievement_data in default_achievements:
+        try:
+            if achievement_data['condition'](request.user):
+                Achievement.objects.get_or_create(
+                    user=request.user,
+                    title=achievement_data['title'],
+                    defaults={
+                        'description': achievement_data['description'],
+                        'icon': achievement_data['icon'],
+                        'is_unlocked': True
+                    }
+                )
+        except Exception as e:
+            print(f"Ошибка при проверке достижения {achievement_data['title']}: {str(e)}")
+            continue
+
+    achievements = request.user.achievements.all().order_by('-achieved_at')
+    unlocked_count = request.user.achievements.filter(is_unlocked=True).count()
+    total_count = len(default_achievements)
+
+    return render(request, 'accounts/achievements.html', {
+        'achievements': achievements,
+        'unlocked_count': unlocked_count,
+        'total_count': total_count,
+        'progress_percentage': (unlocked_count / total_count * 100) if total_count > 0 else 0
+    })
+
+
+@user_passes_test(anonymous_required, login_url='home')
+def register_view(request):
+    if request.method == 'POST':
+        form = RegisterForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            user.verification_code = generate_verification_code()
+            user.verification_code_sent_at = timezone.now()
+            user.save()
+
+            # Создаем достижение за регистрацию
+            Achievement.objects.create(
+                user=user,
+                title='Первый шаг',
+                description='Вы успешно зарегистрировались в системе!',
+                icon='🎉',
+                is_unlocked=True
+            )
+
+            if send_verification_email(user.email, user.verification_code):
+                request.session['user_id'] = user.id
+                messages.info(request, 'На вашу почту отправлен код подтверждения.')
+                return redirect('verify')
+            else:
+                messages.error(request, 'Не удалось отправить код подтверждения. Пожалуйста, попробуйте позже.')
+                return redirect('register')
+    else:
+        form = RegisterForm()
+
+    return render(request, 'accounts/register.html', {'form': form})
+
+
+@login_required
+def profile_view(request):
+    user = request.user
+    achievements = user.achievements.all().order_by('-achieved_at')
+    unlocked_count = achievements.filter(is_unlocked=True).count()
+    total_achievements = 3  # Или ваш расчет общего количества возможных достижений
+    progress_percentage = (unlocked_count / total_achievements * 100) if total_achievements > 0 else 0
+
+    return render(request, 'accounts/profile.html', {
+        'accounts': user,
+        'achievements': achievements,
+        'unlocked_count': unlocked_count,
+        'total_achievements': total_achievements,
+        'progress_percentage': progress_percentage
+    })

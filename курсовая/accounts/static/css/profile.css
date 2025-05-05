@@ -157,3 +157,136 @@
 .profile-habits-placeholder {
     color: #6B7280;
 }
+
+
+/* Стили для контейнера достижений */
+.achievements-container {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    border: 1px solid #e5e7eb;
+}
+
+.achievements-header {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #f3f4f6;
+}
+
+.achievements-progress {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.achievements-progress span {
+    font-size: 0.9rem;
+    color: #4b5563;
+    font-weight: 500;
+}
+
+.progress-bar {
+    height: 8px;
+    background-color: #e5e7eb;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.progress {
+    height: 100%;
+    background-color: #4f46e5;
+    transition: width 0.5s ease;
+}
+
+/* Стили для сетки достижений */
+.achievements-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1.25rem;
+}
+
+.achievement-card {
+    background: white;
+    border-radius: 10px;
+    padding: 1.25rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    border: 1px solid #f3f4f6;
+    transition: all 0.3s ease;
+}
+
+.achievement-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+    border-color: #e0e7ff;
+}
+
+.achievement-card.locked {
+    background-color: #f9fafb;
+    opacity: 0.8;
+}
+
+.achievement-badge {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+.achievement-icon {
+    font-size: 2.5rem;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #e0f2fe;
+    border-radius: 50%;
+    color: #0369a1;
+}
+
+.achievement-card.locked .achievement-icon {
+    background-color: #e5e7eb;
+    color: #6b7280;
+}
+
+.achievement-content {
+    text-align: center;
+}
+
+.achievement-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #1f2937;
+    margin-bottom: 0.5rem;
+}
+
+.achievement-desc {
+    font-size: 0.85rem;
+    color: #6b7280;
+    margin-bottom: 0.75rem;
+    min-height: 40px;
+}
+
+.achievement-date {
+    font-size: 0.75rem;
+    color: #4f46e5;
+    background-color: #e0e7ff;
+    padding: 0.25rem 0.5rem;
+    border-radius: 12px;
+    display: inline-block;
+}
+
+.achievement-status {
+    font-size: 0.75rem;
+    color: #9ca3af;
+    font-style: italic;
+}
+
+.no-achievements {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 2rem;
+    color: #6b7280;
+    font-size: 0.9rem;
+}

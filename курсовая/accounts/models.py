@@ -27,3 +27,21 @@ class User(AbstractUser):
         self.verification_attempts = 0
         self.verification_code_sent_at = None
         self.save()
+
+
+
+class Achievement(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='achievements')
+    title = models.CharField(max_length=100, verbose_name='Название')
+    description = models.TextField(verbose_name='Описание')
+    icon = models.CharField(max_length=50, verbose_name='Иконка (эмодзи)')
+    achieved_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата получения')
+    is_unlocked = models.BooleanField(default=False, verbose_name='Разблокировано')
+
+    class Meta:
+        verbose_name = 'Достижение'
+        verbose_name_plural = 'Достижения'
+        ordering = ['-achieved_at']
+
+    def __str__(self):
+        return f"{self.title} - {self.user.username}"

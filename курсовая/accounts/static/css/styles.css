@@ -454,3 +454,141 @@ footer a:hover {
     margin: 0 0.75rem;
 }
 
+
+
+
+/* Achievements Page Styles */
+.achievements-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+
+.progress-container {
+    background-color: #e5e7eb;
+    border-radius: 9999px;
+    height: 0.5rem;
+    margin: 1.5rem 0 2rem;
+    overflow: hidden;
+}
+
+.progress-bar {
+    background-color: #4f46e5;
+    height: 100%;
+    transition: width 0.5s ease;
+}
+
+.achievements-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.achievement-card {
+    background-color: white;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+}
+
+.achievement-card:hover {
+    transform: translateY(-2px);
+}
+
+.achievement-card.locked {
+    opacity: 0.6;
+    background-color: #f3f4f6;
+}
+
+.achievement-icon {
+    font-size: 2rem;
+    width: 3rem;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f3f4f6;
+    border-radius: 50%;
+}
+
+.achievement-card.locked .achievement-icon {
+    background-color: #e5e7eb;
+}
+
+.achievement-info {
+    flex: 1;
+}
+
+.achievement-info h3 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+    color: #1f2937;
+}
+
+.achievement-info p {
+    color: #6b7280;
+    font-size: 0.875rem;
+    margin-bottom: 0.5rem;
+}
+
+.achievement-info small {
+    color: #9ca3af;
+    font-size: 0.75rem;
+}
+
+.no-achievements {
+    text-align: center;
+    grid-column: 1 / -1;
+    color: #6b7280;
+    padding: 2rem;
+}
+
+/* Стили для блока достижений на главной */
+.recent-achievements {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.recent-achievement {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    background-color: #f8fafc;
+}
+
+.recent-achievement:hover {
+    background-color: #f1f5f9;
+}
+
+.achievement-icon {
+    font-size: 1.25rem;
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #e0e7ff;
+    border-radius: 50%;
+    color: #4f46e5;
+}
+
+.recent-achievement strong {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #1e293b;
+}
+
+.recent-achievement small {
+    font-size: 0.75rem;
+    color: #64748b;
+}
