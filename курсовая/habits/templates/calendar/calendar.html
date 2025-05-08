@@ -1,0 +1,154 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load habits_filters %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-8">
+    <div class="flex flex-col lg:flex-row gap-8">
+        <!-- Календарь -->
+        <div class="lg:w-3/4">
+            <div class="bg-white rounded-lg shadow-lg p-6">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-2xl font-bold text-gray-800">
+                        {{ month_names|get_item:current_month|default:"Неизвестный месяц" }} {{ current_year }}
+                    </h2>
+                    <div class="flex gap-2">
+                        <a href="?month={{ current_month|add:-1 }}&year={% if current_month == 1 %}{{ current_year|add:-1 }}{% else %}{{ current_year }}{% endif %}"
+                           class="px-4 py-2 bg-gray-100 rounded-lg hover:bg-gray-200">
+                            Предыдущий
+                        </a>
+                        <a href="?month={{ today.month }}&year={{ today.year }}"
+                           class="px-4 py-2 bg-blue-100 rounded-lg hover:bg-blue-200">
+                            Текущий месяц
+                        </a>
+                        <a href="?month={{ current_month|add:1 }}&year={% if current_month == 12 %}{{ current_year|add:1 }}{% else %}{{ current_year }}{% endif %}"
+                           class="px-4 py-2 bg-gray-100 rounded-lg hover:bg-gray-200">
+                            Следующий
+                        </a>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-7 gap-2 mb-4">
+                    {% for day_name in weekday_names %}
+                        <div class="text-center font-semibold text-gray-600">{{ day_name }}</div>
+                    {% endfor %}
+                </div>
+
+                {% for week in weeks %}
+                <div class="grid grid-cols-7 gap-2 mb-2">
+                    {% for day in week %}
+                    <div class="aspect-square p-2 rounded-lg border transition-colors
+                              {% if not day.current_month %}bg-gray-50 text-gray-400{% else %}bg-white hover:border-blue-500{% endif %}
+                              {% if day.is_today %}ring-2 ring-blue-500{% endif %}">
+                        <div class="flex justify-between">
+                            <span class="text-sm font-medium">{{ day.date.day }}</span>
+                            {% if day.current_month %}
+                            <button onclick="showAddHabitModal('{{ day.date.isoformat }}')"
+                                    class="text-xs text-blue-500 hover:text-blue-700">
+                                +
+                            </button>
+                            {% endif %}
+                        </div>
+                        {% if day.habits %}
+                            <div class="mt-1 flex flex-wrap gap-1">
+                                {% for habit in day.habits %}
+                                    <span class="px-1 py-0.5 rounded text-xs {{ habit.color_class }}">
+                                        {{ habit.name|truncatechars:5 }}
+                                    </span>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Привычки на сегодня -->
+        <div class="lg:w-1/4">
+            <div class="bg-white rounded-lg shadow-lg p-6">
+                <h2 class="text-2xl font-bold text-gray-800 mb-4">Привычки на сегодня</h2>
+                {% if today_habits %}
+                    <div class="space-y-4">
+                        {% for habit in today_habits %}
+                            <div class="border border-gray-200 rounded-lg p-4">
+                                <div class="flex justify-between items-start">
+                                    <div>
+                                        <h3 class="font-semibold text-lg">{{ habit.name }}</h3>
+                                        <p class="text-gray-600 text-sm mt-1">{{ habit.description }}</p>
+                                        <div class="mt-2">
+                                            <span class="px-2 py-1 rounded-full text-xs {{ habit.color_class }}">
+                                                {{ habit.get_category_display }}
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <p class="text-gray-500 text-center py-4">Сегодня нет запланированных привычек</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Модальное окно для добавления привычки -->
+<div id="addHabitModal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center">
+    <div class="bg-white rounded-lg p-6 w-full max-w-md">
+        <h3 class="text-xl font-bold mb-4">Добавить привычку</h3>
+        <form id="addHabitForm" method="post">
+            {% csrf_token %}
+            <input type="hidden" id="selectedDate" name="date">
+            <div class="mb-4">
+                <label class="block text-gray-700 mb-2">Выберите привычку:</label>
+                <select name="habit" class="w-full border rounded p-2">
+                    {% for habit in all_habits %}
+                        <option value="{{ habit.id }}">{{ habit.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="flex justify-end gap-2">
+                <button type="button" onclick="hideAddHabitModal()" 
+                        class="px-4 py-2 bg-gray-200 rounded-lg">Отмена</button>
+                <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded-lg">
+                    Добавить
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+function showAddHabitModal(date) {
+    document.getElementById('selectedDate').value = date;
+    document.getElementById('addHabitModal').classList.remove('hidden');
+}
+
+function hideAddHabitModal() {
+    document.getElementById('addHabitModal').classList.add('hidden');
+}
+
+document.getElementById('addHabitForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const formData = new FormData(this);
+    
+    fetch('{% url "add_habit_to_calendar" %}', {
+        method: 'POST',
+        body: formData,
+        headers: {
+            'X-CSRFToken': formData.get('csrfmiddlewaretoken')
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            hideAddHabitModal();
+            window.location.reload();
+        }
+    });
+});
+</script>
+{% endblock %}

@@ -18,6 +18,12 @@ urlpatterns = [
 
     path('faq/', views.faq_page, name='faq'),
 
+#Календарь
+    path('calendar/', views.calendar_view, name='calendar'),
+    path('day/<int:year>/<int:month>/<int:day>/', views.day_details, name='day_details'),
+    path('toggle-completion/<int:habit_id>/', views.toggle_completion, name='toggle_completion'),
+    path('add-to-calendar/', views.add_habit_to_calendar, name='add_habit_to_calendar'),
+
 # API эндпоинты
 #     path('api/habits/', views.get_habit, name='get_habits'),  # Все привычки пользователя
     path('api/habits/day/', views.get_habits_for_day, name='get_habits_for_day'),  # Привычки по дню недели

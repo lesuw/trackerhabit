@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-8">
+    <div class="bg-white rounded-lg shadow-lg p-6">
+        <div class="flex justify-between items-center mb-6">
+            <h2 class="text-2xl font-bold text-gray-800">
+                {{ date|date:"F d, Y" }}
+            </h2>
+            <a href="{% url 'habits:calendar' %}" class="text-blue-500 hover:text-blue-700">
+                Back to Calendar
+            </a>
+        </div>
+
+        {% if habits %}
+            <div class="space-y-4">
+                {% for habit in habits %}
+                    <div class="border border-gray-200 rounded-lg p-4 {% if habit.is_completed %}bg-green-50{% endif %}">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="font-semibold text-lg">{{ habit.name }}</h3>
+                                <p class="text-gray-600 text-sm mt-1">{{ habit.description }}</p>
+                                <div class="mt-2">
+                                    <span class="px-2 py-1 rounded-full text-xs {{ habit.color_class }}">
+                                        {{ habit.get_category_display }}
+                                    </span>
+                                </div>
+                            </div>
+                            {% if is_today %}
+                                <div class="flex items-center gap-2">
+                                    <button onclick="toggleCompletion({{ habit.id }})"
+                                            class="px-3 py-1 text-sm rounded-lg {% if habit.is_completed %}bg-green-500 text-white{% else %}bg-gray-100 text-gray-700{% endif %}">
+                                        {% if habit.is_completed %}✓{% else %}Mark{% endif %}
+                                    </button>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p class="text-gray-500 text-center py-4">No habits scheduled for this day</p>
+        {% endif %}
+    </div>
+</div>
+
+{% if is_today %}
+<script>
+function toggleCompletion(habitId) {
+    fetch(`/habits/toggle-completion/${habitId}/`, {
+        method: 'POST',
+        headers: {
+            'X-CSRFToken': '{{ csrf_token }}',
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            location.reload();
+        }
+    });
+}
+</script>
+{% endif %}
+{% endblock %}
