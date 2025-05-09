@@ -1,0 +1,460 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}{{ topic.title }} - Форум HabitHub{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<style>
+    .message-container { transition: all 0.3s ease; }
+    .message-container:hover { background-color: #f9fafb; }
+    .reply-container { border-left: 3px solid #e5e7eb; padding-left: 1rem; }
+    .reply-level-1 { margin-left: 1.5rem; }
+    .reply-level-2 { margin-left: 3rem; }
+    .reply-level-3 { margin-left: 4.5rem; }
+    .reply-level-4 { margin-left: 6rem; }
+    .vote-btn { transition: all 0.2s; }
+    .vote-btn:hover { transform: scale(1.1); }
+    .like-active { color: #3b82f6; }
+    .dislike-active { color: #ef4444; }
+    .quote-block {
+        border-left: 2px solid #4f46e5;
+        padding-left: 0.75rem;
+        margin: 0.5rem 0;
+        color: #6b7280;
+        font-style: italic;
+        background-color: #f9fafb;
+        padding: 0.5rem;
+        border-radius: 0.25rem;
+    }
+    .reply-form { display: none; margin-top: 1rem; }
+    .pagination .current { background-color: #4f46e5; color: white; }
+    .error-message { color: red; font-size: 0.9rem; margin-top: 0.5rem; }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-8 max-w-4xl">
+    <!-- Навигация -->
+    <div class="mb-6">
+        <a href="{% url 'forum:category_detail' topic.category.id %}" class="text-indigo-600 hover:underline flex items-center">
+            <i class="fas fa-arrow-left mr-2"></i> Назад к {{ topic.category.title }}
+        </a>
+    </div>
+
+    <!-- Заголовок темы -->
+    <div class="bg-white p-6 rounded-xl shadow-md mb-8">
+        <div class="flex justify-between items-start">
+            <div>
+                <h1 class="text-2xl font-bold text-indigo-700 mb-2">{{ topic.title }}</h1>
+                <p class="text-gray-600 mb-4">{{ topic.description }}</p>
+            </div>
+
+            {% if user.is_staff or user == topic.author %}
+            <button class="delete-topic-btn text-red-600 hover:text-red-800 ml-4"
+                    data-id="{{ topic.id }}"
+                    title="Удалить тему">
+                <i class="fas fa-trash"></i>
+            </button>
+            {% endif %}
+        </div>
+
+        <div class="flex flex-wrap items-center text-sm text-gray-500 gap-x-4 gap-y-2">
+            <span><i class="far fa-user mr-1"></i> {{ topic.author.username }}</span>
+            <span><i class="far fa-clock mr-1"></i> Создано: {{ topic.created_at|date:"d.m.Y H:i" }}</span>
+            {% if topic.updated_at != topic.created_at %}
+            <span><i class="fas fa-pencil-alt mr-1"></i> Обновлено: {{ topic.updated_at|date:"d.m.Y H:i" }}</span>
+            {% endif %}
+            <span><i class="far fa-comment-dots mr-1"></i> {{ topic.messages.count }} сообщ.</span>
+        </div>
+    </div>
+
+    <!-- Список сообщений -->
+    <div id="messages-list" class="space-y-6 mb-8">
+        {% for message in page_obj %}
+            {% include 'forum/message_item.html' with message=message %}
+        {% empty %}
+            <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-200 text-center">
+                <i class="far fa-comment-alt text-4xl text-gray-400 mb-3"></i>
+                <h3 class="text-xl font-medium text-gray-700 mb-2">Сообщений пока нет</h3>
+                <p class="text-gray-500 mb-4">Будьте первым, кто оставит сообщение в этой теме!</p>
+            </div>
+        {% endfor %}
+    </div>
+
+    <!-- Пагинация -->
+    {% if is_paginated %}
+    <div class="flex justify-center mb-8">
+        <nav class="inline-flex rounded-md shadow">
+            {% if page_obj.has_previous %}
+            <a href="?page={{ page_obj.previous_page_number }}"
+               class="px-3 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50">
+                <i class="fas fa-angle-left"></i>
+            </a>
+            {% endif %}
+
+            {% for num in page_obj.paginator.page_range %}
+                {% if page_obj.number == num %}
+                <span class="px-3 py-2 border-t border-b border-indigo-500 bg-indigo-500 text-white text-sm font-medium">
+                    {{ num }}
+                </span>
+                {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                <a href="?page={{ num }}"
+                   class="px-3 py-2 border-t border-b border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50">
+                    {{ num }}
+                </a>
+                {% endif %}
+            {% endfor %}
+
+            {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}"
+               class="px-3 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50">
+                <i class="fas fa-angle-right"></i>
+            </a>
+            {% endif %}
+        </nav>
+    </div>
+    {% endif %}
+
+    <!-- Форма нового сообщения -->
+    {% if user.is_authenticated %}
+    <div class="bg-white p-6 rounded-xl shadow-md">
+        <h2 class="text-xl font-semibold mb-4">Новое сообщение</h2>
+        <form id="message-form" action="{% url 'forum:create_message' topic.pk %}" method="POST">
+            {% csrf_token %}
+            <div class="mb-4">
+                <textarea name="content" rows="3" required
+                          class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                          placeholder="Напишите ваше сообщение..."></textarea>
+                <div id="message-errors" class="error-message"></div>
+            </div>
+            <div class="flex justify-end">
+                <button type="submit" class="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition">
+                    Отправить
+                </button>
+            </div>
+        </form>
+    </div>
+    {% else %}
+    <div class="bg-white p-6 rounded-xl shadow-md text-center">
+        <p class="text-gray-600 mb-3">
+            <a href="{% url 'login' %}?next={% url 'topic_detail' topic.id %}" class="text-indigo-600 hover:underline">Войдите</a>,
+            чтобы оставлять сообщения
+        </p>
+        <p class="text-sm text-gray-500">
+            Еще нет аккаунта?
+            <a href="{% url 'register' %}?next={% url 'topic_detail' topic.id %}" class="text-indigo-600 hover:underline">Зарегистрируйтесь</a>
+        </p>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+// Функция для создания HTML сообщения
+function createMessageHTML(messageData) {
+    return `
+        <div class="message-container bg-white p-4 rounded-lg shadow-sm mb-3" data-message-id="${messageData.id}">
+            <div class="flex items-start space-x-3">
+                <img src="${messageData.author.avatar_url || '/static/default_avatar.png'}"
+                     alt="Аватар ${messageData.author.username}"
+                     class="w-10 h-10 rounded-full flex-shrink-0">
+                <div class="flex-1 min-w-0">
+                    <div class="flex flex-wrap items-center justify-between gap-2 mb-1">
+                        <div class="flex items-center space-x-2">
+                            <span class="font-semibold text-indigo-600">${messageData.author.username}</span>
+                        </div>
+                        <span class="text-sm text-gray-500 whitespace-nowrap">
+                            ${messageData.created_at}
+                        </span>
+                    </div>
+                    <div class="text-gray-800 whitespace-pre-wrap break-words mb-2">${messageData.content}</div>
+                    <div class="flex items-center space-x-4 text-sm">
+                        <button class="vote-btn like-btn flex items-center space-x-1 text-gray-500 hover:text-blue-500"
+                                data-message-id="${messageData.id}"
+                                title="Нравится">
+                            <i class="far fa-thumbs-up"></i>
+                            <span class="like-count">0</span>
+                        </button>
+                        <button class="vote-btn dislike-btn flex items-center space-x-1 text-gray-500 hover:text-red-500"
+                                data-message-id="${messageData.id}"
+                                title="Не нравится">
+                            <i class="far fa-thumbs-down"></i>
+                            <span class="dislike-count">0</span>
+                        </button>
+                        <button class="reply-btn text-indigo-600 hover:text-indigo-800 flex items-center space-x-1"
+                                data-message-id="${messageData.id}"
+                                title="Ответить">
+                            <i class="fas fa-reply"></i>
+                            <span>Ответить</span>
+                        </button>
+                        <button class="delete-message-btn text-red-600 hover:text-red-800 ml-auto flex items-center space-x-1"
+                                data-message-id="${messageData.id}"
+                                title="Удалить">
+                            <i class="fas fa-trash-alt"></i>
+                            <span>Удалить</span>
+                        </button>
+                    </div>
+                    <div class="reply-form mt-3 hidden" id="reply-form-${messageData.id}">
+                        <form class="reply-form-inner bg-gray-50 p-3 rounded-lg"
+                              action="/message/${messageData.id}/create-reply/" method="POST">
+                            {% csrf_token %}
+                            <div class="mb-2">
+                                <textarea name="content" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                                          rows="3" placeholder="Напишите ваш ответ..." required></textarea>
+                            </div>
+                            <div class="flex justify-end space-x-2">
+                                <button type="button" class="cancel-reply-btn px-3 py-1 text-sm border rounded-lg text-gray-700 hover:bg-gray-100">
+                                    Отмена
+                                </button>
+                                <button type="submit" class="px-3 py-1 text-sm bg-indigo-600 text-white rounded-lg hover:bg-indigo-700">
+                                    Отправить
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Удаление темы
+    document.querySelector('.delete-topic-btn')?.addEventListener('click', function() {
+        const topicId = this.dataset.id;
+        if (confirm('Вы уверены, что хотите удалить эту тему? Все сообщения также будут удалены.')) {
+            fetch(`{% url 'forum:delete_topic' 0 %}`.replace('0', topicId), {
+                method: 'POST',
+                headers: {
+                    'X-CSRFToken': '{{ csrf_token }}',
+                    'X-Requested-With': 'XMLHttpRequest'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    window.location.href = data.redirect_url;
+                } else {
+                    alert(data.error || 'Ошибка при удалении темы');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Произошла ошибка при удалении темы');
+            });
+        }
+    });
+
+    // Отправка нового сообщения
+    document.getElementById('message-form')?.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const formData = new FormData(this);
+        const submitBtn = this.querySelector('button[type="submit"]');
+        const originalText = submitBtn.innerHTML;
+
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Отправка...';
+
+        fetch(this.action, {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest'
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                const messagesList = document.getElementById('messages-list');
+                const emptyState = messagesList.querySelector('.empty-state');
+
+                if (emptyState) {
+                    messagesList.removeChild(emptyState);
+                }
+
+                const messageDiv = document.createElement('div');
+                messageDiv.innerHTML = createMessageHTML(data.message);
+                messagesList.appendChild(messageDiv);
+
+                // Очищаем форму
+                this.reset();
+
+                // Прокручиваем к новому сообщению
+                messageDiv.scrollIntoView({ behavior: 'smooth' });
+
+                // Инициализируем обработчики для нового сообщения
+                initMessageHandlers(messageDiv);
+            } else {
+                const errorsDiv = document.getElementById('message-errors');
+                errorsDiv.textContent = data.errors ? Object.values(data.errors).join(' ') : 'Ошибка при отправке сообщения';
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Произошла ошибка при отправке сообщения');
+        })
+        .finally(() => {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = originalText;
+        });
+    });
+
+    // Инициализация обработчиков для всех сообщений
+    function initMessageHandlers(container) {
+        if (!container) return;
+
+        const messageId = container.dataset.messageId;
+
+        // Лайки/дизлайки
+        container.querySelectorAll('.vote-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const messageId = this.dataset.messageId;
+                const isLike = this.classList.contains('like-btn');
+                const voteValue = isLike ? 1 : -1;
+
+                fetch(`{% url 'forum:vote_message' 0 %}`.replace('0', messageId), {
+                    method: 'POST',
+                    body: `vote=${voteValue}`,
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                        'X-CSRFToken': '{{ csrf_token }}',
+                        'X-Requested-With': 'XMLHttpRequest'
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        const likeBtn = container.querySelector('.like-btn');
+                        const dislikeBtn = container.querySelector('.dislike-btn');
+
+                        // Обновляем UI
+                        if (data.user_vote === 1) {
+                            likeBtn.classList.add('like-active');
+                            dislikeBtn.classList.remove('dislike-active');
+                            likeBtn.querySelector('i').className = 'fas fa-thumbs-up';
+                            dislikeBtn.querySelector('i').className = 'far fa-thumbs-down';
+                        } else if (data.user_vote === -1) {
+                            likeBtn.classList.remove('like-active');
+                            dislikeBtn.classList.add('dislike-active');
+                            likeBtn.querySelector('i').className = 'far fa-thumbs-up';
+                            dislikeBtn.querySelector('i').className = 'fas fa-thumbs-down';
+                        } else {
+                            likeBtn.classList.remove('like-active');
+                            dislikeBtn.classList.remove('dislike-active');
+                            likeBtn.querySelector('i').className = 'far fa-thumbs-up';
+                            dislikeBtn.querySelector('i').className = 'far fa-thumbs-down';
+                        }
+
+                        container.querySelector('.like-count').textContent = data.likes;
+                        container.querySelector('.dislike-count').textContent = data.dislikes;
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+            });
+        });
+
+        // Ответ на сообщение
+        container.querySelector('.reply-btn')?.addEventListener('click', function() {
+            const form = container.querySelector('.reply-form');
+            form.style.display = form.style.display === 'block' ? 'none' : 'block';
+        });
+
+        // Отмена ответа
+        container.querySelector('.cancel-reply-btn')?.addEventListener('click', function() {
+            container.querySelector('.reply-form').style.display = 'none';
+        });
+
+        // Удаление сообщения
+        container.querySelector('.delete-message-btn')?.addEventListener('click', function() {
+            const messageId = this.dataset.messageId;
+            if (confirm('Вы уверены, что хотите удалить это сообщение?')) {
+                fetch(`{% url 'forum:delete_message' 0 %}`.replace('0', messageId), {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRFToken': '{{ csrf_token }}',
+                        'X-Requested-With': 'XMLHttpRequest'
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        container.remove();
+                    } else {
+                        alert(data.error || 'Ошибка при удалении сообщения');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Произошла ошибка при удалении сообщения');
+                });
+            }
+        });
+
+        // Обработчик формы ответа
+        container.querySelector('.reply-form-inner')?.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = new FormData(this);
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Отправка...';
+
+            fetch(this.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Находим контейнер для ответов
+                    let repliesContainer = container.nextElementSibling;
+                    if (!repliesContainer || !repliesContainer.classList.contains('replies-container')) {
+                        repliesContainer = document.createElement('div');
+                        repliesContainer.className = 'replies-container pl-6 mt-2 space-y-3 border-l-2 border-gray-200';
+                        container.parentNode.insertBefore(repliesContainer, container.nextSibling);
+                    }
+
+                    // Создаем HTML ответа
+                    const replyDiv = document.createElement('div');
+                    replyDiv.innerHTML = createMessageHTML(data.reply);
+                    repliesContainer.appendChild(replyDiv);
+
+                    // Инициализируем обработчики для нового ответа
+                    initMessageHandlers(replyDiv);
+
+                    // Закрываем форму и очищаем
+                    container.querySelector('.reply-form').style.display = 'none';
+                    this.reset();
+                    window.location.reload()
+                    // Прокручиваем к ответу
+                    replyDiv.scrollIntoView({ behavior: 'smooth' });
+                } else {
+                    alert(data.error || 'Ошибка при отправке ответа');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Произошла ошибка при отправке ответа');
+            })
+            .finally(() => {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalText;
+            });
+        });
+    }
+
+    // Инициализируем обработчики для всех существующих сообщений
+    document.querySelectorAll('.message-container').forEach(container => {
+        initMessageHandlers(container);
+    });
+});
+</script>
+{% endblock %}

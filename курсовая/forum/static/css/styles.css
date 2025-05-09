@@ -1,0 +1,80 @@
+/* Форум */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 100;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 0.5rem;
+    width: 90%;
+    max-width: 600px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.quote-block {
+    border-left: 3px solid #4f46e5;
+    padding-left: 1rem;
+    margin: 0.5rem 0;
+    background-color: #f8f9ff;
+    padding: 0.75rem;
+    border-radius: 0.25rem;
+    font-style: italic;
+    color: #4b5563;
+}
+
+.reply-container {
+    border-left: 2px solid #e5e7eb;
+    padding-left: 1.5rem;
+    margin-left: 1.5rem;
+}
+
+.reply-level-1 { margin-left: 1.5rem; }
+.reply-level-2 { margin-left: 3rem; }
+.reply-level-3 { margin-left: 4.5rem; }
+.reply-level-4 { margin-left: 6rem; }
+
+.vote-btn {
+    transition: all 0.2s;
+}
+
+.vote-btn:hover {
+    transform: scale(1.1);
+}
+
+.like-active {
+    color: #3b82f6;
+}
+
+.dislike-active {
+    color: #ef4444;
+}
+
+.message-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.875rem;
+}
+
+.pinned-topic {
+    border-left: 4px solid #4f46e5;
+    background-color: #f8f9ff;
+}
+
+.category-card {
+    transition: all 0.2s ease;
+}
+
+.category-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(79, 70, 229, 0.1);
+}

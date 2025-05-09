@@ -66,6 +66,108 @@
     </main>
 
 
-    {% block extra_scripts %}{% endblock %}
+<script src="https://cdn.jsdelivr.net/npm/sortablejs@1.14.0/Sortable.min.js"></script>
+<script>
+// Глобальные настройки для AJAX
+window.ajaxConfig = {
+    headers: {
+        'X-Requested-With': 'XMLHttpRequest',
+        'X-CSRFToken': '{{ csrf_token }}'
+    }
+};
+
+window.fetchSetup = {
+    credentials: 'include',
+    headers: {
+        'X-Requested-With': 'XMLHttpRequest',
+        'X-CSRFToken': '{{ csrf_token }}'
+    }
+};
+
+// Глобальные функции для работы с модальными окнами
+function openModal(modalId, title = '', formAction = '', formData = {}) {
+    const modal = document.getElementById(modalId);
+    modal.querySelector('.modal-title').textContent = title;
+    const form = modal.querySelector('form');
+    if (form) {
+        form.action = formAction;
+        Object.keys(formData).forEach(key => {
+            if (form[key]) form[key].value = formData[key];
+        });
+    }
+    modal.classList.remove('hidden');
+}
+
+function closeModal(modalId) {
+    document.getElementById(modalId).classList.add('hidden');
+}
+
+// Инициализация всех модальных окон
+document.addEventListener('DOMContentLoaded', function() {
+    // Закрытие по клику на оверлей или крестик
+    document.querySelectorAll('.modal-overlay, .modal-close, .modal-cancel').forEach(el => {
+        el.addEventListener('click', function() {
+            const modal = this.closest('.modal');
+            if (modal) modal.classList.add('hidden');
+        });
+    });
+
+    // Предотвращаем закрытие при клике внутри контента
+    document.querySelectorAll('.modal-content').forEach(el => {
+        el.addEventListener('click', function(e) {
+            e.stopPropagation();
+        });
+    });
+});
+
+// Универсальный обработчик форм
+function handleFormSubmit(e, successCallback) {
+    e.preventDefault();
+    const form = e.target;
+    const formData = new FormData(form);
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const originalText = submitBtn.innerHTML;
+
+    // Показываем индикатор загрузки
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Обработка...';
+
+    fetch(form.action, {
+        method: 'POST',
+        body: formData,
+        ...window.fetchSetup
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            if (typeof successCallback === 'function') {
+                successCallback(data);
+            } else {
+                // Дефолтное поведение - закрыть модалку и обновить страницу
+                form.closest('.modal')?.classList.add('hidden');
+                window.location.reload();
+            }
+        } else {
+            // Показываем ошибки
+            Object.keys(data.errors || {}).forEach(field => {
+                const errorEl = document.getElementById(`${field}-errors`);
+                if (errorEl) errorEl.textContent = data.errors[field].join(' ');
+            });
+            if (!data.errors) {
+                alert(data.error || 'Произошла ошибка');
+            }
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('Произошла ошибка при отправке данных');
+    })
+    .finally(() => {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalText;
+    });
+}
+</script>
+{% block extra_scripts %}{% endblock %}
 </body>
 </html>

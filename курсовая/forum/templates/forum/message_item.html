@@ -1,0 +1,108 @@
+{% load static %}
+{% load forum_tags %}
+
+<div class="message-container bg-white p-4 rounded-lg shadow-sm mb-3 {% if message.parent %}reply-level-{{ message.get_depth|min_filter:4 }}{% endif %}"
+     data-message-id="{{ message.id }}" data-depth="{{ message.get_depth }}">
+    <div class="flex items-start space-x-3">
+        <!-- Аватар пользователя -->
+        {% if message.author.avatar %}
+            <img src="{{ message.author.avatar.url }}"
+                 alt="Аватар {{ message.author.username }}"
+                 class="w-10 h-10 rounded-full flex-shrink-0">
+        {% else %}
+            <img src="{% static 'images/default_avatar.png' %}"
+                 alt="Аватар по умолчанию"
+                 class="w-10 h-10 rounded-full flex-shrink-0">
+        {% endif %}
+
+        <div class="flex-1 min-w-0">
+            <!-- Заголовок сообщения -->
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-1">
+                <div class="flex items-center space-x-2">
+                    <span class="font-semibold text-indigo-600">{{ message.author.username }}</span>
+                    {% if user.is_staff %}
+                    <span class="text-xs px-2 py-1 bg-indigo-100 text-indigo-800 rounded-full">Админ</span>
+                    {% endif %}
+                </div>
+                <span class="text-sm text-gray-500 whitespace-nowrap">
+                    {{ message.created_at|date:"d.m.Y H:i" }}
+                    {% if message.updated_at != message.created_at %}
+                    <span class="text-xs text-gray-400">(ред.)</span>
+                    {% endif %}
+                </span>
+            </div>
+
+            <!-- Текст сообщения -->
+            <div class="text-gray-800 whitespace-pre-wrap break-words mb-2">{{ message.content }}</div>
+
+            <!-- Панель действий -->
+            <div class="flex items-center space-x-4 text-sm">
+                <!-- Лайк -->
+                <button class="vote-btn like-btn flex items-center space-x-1 {% if user_votes|get_item:message.id == 1 %}text-blue-500 like-active{% else %}text-gray-500 hover:text-blue-500{% endif %}"
+                        data-message-id="{{ message.id }}"
+                        title="Нравится">
+                    <i class="{% if user_votes|get_item:message.id == 1 %}fas{% else %}far{% endif %} fa-thumbs-up"></i>
+                    <span class="like-count">{{ message.votes.likes.count }}</span>
+                </button>
+
+                <!-- Дизлайк -->
+                <button class="vote-btn dislike-btn flex items-center space-x-1 {% if user_votes|get_item:message.id == -1 %}text-red-500 dislike-active{% else %}text-gray-500 hover:text-red-500{% endif %}"
+                        data-message-id="{{ message.id }}"
+                        title="Не нравится">
+                    <i class="{% if user_votes|get_item:message.id == -1 %}fas{% else %}far{% endif %} fa-thumbs-down"></i>
+                    <span class="dislike-count">{{ message.votes.dislikes.count }}</span>
+                </button>
+
+                <!-- Ответ -->
+                <button class="reply-btn text-indigo-600 hover:text-indigo-800 flex items-center space-x-1"
+                        data-message-id="{{ message.id }}"
+                        title="Ответить"
+                        {% if message.get_depth >= 4 %}disabled title="Достигнута максимальная глубина ответов"{% endif %}>
+                    <i class="fas fa-reply"></i>
+                    <span>Ответить</span>
+                </button>
+
+                <!-- Удаление -->
+                {% if user.is_staff or user == message.author %}
+                <button class="delete-message-btn text-red-600 hover:text-red-800 ml-auto flex items-center space-x-1"
+                        data-message-id="{{ message.id }}"
+                        title="Удалить">
+                    <i class="fas fa-trash-alt"></i>
+                    <span>Удалить</span>
+                </button>
+                {% endif %}
+            </div>
+
+            <!-- Форма ответа -->
+            <div class="reply-form mt-3 hidden" id="reply-form-{{ message.id }}">
+                <form class="reply-form-inner bg-gray-50 p-3 rounded-lg"
+                      action="{% url 'forum:create_reply' message.id %}" method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" name="parent_id" value="{{ message.id }}">
+
+                    <div class="mb-2">
+                        <textarea name="content" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                                  rows="3" placeholder="Напишите ваш ответ..." required></textarea>
+                    </div>
+                    <div class="flex justify-end space-x-2">
+                        <button type="button" class="cancel-reply-btn px-3 py-1 text-sm border rounded-lg text-gray-700 hover:bg-gray-100">
+                            Отмена
+                        </button>
+                        <button type="submit" class="px-3 py-1 text-sm bg-indigo-600 text-white rounded-lg hover:bg-indigo-700">
+                            Отправить
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Вложенные ответы -->
+{% if message.replies.all %}
+<div class="replies-container pl-6 mt-2 space-y-3 border-l-2 border-gray-200">
+    {% for reply in message.replies.all %}
+        {% include 'forum/message_item.html' with message=reply %}
+    {% endfor %}
+</div>
+{% endif %}

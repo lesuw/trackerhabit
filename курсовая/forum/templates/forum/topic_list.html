@@ -1,0 +1,270 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}{{ category.title }} - Форум HabitHub{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<style>
+    .topic-card { transition: transform 0.2s; }
+    .topic-card:hover { transform: translateY(-2px); }
+    .search-box { max-width: 400px; }
+    .pinned-topic { border-left: 4px solid #4f46e5; }
+    .error-message { color: red; font-size: 0.9rem; margin-top: 0.5rem; }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-8">
+    <div class="flex justify-between items-center mb-6">
+        <div>
+            <a href="{% url 'forum:category_list' %}" class="text-indigo-600 hover:underline">← Назад к категориям</a>
+            <h1 class="text-3xl font-bold text-indigo-700 mt-2">{{ category.title }}</h1>
+            <p class="text-gray-600 mt-1">{{ category.description }}</p>
+        </div>
+        <div class="search-box relative">
+            <form action="." method="GET">
+                <input type="text" name="search" placeholder="Поиск по темам..."
+                       class="w-full pl-10 pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                       value="{{ request.GET.search }}">
+                <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
+            </form>
+        </div>
+    </div>
+
+    {% if user.is_authenticated %}
+    <div class="mb-6">
+        <button id="add-topic-btn" class="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition">
+            <i class="fas fa-plus mr-2"></i>Создать тему
+        </button>
+    </div>
+    {% endif %}
+
+    <div id="topics-list" class="space-y-4">
+        {% for topic in object_list %}
+        <div class="topic-card bg-white p-6 rounded-lg shadow-md hover:shadow-lg {% if topic.is_pinned %}pinned-topic{% endif %}">
+            <div class="flex justify-between items-start">
+                <div class="flex-1">
+                    <h2 class="text-xl font-semibold text-indigo-600 mb-2">
+                        <a href="{% url 'forum:topic_detail' topic.pk %}" class="hover:underline">{{ topic.title }}</a>
+                    </h2>
+                    <p class="text-gray-600 mb-4">{{ topic.description }}</p>
+                    <div class="flex items-center text-sm text-gray-500 space-x-4">
+                        <span>Автор: {{ topic.author.username }}</span>
+                        <span>Создано: {{ topic.created_at|date:"d.m.Y H:i" }}</span>
+                        <span>{{ topic.messages_count }} сообщений</span>
+                    </div>
+                </div>
+                {% if user == topic.author or user.is_staff %}
+                <button class="delete-topic-btn text-red-600 hover:text-red-800 ml-4" data-id="{{ topic.id }}">
+                    <i class="fas fa-trash"></i>
+                </button>
+                {% endif %}
+            </div>
+        </div>
+        {% empty %}
+        <div class="text-center py-8">
+            <p class="text-gray-500">Темы не найдены</p>
+        </div>
+        {% endfor %}
+    </div>
+
+    {% if is_paginated %}
+    <div class="mt-8 flex justify-center">
+        <nav class="inline-flex rounded-md shadow">
+            {% if page_obj.has_previous %}
+            <a href="?page={{ page_obj.previous_page_number }}{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}"
+               class="px-3 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50">
+                Назад
+            </a>
+            {% endif %}
+
+            <span class="px-3 py-2 border-t border-b border-gray-300 bg-white text-sm font-medium text-gray-700">
+                Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}
+            </span>
+
+            {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}"
+               class="px-3 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50">
+                Вперед
+            </a>
+            {% endif %}
+        </nav>
+    </div>
+    {% endif %}
+</div>
+
+<!-- Модальное окно для создания темы -->
+<div id="topic-modal" class="modal fixed inset-0 z-50 hidden">
+    <div class="modal-overlay absolute inset-0 bg-black opacity-50"></div>
+    <div class="modal-container fixed inset-0 flex items-center justify-center p-4">
+        <div class="modal-content bg-white rounded-xl shadow-2xl w-full max-w-md relative">
+            <button class="modal-close absolute top-4 right-4 text-gray-500 hover:text-gray-700">
+                <i class="fas fa-times text-xl"></i>
+            </button>
+
+            <div class="p-6">
+                <h2 class="text-xl font-semibold mb-4" id="modal-topic-title">Создать тему</h2>
+                <form id="topic-form" method="POST">
+                    {% csrf_token %}
+                    <div class="mb-4">
+                        <label for="topic-title" class="block text-sm font-medium text-gray-700 mb-1">Название темы</label>
+                        <input type="text" id="topic-title" name="title" required
+                               class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                        <div id="topic-title-errors" class="error-message"></div>
+                    </div>
+                    <div class="mb-4">
+                        <label for="topic-description" class="block text-sm font-medium text-gray-700 mb-1">Описание темы</label>
+                        <textarea id="topic-description" name="description" rows="5" required
+                                  class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"></textarea>
+                        <div id="topic-description-errors" class="error-message"></div>
+                    </div>
+                    <div class="flex justify-end space-x-3">
+                        <button type="button" class="modal-cancel px-4 py-2 border rounded-lg text-gray-700 hover:bg-gray-100">Отмена</button>
+                        <button type="submit" class="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700">Создать</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Модальное окно темы
+    const modal = document.getElementById('topic-modal');
+    const modalTitle = document.getElementById('modal-topic-title');
+    const topicForm = document.getElementById('topic-form');
+    const topicTitleInput = document.getElementById('topic-title');
+    const topicDescriptionInput = document.getElementById('topic-description');
+    const topicTitleErrors = document.getElementById('topic-title-errors');
+    const topicDescriptionErrors = document.getElementById('topic-description-errors');
+    const addTopicBtn = document.getElementById('add-topic-btn');
+
+    // Открытие модального окна
+    addTopicBtn?.addEventListener('click', function() {
+        modalTitle.textContent = 'Создать тему';
+        topicTitleInput.value = '';
+        topicDescriptionInput.value = '';
+        topicTitleErrors.textContent = '';
+        topicDescriptionErrors.textContent = '';
+        topicForm.action = "{% url 'forum:create_topic' category.pk %}";
+        modal.classList.remove('hidden');
+    });
+
+    // Удаление темы
+    document.querySelectorAll('.delete-topic-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const topicId = this.dataset.id;
+            if (confirm('Вы уверены, что хотите удалить эту тему? Все сообщения внутри также будут удалены.')) {
+                fetch(`{% url 'forum:delete_topic' 0 %}`.replace('0', topicId), {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRFToken': '{{ csrf_token }}',
+                        'X-Requested-With': 'XMLHttpRequest'
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        if (data.redirect_url) {
+                            window.location.href = data.redirect_url;
+                        } else {
+                            this.closest('.topic-card').remove();
+                        }
+                    } else {
+                        alert(data.error || 'Ошибка при удалении темы');
+                    }
+                });
+            }
+        });
+    });
+
+    // Обработчик формы темы
+    topicForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const formData = new FormData(this);
+        const submitBtn = this.querySelector('button[type="submit"]');
+        const originalText = submitBtn.innerHTML;
+
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Создание...';
+
+        fetch(this.action, {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest'
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                if (data.redirect_url) {
+                    window.location.href = data.redirect_url;
+                } else {
+                    // Обновляем список тем без перезагрузки
+                    const topicsList = document.getElementById('topics-list');
+                    const emptyState = topicsList.querySelector('.empty-state');
+
+                    if (emptyState) {
+                        topicsList.removeChild(emptyState);
+                    }
+
+                    const topicCard = document.createElement('div');
+                    topicCard.className = 'topic-card bg-white p-6 rounded-lg shadow-md hover:shadow-lg';
+                    topicCard.innerHTML = `
+                        <div class="flex justify-between items-start">
+                            <div class="flex-1">
+                                <h2 class="text-xl font-semibold text-indigo-600 mb-2">
+                                    <a href="${data.topic.url}" class="hover:underline">${data.topic.title}</a>
+                                </h2>
+                                <p class="text-gray-600 mb-4">${data.topic.description}</p>
+                                <div class="flex items-center text-sm text-gray-500 space-x-4">
+                                    <span>Автор: ${data.topic.author}</span>
+                                    <span>Создано: ${new Date().toLocaleString()}</span>
+                                    <span>0 сообщений</span>
+                                </div>
+                            </div>
+                            <button class="delete-topic-btn text-red-600 hover:text-red-800 ml-4" data-id="${data.topic.id}">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    `;
+
+                    topicsList.insertBefore(topicCard, topicsList.firstChild);
+                    modal.classList.add('hidden');
+                }
+            } else {
+                // Показываем ошибки
+                if (data.errors) {
+                    if (data.errors.title) topicTitleErrors.textContent = data.errors.title.join(' ');
+                    if (data.errors.description) topicDescriptionErrors.textContent = data.errors.description.join(' ');
+                } else {
+                    alert(data.error || 'Ошибка при создании темы');
+                }
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Произошла ошибка при создании темы');
+        })
+        .finally(() => {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = originalText;
+        });
+    });
+
+    // Закрытие модального окна
+    function closeModal() {
+        modal.classList.add('hidden');
+    }
+    document.querySelectorAll('.modal-close, .modal-cancel, .modal-overlay').forEach(el => {
+        el.addEventListener('click', closeModal);
+    });
+});
+</script>
+{% endblock %}
