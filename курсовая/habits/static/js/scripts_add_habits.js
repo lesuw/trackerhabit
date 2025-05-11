@@ -94,104 +94,190 @@ function getCSRFToken() {
     }
 
     // Функция обновления списка привычек
-    function updateHabitsList() {
-        const habitsList = document.getElementById('habits-list');
-        const dayOfWeek = selectedDate.getDay();
+    // Обновите функцию updateHabitsList:
+function updateHabitsList() {
+    const habitsList = document.getElementById('habits-list');
+    const dayOfWeek = selectedDate.getDay();
 
-        // Запрос к API для получения привычек на выбранный день
-        fetch(`/habits/get_by_day/?day=${dayOfWeek}`)
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    if (data.habits.length === 0) {
-                        habitsList.innerHTML = `
-                            <div class="text-center py-8 text-gray-500">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto mb-2 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                </svg>
-                                <p>На этот день нет запланированных привычек</p>
-                            </div>
-                        `;
-                    } else {
-                        habitsList.innerHTML = data.habits.map(habit => createHabitElement(habit, false).outerHTML).join('');
-                    }
+    fetch(`/habits/get_by_day/?day=${dayOfWeek}`)
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                if (data.habits.length === 0) {
+                    habitsList.innerHTML = `
+                        <div class="text-center py-8 text-gray-500">
+                            <p>На этот день нет запланированных привычек</p>
+                        </div>
+                    `;
+                } else {
+                    habitsList.innerHTML = '';
+                    data.habits.forEach(habit => {
+                        // Передаем true для showCompletion
+                        habitsList.appendChild(createHabitElement(habit, false, true));
+                    });
+
+                    // Добавляем обработчики событий для новых элементов
+                    addCompletionHandlers();
                 }
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+}
+
+// Добавьте эту новую функцию для обработки кнопок выполнения:
+function addCompletionHandlers() {
+    document.querySelectorAll('.habit-completion-form').forEach(form => {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const habitId = this.dataset.habitId; // ID привычки
+            const date = this.dataset.date;  // Берем дату из атрибута data-date в форме
+            const button = this.querySelector('button');
+
+            // Выполняем запрос на сервер с правильным URL для toggle-completion
+            fetch(`/toggle-completion/${habitId}/`, {
+                method: 'POST',
+                headers: {
+                    'X-CSRFToken': getCSRFToken(),
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ date: date })
             })
-            .catch(error => {
-                console.error('Error:', error);
-            });
+.then(response => response.json())
+.then(data => {
+    if (data.completed !== undefined) {
+        button.textContent = data.completed ? '✓ Выполнено' : 'Отметить';
+        button.className = data.completed ?
+            'bg-green-100 text-green-800 text-xs px-3 py-1 rounded-full transition' :
+            'bg-gray-100 text-gray-800 text-xs px-3 py-1 rounded-full transition';
+
+        const progressText = this.nextElementSibling;
+        const progressBar = progressText?.nextElementSibling?.querySelector('div');
+
+        if (progressText && progressBar) {
+            progressText.textContent = `Прогресс: ${data.completion_rate}%`;
+            progressBar.style.width = `${data.completion_rate}%`;
+        }
     }
+})
+.catch(error => {
+    console.error('Error:', error);
+    showNotification('Ошибка отметки выполнения', 'error');
+});
+
+        });
+    });
+}
+
+
+
 
     // Функция загрузки всех привычек пользователя
     function loadAllHabits() {
-        fetch('/habits/get_all/')
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    const allHabitsList = document.getElementById('all-habits-list');
-                    allHabitsList.innerHTML = data.habits.map(habit => createHabitElement(habit, true).outerHTML).join('');
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
-    }
+    fetch('/habits/get_all/')
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                const allHabitsList = document.getElementById('all-habits-list');
+                allHabitsList.innerHTML = '';
+                data.habits.forEach(habit => {
+                    allHabitsList.appendChild(createHabitElement(habit, true));
+                });
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+}
 
 
     // Создание элемента привычки (только категория окрашивается)
-    function createHabitElement(habit, withDaysInfo) {
-        const element = document.createElement('div');
-        element.className = 'p-4 hover:bg-gray-50 transition bg-white border-b';
-        element.dataset.habitId = habit.id;
+    function createHabitElement(habit, showDays = false, showCompletion = false) {
+    const element = document.createElement('div');
+    element.className = 'p-4 hover:bg-gray-50 transition bg-white border-b';
+    element.dataset.habitId = habit.id;
 
+    const daysMap = {0: 'Вс', 1: 'Пн', 2: 'Вт', 3: 'Ср', 4: 'Чт', 5: 'Пт', 6: 'Сб'};
+    const activeDays = habit.schedule_days ? habit.schedule_days.map(day => daysMap[day]) : [];
 
-        // Получаем дни недели для привычки
-        const daysMap = {0: 'Вс', 1: 'Пн', 2: 'Вт', 3: 'Ср', 4: 'Чт', 5: 'Пт', 6: 'Сб'};
-        const activeDays = habit.schedule_days ? habit.schedule_days.map(day => daysMap[day]) : [];
+    // Кнопки действий (удалить и изменить)
+    const actionButtons = `
+        <div class="flex items-center space-x-2">
+            <button class="edit-habit text-gray-400 hover:text-indigo-600">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
+                </svg>
+            </button>
+            <button class="delete-habit text-gray-400 hover:text-red-600">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
+                </svg>
+            </button>
+        </div>
+    `;
 
-
-        let daysHtml = '';
-        if (withDaysInfo && activeDays.length > 0) {
-            daysHtml = `<div class="mt-1 text-xs text-gray-500">Дни: ${activeDays.join(', ')}</div>`;
-        }
-
-        element.innerHTML = `
-            <div class="flex justify-between items-start">
-                <div>
-                    <h3 class="font-medium">${habit.name}</h3>
-                    <p class="text-sm text-gray-600">${habit.description || ''}</p>
-                    ${daysHtml}
-                </div>
-                <div class="flex items-center space-x-2">
-                    <button class="text-gray-400 hover:text-indigo-600" onclick="editHabit(${habit.id})">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                            <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
-                        </svg>
-                    </button>
-                    <button class="text-gray-400 hover:text-red-600" onclick="deleteHabit(${habit.id})">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
-                        </svg>
-                    </button>
-                </div>
+    // Кнопка выполнения (только если showCompletion=true)
+    const completionSection = showCompletion ? `
+        <div class="flex flex-col items-end">
+            <form class="habit-completion-form" data-habit-id="${habit.id}" data-date="2025-05-06">
+                <button type="submit" class="${
+                    habit.is_completed_today ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-800'
+                } text-xs px-3 py-1 rounded-full transition">
+                    ${habit.is_completed_today ? '✓ Выполнено' : 'Отметить'}
+                </button>
+            </form>
+            <div class="mt-2 text-xs text-gray-500">
+                Прогресс: ${habit.get_completion_rate || 0}%
             </div>
-            <div class="mt-2 flex items-center justify-between">
-                <span class="text-xs px-2 py-1 rounded-full ${habit.color_class}">
+            <div class="w-20 h-1 bg-gray-200 rounded-full mt-1">
+                <div class="h-1 bg-indigo-600 rounded-full" style="width: ${habit.get_completion_rate || 0}%"></div>
+            </div>
+        </div>
+    ` : '';
+    const rightSection = `
+    <div class="flex flex-col items-end space-y-2">
+        ${completionSection}
+        ${actionButtons}
+    </div>
+`;
+
+    const daysInfo = showDays && activeDays.length > 0 ? `
+        <div class="mt-1 text-xs text-gray-500">Дни: ${activeDays.join(', ')}</div>
+    ` : '';
+
+    element.innerHTML = `
+    <div class="flex justify-between items-start">
+        <div>
+            <div class="flex items-center space-x-2">
+                <span class="${habit.color_class} text-xs font-medium px-2.5 py-0.5 rounded-full">
                     ${habit.category_display || habit.category}
                 </span>
-                <span class="text-xs text-gray-500">${habit.days_goal} дней</span>
+                ${habit.reminder && habit.reminder_time ? `
+                <span class="text-xs text-gray-500">
+                    ⏰ ${habit.reminder_time}
+                </span>
+                ` : ''}
             </div>
-        `;
+            <h3 class="font-medium mt-1">${habit.name}</h3>
+            ${habit.description ? `<p class="text-sm text-gray-600 mt-1">${habit.description}</p>` : ''}
+            ${daysInfo}
+        </div>
+        ${rightSection}
+    </div>
+    <div class="flex justify-between items-center mt-3 text-xs text-gray-500">
+        <span>Серия: ${habit.get_current_streak || 0} дней</span>
+        <span>Рекорд: ${habit.get_longest_streak || 0} дней</span>
+    </div>
+`;
 
-        const editBtn = element.querySelector('.edit-habit');
-        if (editBtn) editBtn.addEventListener('click', () => editHabit(habit.id));
 
-        const deleteBtn = element.querySelector('.delete-habit');
-        if (deleteBtn) deleteBtn.addEventListener('click', () => deleteHabit(habit.id));
+    // Добавляем обработчики событий для кнопок
+    element.querySelector('.edit-habit').addEventListener('click', () => editHabit(habit.id));
+    element.querySelector('.delete-habit').addEventListener('click', () => deleteHabit(habit.id));
 
-
-        return element;
-    }
+    return element;
+}
 
 
     // Функции для модального окна
@@ -383,6 +469,48 @@ function saveHabit() {
     // Инициализация
     renderCalendar();
     loadAllHabits();
+
+    // Функция для отправки состояния выполнения привычки
+function toggleHabitCompletion(habitId) {
+    fetch(`/api/toggle_habit_completion/${habitId}/`, {
+        method: 'POST',
+        headers: {
+            'X-CSRFToken': csrfToken, // Убедитесь, что CSRF токен передается
+        },
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.completed) {
+            alert("Привычка выполнена!");
+        } else {
+            alert("Привычка отменена!");
+        }
+
+        loadHabits(); // Обновляем состояние привычек
+    })
+    .catch(error => console.error('Ошибка:', error));
+}
+
+//    // При загрузке страницы
+//function loadHabits() {
+//    const day = getCurrentDay(); // Получаем день недели
+//    fetch(`/api/get_habits_by_day?day=${day}`)
+//        .then(response => response.json())
+//        .then(data => {
+//            if (data.success) {
+//                data.habits.forEach(habit => {
+//                    // Отображаем привычку с учётом её выполнения
+//                    const habitElement = document.getElementById(`habit-${habit.id}`);
+//                    if (habit.is_completed_today) {
+//                        habitElement.classList.add('completed');
+//                    } else {
+//                        habitElement.classList.remove('completed');
+//                    }
+//                });
+//            }
+//        });
+//}
+
 
     // Назначение обработчиков событий
     document.getElementById('open-modal').addEventListener('click', openModal);

@@ -12,6 +12,7 @@ urlpatterns = [
     path('habits/update_schedule/', views.update_schedule, name='update_schedule'),
 
 
+
     path('notes/', views.notes, name='notes'),
     path('edit/<int:pk>/', views.edit_note, name='edit_note'),
     path('delete/<int:pk>/', views.delete_note, name='delete_note'),

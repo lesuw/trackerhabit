@@ -2,6 +2,7 @@
 from django.db import models
 from accounts.models import User
 from django.utils import timezone
+from django.core.exceptions import ValidationError
 
 class Habit(models.Model):
     CATEGORY_CHOICES = [
@@ -34,6 +35,67 @@ class Habit(models.Model):
     def __str__(self):
         return self.name
 
+    def get_current_streak(self):
+        """Возвращает текущую серию последовательных выполненных дней"""
+        completions = self.completions.order_by('-date')
+        streak = 0
+        today = timezone.now().date()
+
+        # Проверяем все выполненные привычки, а не только за сегодня
+        for i, completion in enumerate(completions):
+            if i == 0 and completion.date != today:
+                break
+            if i > 0 and (completions[i - 1].date - completion.date).days > 1:
+                # Нашли разрыв в последовательных днях
+                break
+            streak += 1
+
+        return streak
+
+    def get_longest_streak(self):
+        """Возвращает самую длинную серию последовательных выполненных дней"""
+        completions = list(self.completions.order_by('date'))
+        if not completions:
+            return 0
+
+        longest = current = 1
+
+        for i in range(1, len(completions)):
+            if (completions[i].date - completions[i - 1].date).days == 1:
+                current += 1
+                longest = max(longest, current)
+            else:
+                current = 1
+
+        return longest
+
+    def get_completion_rate(self):
+        """Возвращает процент выполнения привычки (выполненные дни / цель)"""
+        total_completions = self.completions.count()
+        return min(100, int((total_completions / self.days_goal) * 100))
+
+    def is_completed_today(self):
+        """Проверяет, выполнена ли привычка сегодня"""
+        today = timezone.now().date()
+        return self.completions.filter(date=today).exists()
+
+    def is_completed_on(self, date):
+        """Проверка, выполнена ли привычка в указанный день"""
+        return self.completions.filter(date=date).exists()
+
+    def mark_as_completed(self):
+        """Отмечает привычку как выполненную на сегодня"""
+        today = timezone.now().date()
+
+        if self.is_completed_today():
+            raise ValidationError("Эта привычка уже выполнена сегодня")
+
+        HabitCompletion.objects.create(habit=self, date=today)
+
+    def is_completed_on_current_date(self, date):
+        """Проверяет, выполнена ли привычка в указанную дату"""
+        return self.completions.filter(date=date).exists()
+
 
 class HabitSchedule(models.Model):
     DAY_CHOICES = [
@@ -54,6 +116,18 @@ class HabitSchedule(models.Model):
 
     def __str__(self):
         return f"{self.habit.name} - {self.get_day_of_week_display()}"
+
+# models.py
+class HabitCompletion(models.Model):
+    habit = models.ForeignKey(Habit, on_delete=models.CASCADE, related_name='completions')
+    date = models.DateField()
+    completed = models.BooleanField(default=False)
+
+    class Meta:
+        unique_together = ('habit', 'date')
+
+    def __str__(self):
+        return f"{self.habit.name} - {self.date} ({'Completed' if self.completed else 'Not completed'})"
 
 class MoodEntry(models.Model):
     MOOD_CHOICES = [
@@ -97,14 +171,3 @@ class MoodEntry(models.Model):
         return dict(self.MOOD_CHOICES).get(self.mood, 'Неизвестно')
 
 
-# models.py
-class HabitCompletion(models.Model):
-    habit = models.ForeignKey(Habit, on_delete=models.CASCADE, related_name='completions')
-    date = models.DateField()
-    completed = models.BooleanField(default=False)
-
-    class Meta:
-        unique_together = ('habit', 'date')
-
-    def __str__(self):
-        return f"{self.habit.name} - {self.date} ({'Completed' if self.completed else 'Not completed'})"
