@@ -409,58 +409,7 @@ import logging
 
 logger = logging.getLogger(__name__)
 
-# @require_POST
-# @login_required
-# def toggle_habit_completion(request, habit_id):
-#     habit = get_object_or_404(Habit, id=habit_id, user=request.user)
-#     data = json.loads(request.body)
-#     date_str = data.get('date')
 #
-#     # Логирование входных данных
-#     logger.info(f"Received request to toggle habit completion for habit_id: {habit_id}, date: {date_str}")
-#
-#     if not date_str:
-#         return JsonResponse({'error': 'Date is required'}, status=400)
-#
-#     try:
-#         date = datetime.strptime(date_str, '%Y-%m-%d').date()
-#     except ValueError:
-#         logger.error(f"Invalid date format: {date_str}")
-#         return JsonResponse({'error': 'Invalid date format'}, status=400)
-#
-#     today = timezone.now().date()
-#
-#     # Проверяем, что дата не в будущем
-#     if date > today:
-#         logger.error(f"Attempt to mark habit completion for a future date: {date}")
-#         return JsonResponse({'error': 'Нельзя отмечать привычки в будущем'}, status=400)
-#
-#     # Логика проверки, что привычка запланирована на этот день
-#     if date.weekday() not in [s.day_of_week for s in habit.schedule.all()]:
-#         logger.error(f"Habit not scheduled for the selected day: {date.weekday()}")
-#         return JsonResponse({'error': 'Привычка не запланирована на этот день'}, status=400)
-#
-#     # Попытка получить или создать запись о выполнении привычки
-#     completion, created = HabitCompletion.objects.get_or_create(habit=habit, date=date)
-#
-#     if created:
-#         completed = True
-#     else:
-#         # Если привычка уже была выполнена, то отменяем выполнение
-#         completion.delete()
-#         completed = False
-#
-#     # Логирование результата
-#     logger.info(f"Completion status for habit_id {habit_id} on {date}: {completed}")
-#
-#     return JsonResponse({
-#         'completed': completed,
-#         'completion_rate': habit.get_completion_rate(),
-#         'current_streak': habit.get_current_streak(),
-#         'longest_streak': habit.get_longest_streak(),
-#     })
-
-
 
 # ———————————————————————
 # 🔧 Вспомогательные функции
@@ -694,30 +643,33 @@ import logging
 
 logger = logging.getLogger(__name__)
 
+
 @require_POST
 @login_required
 def toggle_completion(request, habit_id):
     try:
+        # 1. Получаем привычку и проверяем права доступа
         habit = Habit.objects.get(id=habit_id, user=request.user)
         today = timezone.now().date()
-        day_of_week = today.weekday()  # Получаем день недели (0 - Пн, 6 - Вс)
 
-        logger.info(f"Попытка переключить выполнение привычки с ID {habit_id} на {today}, день недели: {day_of_week}")
+        # 2. Жёсткая проверка, что действие выполняется только для сегодняшней даты
+        if 'date' in request.POST:
+            requested_date = datetime.strptime(request.POST['date'], '%Y-%m-%d').date()
+            if requested_date != today:
+                return JsonResponse({
+                    'success': False,
+                    'error': 'Можно отмечать только сегодняшнюю дату'
+                }, status=400)
 
-        # Прямо укажем, что воскресенье - это 6
-        if day_of_week == 6:
-            logger.info(f"Сегодня воскресенье. Проверяем привычки на день {day_of_week}.")
-        else:
-            logger.info(f"Сегодня не воскресенье. День недели: {day_of_week}.")
-
-        # Проверяем, запланирована ли привычка на сегодня
+        # 3. Проверяем, что привычка действительно запланирована на сегодня
+        day_of_week = today.weekday()
         if not habit.schedule.filter(day_of_week=day_of_week).exists():
-            logger.warning(f"Привычка с ID {habit_id} не запланирована на сегодня {today}")
             return JsonResponse({
                 'success': False,
-                'error': 'Habit is not scheduled for today'
-            })
+                'error': 'Эта привычка не запланирована на сегодня'
+            }, status=400)
 
+        # 4. Работаем только с сегодняшней датой
         completion, created = HabitCompletion.objects.get_or_create(
             habit=habit,
             date=today,
@@ -725,34 +677,101 @@ def toggle_completion(request, habit_id):
         )
 
         if not created:
-            # Если запись уже существует, удаляем её
             completion.delete()
             completed = False
         else:
             completed = True
 
-        logger.info(f"Статус выполнения привычки с ID {habit_id}: {completed}")
-
+        # 5. Возвращаем обновлённые данные
         return JsonResponse({
             'success': True,
             'completed': completed,
-            'completion_rate': habit.get_completion_rate(),
-            'current_streak': habit.get_current_streak(),
-            'longest_streak': habit.get_longest_streak()
+            'stats': {
+                'completion_rate': habit.get_completion_rate(),
+                'current_streak': habit.get_current_streak(),
+                'longest_streak': habit.get_longest_streak()
+            }
         })
 
     except Habit.DoesNotExist:
-        logger.error(f"Привычка с ID {habit_id} не найдена")
         return JsonResponse({
             'success': False,
-            'error': 'Habit not found'
-        })
+            'error': 'Привычка не найдена'
+        }, status=404)
     except Exception as e:
-        logger.error(f"Ошибка при переключении выполнения привычки с ID {habit_id}: {str(e)}")
         return JsonResponse({
             'success': False,
             'error': str(e)
-        })
+        }, status=500)
 
 
+#страница трекера привычек
+@login_required
+def habit_tracker(request):
+    # Получаем все привычки текущего пользователя
+    habits = Habit.objects.filter(user=request.user).prefetch_related('completions')
 
+    # Для каждой привычки добавляем данные о выполнении за последние 30 дней
+    for habit in habits:
+        habit.completion_days = habit.get_completion_days()
+
+    context = {
+        'habits': habits,
+        'total_habits': habits.count(),
+        'today': timezone.now().date(),
+    }
+    return render(request, 'tracker/tracker.html', context)
+
+
+@login_required
+@require_POST
+def mark_habit_completion(request):
+    habit_id = request.POST.get('habit_id')
+    date_str = request.POST.get('completion_date')
+
+    try:
+        habit = Habit.objects.get(id=habit_id, user=request.user)
+        completion_date = timezone.datetime.strptime(date_str, '%Y-%m-%d').date()
+
+        # Проверяем, что дата не в будущем
+        if completion_date > timezone.now().date():
+            return JsonResponse({'success': False, 'error': 'Дата не может быть в будущем'})
+
+        # Создаем или обновляем запись о выполнении
+        completion, created = HabitCompletion.objects.get_or_create(
+            habit=habit,
+            date=completion_date,
+            defaults={'completed': True}
+        )
+
+        if not created:
+            completion.completed = True
+            completion.save()
+
+        return JsonResponse({'success': True})
+
+    except Habit.DoesNotExist:
+        return JsonResponse({'success': False, 'error': 'Привычка не найдена'})
+    except Exception as e:
+        return JsonResponse({'success': False, 'error': str(e)})
+
+
+def get_completion_days(self, days_to_show=30):
+    """Возвращает список дней с информацией о выполнении привычки"""
+    today = timezone.now().date()
+    start_date = today - timedelta(days=days_to_show - 1)
+
+    # Создаем список всех дней в периоде
+    date_list = [start_date + timedelta(days=x) for x in range(days_to_show)]
+
+    # Получаем выполненные дни
+    completed_dates = set(self.completions.filter(
+        date__gte=start_date,
+        date__lte=today
+    ).values_list('date', flat=True))
+
+    # Формируем результат
+    return [{
+        'date': date,
+        'completed': date in completed_dates
+    } for date in date_list]

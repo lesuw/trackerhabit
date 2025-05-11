@@ -3,6 +3,7 @@ from django.db import models
 from accounts.models import User
 from django.utils import timezone
 from django.core.exceptions import ValidationError
+from datetime import timedelta
 
 class Habit(models.Model):
     CATEGORY_CHOICES = [
@@ -36,24 +37,37 @@ class Habit(models.Model):
         return self.name
 
     def get_current_streak(self):
-        """Возвращает текущую серию последовательных выполненных дней"""
-        completions = self.completions.order_by('-date')
-        streak = 0
+        """Возвращает текущую серию последовательных выполненных дней (исправленная версия)"""
         today = timezone.now().date()
+        completions = self.completions.filter(
+            date__lte=today
+        ).order_by('-date')
 
-        # Проверяем все выполненные привычки, а не только за сегодня
-        for i, completion in enumerate(completions):
-            if i == 0 and completion.date != today:
-                break
-            if i > 0 and (completions[i - 1].date - completion.date).days > 1:
-                # Нашли разрыв в последовательных днях
-                break
-            streak += 1
+        streak = 0
+        prev_date = None
+
+        for completion in completions:
+            if prev_date is None:
+                # Первая запись - проверяем что это сегодня или вчера
+                if completion.date == today:
+                    streak = 1
+                    prev_date = completion.date
+                elif (today - completion.date).days == 1:
+                    streak = 1
+                    prev_date = completion.date
+                else:
+                    break
+            else:
+                if (prev_date - completion.date).days == 1:
+                    streak += 1
+                    prev_date = completion.date
+                else:
+                    break
 
         return streak
 
     def get_longest_streak(self):
-        """Возвращает самую длинную серию последовательных выполненных дней"""
+        """Исправленная версия для подсчета самой длинной серии"""
         completions = list(self.completions.order_by('date'))
         if not completions:
             return 0
@@ -61,7 +75,7 @@ class Habit(models.Model):
         longest = current = 1
 
         for i in range(1, len(completions)):
-            if (completions[i].date - completions[i - 1].date).days == 1:
+            if (completions[i].date - completions[i-1].date).days == 1:
                 current += 1
                 longest = max(longest, current)
             else:
@@ -70,7 +84,7 @@ class Habit(models.Model):
         return longest
 
     def get_completion_rate(self):
-        """Возвращает процент выполнения привычки (выполненные дни / цель)"""
+        """Процент выполнения от цели"""
         total_completions = self.completions.count()
         return min(100, int((total_completions / self.days_goal) * 100))
 
@@ -95,6 +109,32 @@ class Habit(models.Model):
     def is_completed_on_current_date(self, date):
         """Проверяет, выполнена ли привычка в указанную дату"""
         return self.completions.filter(date=date).exists()
+
+    def get_completion_days(self):
+        """Возвращает список дней с момента создания привычки до days_goal дней вперед"""
+        from datetime import timedelta
+
+        days_to_show = self.days_goal
+        start_date = self.created_at.date()
+        end_date = start_date + timedelta(days=days_to_show - 1)
+
+        # Создаем список всех дней в периоде
+        date_list = [start_date + timedelta(days=x) for x in range(days_to_show)]
+
+        # Получаем выполненные дни
+        completed_dates = set(
+            self.completions.filter(
+                date__gte=start_date,
+                date__lte=end_date,
+                completed=True
+            ).values_list('date', flat=True)
+        )
+
+        # Формируем результат
+        return [{
+            'date': date,
+            'completed': date in completed_dates
+        } for date in date_list]
 
 
 class HabitSchedule(models.Model):
@@ -125,6 +165,12 @@ class HabitCompletion(models.Model):
 
     class Meta:
         unique_together = ('habit', 'date')
+        constraints = [
+            models.CheckConstraint(
+                check=models.Q(date__lte=timezone.now().date()),
+                name='date_cannot_be_in_future'
+            )
+        ]
 
     def __str__(self):
         return f"{self.habit.name} - {self.date} ({'Completed' if self.completed else 'Not completed'})"
