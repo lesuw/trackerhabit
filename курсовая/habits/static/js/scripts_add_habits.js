@@ -3,7 +3,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const today = new Date();
     let currentDate = new Date();
     let selectedDate = new Date();
-    let currentSelectedDay = today.getDay(); // 0-6 (0 - воскресенье)
+//    let currentSelectedDay = today.getDay(); // 0-6 (0 - воскресенье)
+    let currentSelectedDay = (today.getDay() + 6) % 7;
+
 
     // Цвета для привычек
     const habitColors = [
@@ -54,7 +56,8 @@ function getCSRFToken() {
 
         // Получаем понедельник текущей недели
         const monday = new Date(currentDate);
-        monday.setDate(currentDate.getDate() - currentDate.getDay() + (currentDate.getDay() === 0 ? -6 : 1));
+        const adjustedDay = (currentDate.getDay() + 6) % 7;
+        monday.setDate(currentDate.getDate() - adjustedDay);
 
         // Создаем дни недели
         for (let i = 0; i < 7; i++) {
@@ -65,7 +68,7 @@ function getCSRFToken() {
             dayElement.className = `flex flex-col items-center p-2 rounded-lg cursor-pointer transition ${isSameDay(day, selectedDate) ? 'bg-indigo-100' : 'hover:bg-gray-100'}`;
             dayElement.onclick = () => {
                 selectDate(day);
-                currentSelectedDay = day.getDay(); // Обновляем выбранный день
+                currentSelectedDay = (today.getDay() + 6) % 7; // Обновляем выбранный день
             };
 
             dayElement.innerHTML = `
@@ -94,10 +97,9 @@ function getCSRFToken() {
     }
 
     // Функция обновления списка привычек
-    // Обновите функцию updateHabitsList:
-function updateHabitsList() {
+ function updateHabitsList() {
     const habitsList = document.getElementById('habits-list');
-    const dayOfWeek = selectedDate.getDay();
+     const dayOfWeek = (selectedDate.getDay() + 6) % 7;
 
     fetch(`/habits/get_by_day/?day=${dayOfWeek}`)
         .then(response => response.json())
@@ -131,47 +133,33 @@ function addCompletionHandlers() {
     document.querySelectorAll('.habit-completion-form').forEach(form => {
         form.addEventListener('submit', function(e) {
             e.preventDefault();
-            const habitId = this.dataset.habitId; // ID привычки
-            const date = this.dataset.date;  // Берем дату из атрибута data-date в форме
+            const habitId = this.dataset.habitId;
             const button = this.querySelector('button');
 
-            // Выполняем запрос на сервер с правильным URL для toggle-completion
+            // Выполняем запрос на сервер
             fetch(`/toggle-completion/${habitId}/`, {
                 method: 'POST',
                 headers: {
                     'X-CSRFToken': getCSRFToken(),
                     'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ date: date })
+                }
             })
-.then(response => response.json())
-.then(data => {
-    if (data.completed !== undefined) {
-        button.textContent = data.completed ? '✓ Выполнено' : 'Отметить';
-        button.className = data.completed ?
-            'bg-green-100 text-green-800 text-xs px-3 py-1 rounded-full transition' :
-            'bg-gray-100 text-gray-800 text-xs px-3 py-1 rounded-full transition';
-
-        const progressText = this.nextElementSibling;
-        const progressBar = progressText?.nextElementSibling?.querySelector('div');
-
-        if (progressText && progressBar) {
-            progressText.textContent = `Прогресс: ${data.completion_rate}%`;
-            progressBar.style.width = `${data.completion_rate}%`;
-        }
-    }
-})
-.catch(error => {
-    console.error('Error:', error);
-    showNotification('Ошибка отметки выполнения', 'error');
-});
-
+            .then(response => response.json())
+            .then(data => {
+                if (data.completed !== undefined) {
+                    button.textContent = data.completed ? '✓ Выполнено' : 'Отметить';
+                    button.className = data.completed ?
+                        'bg-green-100 text-green-800 text-xs px-3 py-1 rounded-full transition' :
+                        'bg-gray-100 text-gray-800 text-xs px-3 py-1 rounded-full transition';
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                showNotification('Ошибка отметки выполнения', 'error');
+            });
         });
     });
 }
-
-
-
 
     // Функция загрузки всех привычек пользователя
     function loadAllHabits() {
@@ -198,7 +186,7 @@ function addCompletionHandlers() {
     element.className = 'p-4 hover:bg-gray-50 transition bg-white border-b';
     element.dataset.habitId = habit.id;
 
-    const daysMap = {0: 'Вс', 1: 'Пн', 2: 'Вт', 3: 'Ср', 4: 'Чт', 5: 'Пт', 6: 'Сб'};
+    const daysMap = {0: 'Пн', 1: 'Вт', 2: 'Ср', 3: 'Чт', 4: 'Пт', 5: 'Сб', 6: 'Вс'};
     const activeDays = habit.schedule_days ? habit.schedule_days.map(day => daysMap[day]) : [];
 
     // Кнопки действий (удалить и изменить)
@@ -449,7 +437,8 @@ function saveHabit() {
     // Добавление привычки в список "Привычки на выбранный день"
     function addHabitToSelectedDayList(habit) {
         const habitsList = document.getElementById('habits-list');
-        const selectedDay = selectedDate.getDay();
+        const selectedDay = (selectedDate.getDay() + 6) % 7;
+
 
         // Проверяем, есть ли выбранный день в расписании привычки
         const hasDay = habit.schedule_days ? habit.schedule_days.includes(selectedDay) : false;
@@ -472,24 +461,34 @@ function saveHabit() {
 
     // Функция для отправки состояния выполнения привычки
 function toggleHabitCompletion(habitId) {
-    fetch(`/api/toggle_habit_completion/${habitId}/`, {
+    fetch(`/toggle-completion/${habitId}/`, {
         method: 'POST',
         headers: {
-            'X-CSRFToken': csrfToken, // Убедитесь, что CSRF токен передается
+            'X-CSRFToken': getCSRFToken(), // Передаем CSRF токен
         },
     })
     .then(response => response.json())
     .then(data => {
-        if (data.completed) {
-            alert("Привычка выполнена!");
+        if (data.success) {
+            if (data.completed) {
+                alert("Привычка выполнена!");
+            } else {
+                alert("Привычка отменена!");
+            }
         } else {
-            alert("Привычка отменена!");
+            alert(data.error);  // Показываем ошибку, если она была (например, если не сегодня)
+            console.log('Ошибка:', data.error); // Для отладки
+            showNotification('Привычку нельзя отметить не сегодня!');
         }
-
         loadHabits(); // Обновляем состояние привычек
     })
-    .catch(error => console.error('Ошибка:', error));
+    .catch(error => {
+        console.error('Ошибка:', error);
+        showNotification('Произошла ошибка при отметке привычки.');
+    });
 }
+
+
 
 //    // При загрузке страницы
 //function loadHabits() {

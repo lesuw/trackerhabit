@@ -99,13 +99,13 @@ class Habit(models.Model):
 
 class HabitSchedule(models.Model):
     DAY_CHOICES = [
-        (0, 'Воскресенье'),
-        (1, 'Понедельник'),
-        (2, 'Вторник'),
-        (3, 'Среда'),
-        (4, 'Четверг'),
-        (5, 'Пятница'),
-        (6, 'Суббота'),
+        (0, 'Понедельник'),
+        (1, 'Вторник'),
+        (2, 'Среда'),
+        (3, 'Четверг'),
+        (4, 'Пятница'),
+        (5, 'Суббота'),
+        (6, 'Воскресенье'),
     ]
 
     habit = models.ForeignKey(Habit, related_name='schedule', on_delete=models.CASCADE)
