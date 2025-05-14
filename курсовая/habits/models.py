@@ -66,8 +66,9 @@ class Habit(models.Model):
 
         return streak
 
+
     def get_longest_streak(self):
-        """Исправленная версия для подсчета самой длинной серии"""
+        """Возвращает самую длинную серию последовательных выполненных дней"""
         completions = list(self.completions.order_by('date'))
         if not completions:
             return 0
@@ -84,7 +85,7 @@ class Habit(models.Model):
         return longest
 
     def get_completion_rate(self):
-        """Процент выполнения от цели"""
+        """Возвращает процент выполнения привычки (выполненные дни / цель)"""
         total_completions = self.completions.count()
         return min(100, int((total_completions / self.days_goal) * 100))
 
@@ -165,12 +166,6 @@ class HabitCompletion(models.Model):
 
     class Meta:
         unique_together = ('habit', 'date')
-        constraints = [
-            models.CheckConstraint(
-                check=models.Q(date__lte=timezone.now().date()),
-                name='date_cannot_be_in_future'
-            )
-        ]
 
     def __str__(self):
         return f"{self.habit.name} - {self.date} ({'Completed' if self.completed else 'Not completed'})"
@@ -215,5 +210,3 @@ class MoodEntry(models.Model):
 
     def get_mood_display(self):
         return dict(self.MOOD_CHOICES).get(self.mood, 'Неизвестно')
-
-

@@ -97,11 +97,9 @@ function getCSRFToken() {
     }
 
     // Функция обновления списка привычек
-function updateHabitsList() {
+ function updateHabitsList() {
     const habitsList = document.getElementById('habits-list');
-    const dayOfWeek = (selectedDate.getDay() + 6) % 7;
-    const today = new Date().toISOString().split('T')[0];
-    const isSelectedToday = isSameDay(selectedDate, new Date());
+     const dayOfWeek = (selectedDate.getDay() + 6) % 7;
 
     fetch(`/habits/get_by_day/?day=${dayOfWeek}`)
         .then(response => response.json())
@@ -116,11 +114,11 @@ function updateHabitsList() {
                 } else {
                     habitsList.innerHTML = '';
                     data.habits.forEach(habit => {
-                        // Добавляем флаг is_today к данным привычки
-                        habit.is_today = isSelectedToday;
+                        // Передаем true для showCompletion
                         habitsList.appendChild(createHabitElement(habit, false, true));
                     });
 
+                    // Добавляем обработчики событий для новых элементов
                     addCompletionHandlers();
                 }
             }
@@ -133,40 +131,32 @@ function updateHabitsList() {
 // Добавьте эту новую функцию для обработки кнопок выполнения:
 function addCompletionHandlers() {
     document.querySelectorAll('.habit-completion-form').forEach(form => {
-        form.addEventListener('submit', async function(e) {
+        form.addEventListener('submit', function(e) {
             e.preventDefault();
             const habitId = this.dataset.habitId;
             const button = this.querySelector('button');
 
-            try {
-                const response = await fetch(`/toggle-completion/${habitId}/`, {
-                    method: 'POST',
-                    headers: {
-                        'X-CSRFToken': getCSRFToken(),
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ date: new Date().toISOString().split('T')[0] })
-                });
-
-                const data = await response.json();
-
+            // Выполняем запрос на сервер
+            fetch(`/toggle-completion/${habitId}/`, {
+                method: 'POST',
+                headers: {
+                    'X-CSRFToken': getCSRFToken(),
+                    'Content-Type': 'application/json',
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
                 if (data.completed !== undefined) {
                     button.textContent = data.completed ? '✓ Выполнено' : 'Отметить';
                     button.className = data.completed ?
                         'bg-green-100 text-green-800 text-xs px-3 py-1 rounded-full transition' :
                         'bg-gray-100 text-gray-800 text-xs px-3 py-1 rounded-full transition';
-
-                    // Обновляем статистику если нужно
-                    if (data.stats) {
-                        updateStats(data.stats);
-                    }
-                } else if (data.error) {
-                    showNotification(data.error, 'error');
                 }
-            } catch (error) {
+            })
+            .catch(error => {
                 console.error('Error:', error);
                 showNotification('Ошибка отметки выполнения', 'error');
-            }
+            });
         });
     });
 }
@@ -199,7 +189,6 @@ function addCompletionHandlers() {
     const daysMap = {0: 'Пн', 1: 'Вт', 2: 'Ср', 3: 'Чт', 4: 'Пт', 5: 'Сб', 6: 'Вс'};
     const activeDays = habit.schedule_days ? habit.schedule_days.map(day => daysMap[day]) : [];
 
-
     // Кнопки действий (удалить и изменить)
     const actionButtons = `
         <div class="flex items-center space-x-2">
@@ -217,18 +206,12 @@ function addCompletionHandlers() {
     `;
 
     // Кнопка выполнения (только если showCompletion=true)
-    const today = new Date().toISOString().split('T')[0];
-    const isToday = habit.date === today;
-
-    // Кнопка выполнения (только если showCompletion=true)
     const completionSection = showCompletion ? `
         <div class="flex flex-col items-end">
-            <form class="habit-completion-form" data-habit-id="${habit.id}" data-date="${habit.date}">
-                <button type="submit"
-                    class="${habit.is_completed_today ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-800'}
-                    text-xs px-3 py-1 rounded-full transition
-                    ${!isToday ? 'opacity-50 cursor-not-allowed' : ''}"
-                    ${!isToday ? 'disabled' : ''}>
+            <form class="habit-completion-form" data-habit-id="${habit.id}" data-date="2025-05-06">
+                <button type="submit" class="${
+                    habit.is_completed_today ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-800'
+                } text-xs px-3 py-1 rounded-full transition">
                     ${habit.is_completed_today ? '✓ Выполнено' : 'Отметить'}
                 </button>
             </form>
@@ -240,13 +223,12 @@ function addCompletionHandlers() {
             </div>
         </div>
     ` : '';
-
     const rightSection = `
-        <div class="flex flex-col items-end space-y-2">
-            ${completionSection}
-            ${actionButtons}
-        </div>
-    `;
+    <div class="flex flex-col items-end space-y-2">
+        ${completionSection}
+        ${actionButtons}
+    </div>
+`;
 
     const daysInfo = showDays && activeDays.length > 0 ? `
         <div class="mt-1 text-xs text-gray-500">Дни: ${activeDays.join(', ')}</div>
