@@ -700,24 +700,21 @@ def toggle_completion(request, habit_id):
     try:
         habit = Habit.objects.get(id=habit_id, user=request.user)
         today = timezone.now().date()
-        day_of_week = today.weekday()  # Получаем день недели (0 - Пн, 6 - Вс)
+        day_of_week = today.weekday()
 
         logger.info(f"Попытка переключить выполнение привычки с ID {habit_id} на {today}, день недели: {day_of_week}")
 
-        # Прямо укажем, что воскресенье - это 6
-        if day_of_week == 6:
-            logger.info(f"Сегодня воскресенье. Проверяем привычки на день {day_of_week}.")
-        else:
-            logger.info(f"Сегодня не воскресенье. День недели: {day_of_week}.")
+        # Проверяем, запланирована ли привычка на один из доступных дней
+        allowed_days = [d for d in range(day_of_week + 1)]  # Дни от понедельника до сегодня
 
-        # Проверяем, запланирована ли привычка на сегодня
-        if not habit.schedule.filter(day_of_week=day_of_week).exists():
-            logger.warning(f"Привычка с ID {habit_id} не запланирована на сегодня {today}")
+        if not habit.schedule.filter(day_of_week__in=allowed_days).exists():
+            logger.warning(f"Привычка с ID {habit_id} не запланирована на допустимые дни {allowed_days}")
             return JsonResponse({
                 'success': False,
-                'error': 'Habit is not scheduled for today'
+                'error': 'Habit is not scheduled for the allowed days'
             })
 
+        # Получаем или создаем отметку выполнения
         completion, created = HabitCompletion.objects.get_or_create(
             habit=habit,
             date=today,
@@ -725,7 +722,6 @@ def toggle_completion(request, habit_id):
         )
 
         if not created:
-            # Если запись уже существует, удаляем её
             completion.delete()
             completed = False
         else:
