@@ -373,19 +373,26 @@ def update_habit(request, id):
         data = json.loads(request.body)
         habit = get_object_or_404(Habit, id=id, user=request.user)
 
+        # Обновление основных полей
         for field in ['name', 'category', 'description', 'days_goal', 'color_class', 'reminder']:
             if field in data:
                 setattr(habit, field, data[field])
+        habit.save()
 
-        habit.schedule.all().delete()
-        HabitSchedule.objects.bulk_create([
-            HabitSchedule(habit=habit, day_of_week=day) for day in data.get('repeat_days', [])
-        ])
+        # Обновление расписания
+        new_days = set(data.get('repeat_days', []))
+        existing_days = set(habit.schedule.values_list('day_of_week', flat=True))
+
+        # Добавляем новые дни
+        for day in new_days - existing_days:
+            HabitSchedule.objects.create(habit=habit, day_of_week=day)
+
+        # Удаляем старые дни, которых больше нет
+        habit.schedule.filter(day_of_week__in=existing_days - new_days).delete()
 
         return JsonResponse({'status': 'success', 'habit': _habit_summary(habit)})
     except Exception as e:
         return JsonResponse({'status': 'error', 'message': str(e)}, status=400)
-
 
 @login_required
 def get_habit(request, id):
@@ -486,6 +493,7 @@ def _habit_full(habit):
         'days_goal': habit.days_goal,
         'reminder': habit.reminder,
         'repeat_days': list(habit.schedule.values_list('day_of_week', flat=True)),
+        'schedule_days': [s.day_of_week for s in habit.schedule.all()],
     }
 
 
