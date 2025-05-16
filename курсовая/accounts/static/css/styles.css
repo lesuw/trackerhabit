@@ -26,6 +26,7 @@ nav {
     justify-content: space-between;
     align-items: center;
     height: 4rem;
+    gap: 2rem;
 }
 
 .logo {
@@ -79,7 +80,7 @@ nav {
 
 /* Стили для основной области */
 main {
-    max-width: 56rem;
+    max-width: 70rem;
     margin: 2.5rem auto 0;
     padding: 0 1rem;
 }
@@ -121,6 +122,7 @@ h1 {
     display: flex;
     flex-direction: column;
     gap: 2.5rem;
+    justify-content: center;
 }
 
 @media (min-width: 768px) {
@@ -133,7 +135,7 @@ h1 {
 .cards-column {
     display: flex;
     flex-direction: column;
-    flex: 1;
+
     gap: 1.5rem;
 }
 
@@ -272,7 +274,7 @@ h1 {
 }
 
 .bad-habits h2 {
-    color: #ff6b6b;
+    color: #E546A6;
 }
 
 .good-habits h2 {
@@ -328,7 +330,7 @@ h1 {
 }
 
 .bad-effect {
-    background-color: #FFE5E5;
+    background-color: #f3dbea;
 }
 
 .good-effect {
@@ -591,4 +593,423 @@ footer a:hover {
 .recent-achievement small {
     font-size: 0.75rem;
     color: #64748b;
+}
+
+/* Календарь - основной контейнер */
+.lg\\:w-3\\/4 > .bg-white {
+  border-radius: 1rem;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  padding: 2rem;
+}
+
+/* Заголовок месяца */
+.text-2xl.font-bold.text-gray-800 {
+  font-size: 2rem;
+  color: #2c3e50;
+  letter-spacing: 0.05em;
+}
+
+/* Кнопки навигации */
+.flex.gap-2 > a {
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+  border-radius: 0.75rem;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  user-select: none;
+  box-shadow: 0 2px 6px rgba(79,70,229,0.2);
+  color: #4f46e5;
+}
+
+.flex.gap-2 > a.bg-gray-100 {
+  background-color: #f0f0f7;
+}
+
+.flex.gap-2 > a.bg-gray-100:hover {
+  background-color: #e4e4f3;
+}
+
+.flex.gap-2 > a.bg-blue-100 {
+  background-color: #e0e7ff;
+  color: #3730a3;
+}
+
+.flex.gap-2 > a.bg-blue-100:hover {
+  background-color: #c7d2fe;
+  color: #1e40af;
+}
+
+/* Дни недели */
+.grid.grid-cols-7.gap-2.mb-4 > div {
+  font-weight: 700;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  user-select: none;
+}
+
+/* Ячейки дней */
+.grid.grid-cols-7.gap-2.mb-2 > div {
+  border-radius: 0.75rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  transition: box-shadow 0.3s ease, transform 0.2s ease;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0.5rem 0.75rem;
+  height: 70px;
+  background-color: white;
+  border: 1px solid transparent;
+}
+
+.grid.grid-cols-7.gap-2.mb-2 > div:hover {
+  box-shadow: 0 8px 20px rgba(79,70,229,0.15);
+  transform: translateY(-3px);
+  border-color: #6366f1; /* indigo-500 */
+}
+
+.bg-gray-50.text-gray-400 {
+  background-color: #f9fafb;
+  color: #9ca3af;
+  cursor: default;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+.ring-2.ring-blue-500 {
+  box-shadow: 0 0 0 3px #6366f1 !important;
+}
+
+/* Число дня */
+.flex.justify-between > span.text-sm.font-medium {
+  font-weight: 700;
+  color: #374151;
+  font-size: 1rem;
+}
+
+/* Кнопка добавления привычки */
+.flex.justify-between > button.text-xs.text-blue-500 {
+  background: none;
+  border: none;
+  font-weight: 700;
+  font-size: 1.2rem;
+  line-height: 1;
+  color: #4f46e5;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.flex.justify-between > button.text-xs.text-blue-500:hover {
+  color: #3730a3;
+}
+
+/* Хабиты в ячейках */
+.mt-1.flex.flex-wrap.gap-1 > span {
+  padding: 0.1rem 0.4rem;
+  border-radius: 9999px;
+  font-size: 0.65rem;
+  font-weight: 600;
+  white-space: nowrap;
+  box-shadow: 0 1px 3px rgb(0 0 0 / 0.1);
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Цветовые классы для привычек */
+.px-1.py-0\\.5.rounded.text-xs.bg-blue {
+  background-color: #bfdbfe;
+  color: #1e3a8a;
+}
+
+.px-1.py-0\\.5.rounded.text-xs.bg-green {
+  background-color: #bbf7d0;
+  color: #166534;
+}
+
+.px-1.py-0\\.5.rounded.text-xs.bg-yellow {
+  background-color: #fef08a;
+  color: #854d0e;
+}
+
+.px-1.py-0\\.5.rounded.text-xs.bg-red {
+  background-color: #fecaca;
+  color: #991b1b;
+}
+
+.px-1.py-0\\.5.rounded.text-xs.bg-purple {
+  background-color: #e9d5ff;
+  color: #6b21a8;
+}
+
+/* Скроллбар для привычек (если много) */
+.mt-1.flex.flex-wrap.gap-1 {
+  max-height: 2.5rem;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #a5b4fc transparent;
+}
+
+.mt-1.flex.flex-wrap.gap-1::-webkit-scrollbar {
+  height: 6px;
+}
+
+.mt-1.flex.flex-wrap.gap-1::-webkit-scrollbar-thumb {
+  background-color: #a5b4fc;
+  border-radius: 3px;
+}
+
+.mt-1.flex.flex-wrap.gap-1::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.grid.grid-cols-7.gap-2.mb-2 > div {
+  position: relative;
+  border-radius: 0.75rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  transition: box-shadow 0.3s ease, transform 0.2s ease;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0.5rem 0.75rem;
+  background-color: white;
+  border: 1px solid transparent;
+
+  aspect-ratio: 1 / 1; /* гарантирует квадрат */
+  height: auto; /* высота определяется шириной */
+}
+
+@supports not (aspect-ratio: 1 / 1) {
+  /* fallback если браузер не поддерживает aspect-ratio */
+  .grid.grid-cols-7.gap-2.mb-2 > div {
+    height: 0;
+    padding-bottom: 100%; /* квадрат */
+  }
+}
+
+.grid-cols-7 {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0.5rem;
+}
+
+/* Компактная ячейка */
+.day-box {
+  aspect-ratio: 1 / 1;
+  border-radius: 0.5rem;
+  background-color: #fff;
+  border: 1px solid #e5e7eb;
+  padding: 0.35rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+}
+
+.day-box:hover {
+  border-color: #6366f1;
+  box-shadow: 0 2px 4px rgba(99, 102, 241, 0.15);
+  transform: translateY(-2px);
+}
+
+/* Неактивные дни (не из этого месяца) */
+.day-disabled {
+  background-color: #f3f4f6;
+  color: #9ca3af;
+  border-style: dashed;
+  pointer-events: none;
+}
+
+.today-ring {
+  outline: 2px solid #3b82f6;
+  outline-offset: -2px;
+}
+
+/* Верх: число и кнопка */
+.day-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.day-header button {
+  background: none;
+  border: none;
+  color: #4f46e5;
+  font-size: 1rem;
+  padding: 0;
+  line-height: 1;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.day-header button:hover {
+  color: #4338ca;
+}
+
+/* Нижняя часть: точки привычек */
+.habit-dots {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  margin-top: 0.25rem;
+}
+
+.habit-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 9999px;
+  background-color: #d1d5db;
+}
+
+/* Цвета для привычек */
+.bg-blue  { background-color: #3b82f6; }
+.bg-green { background-color: #10b981; }
+.bg-yellow{ background-color: #facc15; }
+.bg-red   { background-color: #ef4444; }
+.bg-purple{ background-color: #8b5cf6; }
+
+/* Сетка недель */
+.week-row {
+  margin-bottom: 0.5rem;
+}
+
+/* Названия дней недели */
+.weekday-labels {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #6b7280;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  user-select: none;
+  margin-bottom: 0.75rem;
+}
+
+/* Обертка всего календаря */
+.calendar-container {
+  background: white;
+  border-radius: 1rem;
+  padding: 2rem;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+}
+
+/* Бургер по умолчанию скрыт */
+/* Бургер-кнопка */
+.burger-btn {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  color: #4f46e5;
+  cursor: pointer;
+  padding: 0.25rem;
+  border-radius: 0.5rem;
+  transition: background-color 0.2s;
+}
+
+.burger-btn:hover {
+  background-color: #f3f4f6;
+}
+
+/* Выпадающее меню */
+#mobileMenu {
+  position: absolute;
+  top: 4rem;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 100%;
+  background-color: #ffffff;
+  border-radius: 0 0 1rem 1rem;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(-10px);
+  pointer-events: none;
+  transition: all 0.3s ease;
+  z-index: 999;
+}
+
+/* Активное состояние */
+#mobileMenu.show {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* Стили ссылок */
+#mobileMenu a {
+  display: block;
+  padding: 0.75rem 1.5rem;
+  text-align: left;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #374151;
+  border-bottom: 1px solid #f3f4f6;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+#mobileMenu a:last-child {
+  border-bottom: none;
+}
+
+#mobileMenu a:hover {
+  background-color: #f9fafb;
+  color: #4f46e5;
+}
+
+/* Логика отображения на мобилках */
+@media (max-width: 768px) {
+  .desktop-nav {
+    display: none !important;
+  }
+
+  .burger-btn {
+    display: block;
+  }
+}
+
+@media (min-width: 769px) {
+  #mobileMenu {
+    display: none !important;
+  }
+}
+
+#mobileMenu .logout-btn {
+  padding: 0.9rem 1rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #E546A6;
+  background-color: transparent;
+
+  border-radius: 0.5rem;
+  margin-top: 0.3rem;
+  text-align: center;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+#mobileMenu .logout-btn:hover {
+  background-color: #E546A6;
+  color: white;
+}
+
+.py-12 {
+  padding-top: 0rem !important;
+  padding-bottom: 17rem !important;
+}
+
+.py-13 {
+  padding-top: 3rem !important;
+  padding-bottom: 3rem !important;
 }
