@@ -569,10 +569,32 @@ def calendar_view(request):
 
     # Добавляем дни текущего месяца
     while current_date <= last_date:
-        day_of_week = current_date.weekday()  # 0 = Пн, ..., 6 = Вс
+        day_of_week = current_date.weekday()
 
-        # Привычки на нужный день недели
-        day_habits = [habit for habit in habits if any(schedule.day_of_week == day_of_week for schedule in habit.schedule.all())]
+        # Фильтруем привычки по дате создания и по дате в пределах days_goal
+        day_habits = []
+        for habit in habits:
+            # Проверяем, что привычка запланирована на этот день недели
+            if any(schedule.day_of_week == day_of_week for schedule in habit.schedule.all()):
+                # Привычка должна быть создана до этого дня
+                if habit.created_at and habit.created_at.date() <= current_date:
+                    # Проверяем, не вышли ли за цель по дням (days_goal)
+                    # Собираем все даты, когда привычка должна выполняться, начиная с created_at
+                    scheduled_days = sorted([s.day_of_week for s in habit.schedule.all()])
+                    # Считаем, сколько таких дней прошло с created_at до current_date включительно
+                    # Для этого перебираем даты с created_at, выбираем только подходящие дни недели,
+                    # считаем, сколько таких дней не превышает days_goal
+
+                    # Считаем количество запланированных дней от created_at до current_date
+                    count_days = 0
+                    check_date = habit.created_at.date()
+                    while check_date <= current_date:
+                        if check_date.weekday() in scheduled_days:
+                            count_days += 1
+                        check_date += timedelta(days=1)
+
+                    if count_days <= habit.days_goal:
+                        day_habits.append(habit)
 
         calendar_days.append({
             'date': current_date,
