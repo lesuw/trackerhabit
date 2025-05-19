@@ -2,21 +2,38 @@
 {% load static %}
 
 {% block content %}
+<style>
+  element.style {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 2rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+</style>
 <main class="main">
-  <div class="content-container" style="flex-direction: column; align-items: center; gap: 0.25rem; margin-top: 0rem;">
+  <div class="content-container" style="display: flex; align-items: center; justify-content: center; gap: 2rem; margin-top: 2rem; flex-wrap: wrap;">
 
-    <!-- Иконка -->
-    <div class="logo-wrapper">
-      <svg xmlns="http://www.w3.org/2000/svg" class="icon-check" fill="none" viewBox="0 0 24 24" stroke="#4f46e5" width="64" height="64">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-      </svg>
+    <!-- Левая часть — текст и иконка -->
+    <div style="display: flex; flex-direction: column; align-items: center; max-width: 500px;">
+      <!-- Иконка -->
+      <div class="logo-wrapper">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon-check" fill="none" viewBox="0 0 24 24" stroke="#4f46e5" width="64" height="64">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+      </div>
+
+      <!-- Заголовок -->
+      <h1 class="welcome-title" style="font-size: 2.25rem; font-weight: 900; text-align: center; color: #1f2937;">Добро пожаловать в Трекер Привычек</h1>
+      <p class="welcome-subtitle" style="font-size: 1.125rem; color: #4b5563; text-align: center;">Отслеживайте свои привычки и достигайте целей</p>
     </div>
 
-    <!-- Заголовок -->
-    <h1 class="welcome-title" style="font-size: 2.25rem; font-weight: 900; text-align: center; color: #1f2937;">Добро пожаловать в Трекер Привычек</h1>
-    <p class="welcome-subtitle" style="font-size: 1.125rem; color: #4b5563; text-align: center;">Отслеживайте свои привычки и достигайте целей</p>
-
+    <!-- Правая часть — изображение по ссылке -->
+    <div style="max-width: 400px;">
+      <img src="https://psv4.userapi.com/s/v1/d/HF6YK9gc9fwBCsbaYB_O5nWdCn2QvUjl-iynn5xK1Cq33HMJFx2aLDSBlQxNf1iI_kvt2TmgfdasulBNlFm4UwVD6Ym7pQBvEicLd8XJWmgjcV89laejCw/ChatGPT_Image_3_maya_2025_g__12_57_22.png" alt="Йога" style="width: 1000%; height: 100%; border-radius: 3rem;">
+    </div>
 
   </div>
 </main>
+
 {% endblock %}

@@ -1,38 +1,8 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    {% load static %}
-    <meta charset="UTF-8">
-    <title>Привычки | Трекер Привычек</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+{% extends 'base.html' %}
+{% load static %}
+{% load habits_filters %}
 
-</head>
-<body class="bg-gray-50 text-gray-800 font-sans">
-    <!-- Навигационная панель -->
-    <header class="bg-white shadow sticky top-0 z-50">
-        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
-                <div class="flex items-center space-x-4">
-                    <a href="/" class="text-xl font-bold text-indigo-600 hover:text-indigo-800 transition">HabitHub</a>
-                    <a href="/habits" class="text-gray-700 hover:text-indigo-600 transition font-medium">Привычки</a>
-                    <a href="/calendar" class="text-gray-700 hover:text-indigo-600 transition font-medium">Календарь</a>
-                    <a href="/forum" class="text-gray-700 hover:text-indigo-600 transition font-medium">Форум</a>
-                    <a href="/faq" class="text-gray-700 hover:text-indigo-600 transition font-medium">Заметки</a>
-                    <a href="/achievements" class="text-gray-700 hover:text-indigo-600 transition font-medium">Достижения</a>
-                    <a href="/tracker" class="text-gray-700 hover:text-indigo-600 transition font-medium">Статистика</a>
-                </div>
-                <div class="flex items-center space-x-4">
-                    <a href="/profile" class="text-gray-700 hover:text-indigo-600 transition">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                        </svg>
-                    </a>
-                </div>
-            </div>
-        </nav>
-    </header>
-
-    <!-- Основной контент -->
+{% block content %}
     <main class="max-w-7xl mx-auto mt-10 px-4 pb-10 flex flex-col md:flex-row gap-6">
         <!-- Левая часть - календарь и привычки на день -->
         <div class="md:w-2/3">
@@ -187,4 +157,4 @@
 
     <script src="{% static 'js/scripts_add_habits.js' %}"></script>
 </body>
-</html>
+{% endblock %}
