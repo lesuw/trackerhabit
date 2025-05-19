@@ -1,3 +1,4 @@
+from django.core.cache import cache
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST, require_http_methods
@@ -22,11 +23,22 @@ from datetime import timedelta
 import json
 
 
-
 @login_required
 def notes(request):
+    # Определяем активную вкладку
+    active_tab = request.GET.get('tab', 'all')
+
     # Фильтрация заметок
-    entries = MoodEntry.objects.filter(user=request.user)
+    if active_tab == 'favorites':
+        # Используем кэширование для избранных заметок
+        cache_key = f"favorite_notes_{request.user.id}"
+        entries = cache.get(cache_key)
+
+        if entries is None:
+            entries = MoodEntry.objects.filter(user=request.user, is_favorite=True)
+            cache.set(cache_key, entries, 60 * 15)  # Кэшируем на 15 минут
+    else:
+        entries = MoodEntry.objects.filter(user=request.user)
 
     # Применение фильтров
     mood_filter = request.GET.get('mood')
@@ -54,6 +66,7 @@ def notes(request):
         'page_obj': page_obj,
         'mood_filter': mood_filter,
         'date_filter': date_filter,
+        'active_tab': active_tab,
     })
 
 
@@ -105,6 +118,22 @@ def handle_note_ajax(request):
                 'message': 'Заметка удалена'
             })
 
+        elif action == 'toggle_favorite':
+            entry_id = data.get('entry_id')
+            entry = get_object_or_404(MoodEntry, id=entry_id, user=request.user)
+            entry.is_favorite = not entry.is_favorite
+            entry.save()
+
+            # Инвалидация кэша
+            cache_key = f"favorite_notes_{request.user.id}"
+            cache.delete(cache_key)
+
+            return JsonResponse({
+                'status': 'success',
+                'message': 'Избранное обновлено',
+                'is_favorite': entry.is_favorite
+            })
+
     except Exception as e:
         return JsonResponse({
             'status': 'error',
@@ -120,6 +149,7 @@ def serialize_note(entry):
         'notes': entry.notes,
         'date': entry.date.strftime("%d.%m.%Y %H:%M"),
         'last_edited': entry.last_edited.strftime("%d.%m.%Y %H:%M") if entry.last_edited else None,
+        'is_favorite': entry.is_favorite,
     }
 
 

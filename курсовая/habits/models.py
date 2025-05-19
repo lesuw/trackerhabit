@@ -4,6 +4,7 @@ from accounts.models import User
 from django.utils import timezone
 from django.core.exceptions import ValidationError
 from datetime import timedelta
+from django.core.cache import cache
 
 class Habit(models.Model):
     CATEGORY_CHOICES = [
@@ -171,6 +172,7 @@ class HabitCompletion(models.Model):
     def __str__(self):
         return f"{self.habit.name} - {self.date} ({'Completed' if self.completed else 'Not completed'})"
 
+
 class MoodEntry(models.Model):
     MOOD_CHOICES = [
         ('ecstatic', 'Отлично'),
@@ -193,6 +195,7 @@ class MoodEntry(models.Model):
     last_edited = models.DateTimeField(null=True, blank=True)
     mood = models.CharField(max_length=10, choices=MOOD_CHOICES)
     notes = models.TextField()
+    is_favorite = models.BooleanField(default=False)  # Новое поле для избранных заметок
 
     class Meta:
         ordering = ['-date']
@@ -204,7 +207,18 @@ class MoodEntry(models.Model):
     def save(self, *args, **kwargs):
         if self.pk:
             self.last_edited = timezone.now()
+
+        # Инвалидация кэша при сохранении
+        cache_key = f"favorite_notes_{self.user.id}"
+        cache.delete(cache_key)
+
         super().save(*args, **kwargs)
+
+    def delete(self, *args, **kwargs):
+        # Инвалидация кэша при удалении
+        cache_key = f"favorite_notes_{self.user.id}"
+        cache.delete(cache_key)
+        super().delete(*args, **kwargs)
 
     def get_emoji_url(self):
         return self.MOOD_EMOJI_URLS.get(self.mood, '')

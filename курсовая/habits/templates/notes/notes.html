@@ -372,6 +372,47 @@
             margin-top: 1.5rem;
         }
 
+        /* Стили для вкладок */
+        .tabs-container {
+            display: flex;
+            border-bottom: 1px solid #e5e7eb;
+            margin-bottom: 1.5rem;
+        }
+
+        .tab {
+            padding: 0.75rem 1.5rem;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s;
+            font-weight: 500;
+            color: #6b7280;
+        }
+
+        .tab:hover {
+            color: #4f46e5;
+        }
+
+        .tab.active {
+            color: #4f46e5;
+            border-bottom-color: #4f46e5;
+        }
+
+        /* Стиль для звездочки избранного */
+        .favorite-star {
+            cursor: pointer;
+            color: #d1d5db;
+            transition: all 0.2s;
+            margin-left: 0.5rem;
+        }
+
+        .favorite-star.active {
+            color: #f59e0b;
+        }
+
+        .favorite-star:hover {
+            transform: scale(1.2);
+        }
+
         /* Адаптивность */
         @media (max-width: 640px) {
             .mood-selector {
@@ -385,6 +426,15 @@
             .mood-emoji {
                 width: 36px;
                 height: 36px;
+            }
+
+            .tabs-container {
+                justify-content: space-between;
+            }
+
+            .tab {
+                padding: 0.5rem 0.75rem;
+                font-size: 0.875rem;
             }
         }
 
@@ -484,6 +534,8 @@
             <div class="filters-container">
                 <h3>Фильтры заметок</h3>
                 <form method="get" id="filter-form">
+                    <input type="hidden" name="tab" value="{{ active_tab }}">
+
                     <div class="filter-group">
                         <label>Какое у вас настроение?</label>
                         <div class="filter-controls">
@@ -579,7 +631,16 @@
 
         <!-- Список заметок -->
         <div class="mood-section">
-            <h2 class="section-title">Мои заметки</h2>
+            <div class="tabs-container">
+                <a href="?tab=all{% if request.GET.mood %}&mood={{ request.GET.mood }}{% endif %}{% if request.GET.date %}&date={{ request.GET.date }}{% endif %}"
+                   class="tab {% if active_tab == 'all' %}active{% endif %}">
+                    Все заметки
+                </a>
+                <a href="?tab=favorites{% if request.GET.mood %}&mood={{ request.GET.mood }}{% endif %}{% if request.GET.date %}&date={{ request.GET.date }}{% endif %}"
+                   class="tab {% if active_tab == 'favorites' %}active{% endif %}">
+                    Избранные
+                </a>
+            </div>
 
             <div class="notes-list">
                 {% for entry in page_obj %}
@@ -608,6 +669,10 @@
                                     <img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f620.svg" alt="Ужасно" class="mood-emoji-sm">
                                 {% endif %}
                                 <span>{{ entry.get_mood_display }}</span>
+                                <i class="material-icons favorite-star {% if entry.is_favorite %}active{% endif %}"
+                                   onclick="toggleFavorite({{ entry.id }}, this)">
+                                    star
+                                </i>
                             </div>
                         </div>
 
@@ -673,7 +738,7 @@
                 <div class="empty-state">
                     <img src="{% static 'images/empty-notes.svg' %}" alt="Нет записей" width="200">
                     <h3>У вас пока нет записей</h3>
-                    <p>Добавьте первую заметку, чтобы отслеживать свои успехи и настроение</p>
+                    <p>{% if active_tab == 'favorites' %}У вас пока нет избранных заметок{% else %}Добавьте первую заметку, чтобы отслеживать свои успехи и настроение{% endif %}</p>
                 </div>
                 {% endfor %}
 
@@ -681,10 +746,10 @@
                 {% if page_obj.paginator.num_pages > 1 %}
                 <div class="pagination">
                     {% if page_obj.has_previous %}
-                        <a href="?page=1{% if request.GET.mood %}&mood={{ request.GET.mood }}{% endif %}{% if request.GET.date %}&date={{ request.GET.date }}{% endif %}">
+                        <a href="?tab={{ active_tab }}&page=1{% if request.GET.mood %}&mood={{ request.GET.mood }}{% endif %}{% if request.GET.date %}&date={{ request.GET.date }}{% endif %}">
                             <i class="material-icons">first_page</i>
                         </a>
-                        <a href="?page={{ page_obj.previous_page_number }}{% if request.GET.mood %}&mood={{ request.GET.mood }}{% endif %}{% if request.GET.date %}&date={{ request.GET.date }}{% endif %}">
+                        <a href="?tab={{ active_tab }}&page={{ page_obj.previous_page_number }}{% if request.GET.mood %}&mood={{ request.GET.mood }}{% endif %}{% if request.GET.date %}&date={{ request.GET.date }}{% endif %}">
                             <i class="material-icons">chevron_left</i>
                         </a>
                     {% endif %}
@@ -694,10 +759,10 @@
                     </span>
 
                     {% if page_obj.has_next %}
-                        <a href="?page={{ page_obj.next_page_number }}{% if request.GET.mood %}&mood={{ request.GET.mood }}{% endif %}{% if request.GET.date %}&date={{ request.GET.date }}{% endif %}">
+                        <a href="?tab={{ active_tab }}&page={{ page_obj.next_page_number }}{% if request.GET.mood %}&mood={{ request.GET.mood }}{% endif %}{% if request.GET.date %}&date={{ request.GET.date }}{% endif %}">
                             <i class="material-icons">chevron_right</i>
                         </a>
-                        <a href="?page={{ page_obj.paginator.num_pages }}{% if request.GET.mood %}&mood={{ request.GET.mood }}{% endif %}{% if request.GET.date %}&date={{ request.GET.date }}{% endif %}">
+                        <a href="?tab={{ active_tab }}&page={{ page_obj.paginator.num_pages }}{% if request.GET.mood %}&mood={{ request.GET.mood }}{% endif %}{% if request.GET.date %}&date={{ request.GET.date }}{% endif %}">
                             <i class="material-icons">last_page</i>
                         </a>
                     {% endif %}
@@ -761,7 +826,7 @@
         }
 
         function resetFilters() {
-            window.location.href = "{% url 'notes' %}";
+            window.location.href = "{% url 'notes' %}?tab={{ active_tab }}";
         }
 
         // Редактирование заметки
@@ -796,6 +861,8 @@
         // Обработка отправки форм
         function handleFormSubmit(form, successCallback) {
             const formData = new FormData(form);
+            const activeTab = new URLSearchParams(window.location.search).get('tab') || 'all';
+            formData.append('tab', activeTab);
 
             fetch(window.location.href, {
                 method: 'POST',
@@ -892,6 +959,35 @@
                 }
             });
         });
+
+        // Функция для переключения избранного статуса
+        function toggleFavorite(noteId, starElement) {
+            const formData = new FormData();
+            formData.append('action', 'toggle_favorite');
+            formData.append('entry_id', noteId);
+            formData.append('csrfmiddlewaretoken', document.querySelector('input[name="csrfmiddlewaretoken"]').value);
+
+            fetch(window.location.href, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    starElement.classList.toggle('active', data.is_favorite);
+                    showToast(data.is_favorite ? 'Заметка добавлена в избранное' : 'Заметка удалена из избранного', 'success');
+                } else {
+                    showToast('Произошла ошибка', 'error');
+                }
+            })
+            .catch(error => {
+                showToast('Произошла ошибка при обновлении избранного', 'error');
+                console.error('Error:', error);
+            });
+        }
 
         // Функция для показа уведомлений
         function showToast(message, type = 'success') {
