@@ -1,4 +1,6 @@
 import logging
+
+from django.urls import reverse
 from django.utils import timezone
 from datetime import timedelta
 from django.conf import settings
@@ -9,9 +11,10 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 from django.core.mail import send_mail
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import JsonResponse
-
+from django.http import HttpResponseRedirect
 import random
-
+import jwt
+from datetime import datetime, timedelta
 from django_project.settings import DEBUG_EMAIL_MODE
 from .forms import (
     RegisterForm, LoginForm, VerificationForm,
@@ -19,6 +22,7 @@ from .forms import (
     PasswordChangeForm
 )
 from .models import Achievement
+
 
 User = get_user_model()
 
@@ -114,6 +118,10 @@ def register_view(request):
 
     return render(request, 'accounts/register.html', {'form': form})
 
+
+
+
+
 @user_passes_test(anonymous_required, login_url='home')
 def login_view(request):
     if request.method == 'POST':
@@ -121,6 +129,7 @@ def login_view(request):
         if form.is_valid():
             username = form.cleaned_data['username']
             password = form.cleaned_data['password']
+            remember_me = form.cleaned_data.get('remember_me', False)
             user = authenticate(request, username=username, password=password)
 
             if user is not None:
@@ -130,7 +139,19 @@ def login_view(request):
 
                 if send_verification_email(user.email, user.verification_code):
                     request.session['user_id'] = user.id
-                    return redirect('verify')
+                    response = HttpResponseRedirect(reverse('verify'))
+
+                    if remember_me:
+                        token = generate_jwt(user)
+                        response.set_cookie(
+                            'remember_token',
+                            token,
+                            max_age=30 * 24 * 60 * 60,
+                            httponly=True,
+                            secure=not settings.DEBUG,
+                            samesite='Lax'
+                        )
+                    return response
                 else:
                     messages.error(request, 'Не удалось отправить код подтверждения. Пожалуйста, попробуйте позже.')
                     return redirect('login')
@@ -140,6 +161,16 @@ def login_view(request):
         form = LoginForm()
 
     return render(request, 'accounts/login.html', {'form': form})
+
+
+def generate_jwt(user):
+    """Генерация JWT-токена для пользователя."""
+    payload = {
+        'user_id': user.id,
+        'exp': datetime.utcnow() + timedelta(days=30)
+    }
+    return jwt.encode(payload, settings.SECRET_KEY, algorithm='HS256')
+
 
 def resend_code(request):
     user_id = request.session.get('user_id')
@@ -241,8 +272,10 @@ def verify_view(request):
         return redirect('login')
 
 def logout_view(request):
+    response = redirect('home')
+    response.delete_cookie('remember_token')
     logout(request)
-    return redirect('home')
+    return response
 
 @user_passes_test(anonymous_required, login_url='home')
 def forgot_password(request):
