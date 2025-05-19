@@ -223,22 +223,28 @@ function addCompletionHandlers() {
     `;
 
     // Кнопка выполнения (только если showCompletion=true)
-    const completionSection = showCompletion ? `
-    <div class="flex flex-col items-end">
-        <form class="habit-completion-form" data-habit-id="${habit.id}">
-            <button type="submit" class="${
-                habit.is_completed_today ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-800'
-            } text-xs px-3 py-1 rounded-full transition">
-                ${habit.is_completed_today ? '✓ Выполнено' : 'Отметить'}
-            </button>
-        </form>
-        <div class="mt-2 text-xs text-gray-500 progress-text">
-            Прогресс: ${habit.completion_rate || 0}%
-        </div>
-        <div class="w-20 h-1 bg-gray-200 rounded-full mt-1 progress-bar">
-            <div class="h-1 bg-indigo-600 rounded-full progress-bar-fill" style="width: ${habit.completion_rate || 0}%"></div>
-        </div>
+    const today = new Date();
+const selectedDateObj = new Date(selectedDate); // selectedDate должен быть в области видимости!
+
+const isFutureDate = selectedDateObj > today;
+
+const completionSection = showCompletion ? `
+<div class="flex flex-col items-end">
+    <form class="habit-completion-form" data-habit-id="${habit.id}">
+        <button type="submit" class="${
+            habit.is_completed_today ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-800'
+        } text-xs px-3 py-1 rounded-full transition"
+        ${isFutureDate ? 'disabled style="opacity: 0.5; cursor: not-allowed;"' : ''}>
+            ${habit.is_completed_today ? '✓ Выполнено' : 'Отметить'}
+        </button>
+    </form>
+    <div class="mt-2 text-xs text-gray-500 progress-text">
+        Прогресс: ${habit.completion_rate || 0}%
     </div>
+    <div class="w-20 h-1 bg-gray-200 rounded-full mt-1 progress-bar">
+        <div class="h-1 bg-indigo-600 rounded-full progress-bar-fill" style="width: ${habit.completion_rate || 0}%"></div>
+    </div>
+</div>
 ` : '';
 
 

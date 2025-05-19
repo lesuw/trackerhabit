@@ -703,13 +703,15 @@ import logging
 
 logger = logging.getLogger(__name__)
 
+from django.utils import timezone
+
 @require_POST
 @login_required
 def toggle_completion(request, habit_id):
     try:
         habit = Habit.objects.get(id=habit_id, user=request.user)
 
-        date_str = request.POST.get('date')  # 👈 передаваемая дата
+        date_str = request.POST.get('date')
         if not date_str:
             return JsonResponse({'success': False, 'error': 'Missing date parameter'})
 
@@ -718,13 +720,17 @@ def toggle_completion(request, habit_id):
         except ValueError:
             return JsonResponse({'success': False, 'error': 'Invalid date format'})
 
+        today = timezone.now().date()
+
+        # Проверка, чтобы дата не была в будущем
+        if selected_date > today:
+            return JsonResponse({'success': False, 'error': 'Cannot mark habit for a future date'})
+
         day_of_week = selected_date.weekday()
 
+        # Проверка, что привычка запланирована на этот день недели
         if not habit.schedule.filter(day_of_week=day_of_week).exists():
-            return JsonResponse({
-                'success': False,
-                'error': 'Habit is not scheduled for this day'
-            })
+            return JsonResponse({'success': False, 'error': 'Habit is not scheduled for this day'})
 
         completion, created = HabitCompletion.objects.get_or_create(
             habit=habit,
@@ -750,7 +756,6 @@ def toggle_completion(request, habit_id):
         return JsonResponse({'success': False, 'error': 'Habit not found'})
     except Exception as e:
         return JsonResponse({'success': False, 'error': str(e)})
-
 
 #страница трекера привычек
 @login_required
