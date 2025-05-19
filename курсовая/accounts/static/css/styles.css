@@ -80,8 +80,6 @@ nav {
 
 /* Стили для основной области */
 main {
-    max-width: 70rem;
-    margin: 2.5rem auto 0;
     padding: 0 1rem;
 }
 
@@ -1012,4 +1010,29 @@ footer a:hover {
 .py-13 {
   padding-top: 3rem !important;
   padding-bottom: 3rem !important;
+}
+
+@media (min-width: 1024px) {
+    .lg\:w-3\/4 {
+        width: 100% !important;
+    }
+
+    .lg\:w-1\/4 {
+        width: 25% !important;
+    }
+
+    .center-container {
+        display: flex;
+        justify-content: center;
+        gap: 2rem; /* расстояние между блоками */
+        align-items: flex-start;
+    }
+}
+.flex {
+    display: flex;
+    justify-content: center;
+
+    img, video {
+    max-width: 120% !important;
+    height: auto;
 }
