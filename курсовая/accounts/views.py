@@ -354,59 +354,60 @@ def change_password(request):
 
 @login_required
 def achievements_view(request):
-    # Стандартные достижения
+    user = request.user
+
     default_achievements = [
         {
             'title': 'Первый шаг',
             'description': 'Вы успешно зарегистрировались в системе!',
             'icon': '🎉',
-            'condition': lambda user: True  # Всегда true для зарегистрированных
+            'condition': lambda u: True
         },
         {
             'title': 'Стартовый рывок',
             'description': 'Выполнить привычку 5 раз подряд без пропусков',
             'icon': '🚀',
-            'condition': lambda user: hasattr(user, 'habits') and user.habits.filter(streak__gte=1).exists()
+            'condition': lambda u: any(habit.get_current_streak() >= 5 for habit in u.habit_set.all())
         },
         {
             'title': 'Месяц мастерства',
             'description': 'Выполнять привычку 30 дней подряд без пропусков',
             'icon': '🏆',
-            'condition': lambda user: hasattr(user, 'habits') and user.habits.filter(streak__gte=30).exists()
+            'condition': lambda u: any(habit.get_current_streak() >= 30 for habit in u.habit_set.all())
         },
         {
             'title': 'Легендарная серия',
             'description': '100 дней непрерывного выполнения привычки',
             'icon': '🌟',
-            'condition': lambda user: hasattr(user, 'habits') and user.habits.filter(streak__gte=100).exists()
+            'condition': lambda u: any(habit.get_current_streak() >= 100 for habit in u.habit_set.all())
         },
         {
             'title': 'Мультитаскер',
             'description': 'Создать 5 разных привычек',
             'icon': '🌀',
-            'condition': lambda user: hasattr(user, 'habits') and user.habits.count() >= 5
+            'condition': lambda u: u.habit_set.count() >= 5
         },
         {
             'title': 'Перфекционист',
             'description': 'Выполнить привычку идеально 7 дней подряд',
             'icon': '✨',
-            'condition': lambda user: hasattr(user, 'habits') and user.habits.filter(perfect_streak__gte=7).exists()
+            # Предполагается, что у модели Habit есть поле или метод perfect_streak
+            'condition': lambda u: any(getattr(habit, 'perfect_streak', 0) >= 7 for habit in u.habit_set.all())
         },
         {
             'title': 'Неудержимый',
             'description': 'Выполнить привычку в выходной день',
             'icon': '💪',
-            'condition': lambda user: hasattr(user, 'habits') and user.habits.filter(completed_on_weekend=True).exists()
+            # Предполагается, что у модели Habit есть поле или метод completed_on_weekend
+            'condition': lambda u: any(getattr(habit, 'completed_on_weekend', False) for habit in u.habit_set.all())
         },
-
     ]
 
-    # Проверяем и создаем достижения
     for achievement_data in default_achievements:
         try:
-            if achievement_data['condition'](request.user):
+            if achievement_data['condition'](user):
                 Achievement.objects.get_or_create(
-                    user=request.user,
+                    user=user,
                     title=achievement_data['title'],
                     defaults={
                         'description': achievement_data['description'],
@@ -415,19 +416,20 @@ def achievements_view(request):
                     }
                 )
         except Exception as e:
-            print(f"Ошибка при проверке достижения {achievement_data['title']}: {str(e)}")
+            print(f"Ошибка при проверке достижения {achievement_data['title']}: {e}")
             continue
 
-    achievements = request.user.achievements.all().order_by('-achieved_at')
-    unlocked_count = request.user.achievements.filter(is_unlocked=True).count()
+    achievements = user.achievements.all().order_by('-achieved_at')
+    unlocked_count = user.achievements.filter(is_unlocked=True).count()
     total_count = len(default_achievements)
 
     return render(request, 'accounts/achievements.html', {
         'achievements': achievements,
         'unlocked_count': unlocked_count,
         'total_count': total_count,
-        'progress_percentage': (unlocked_count / total_count * 100) if total_count > 0 else 0
+        'progress_percentage': (unlocked_count / total_count * 100) if total_count else 0,
     })
+
 
 
 @user_passes_test(anonymous_required, login_url='home')

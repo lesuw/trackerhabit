@@ -74,9 +74,13 @@ function getCSRFToken() {
             };
 
             dayElement.innerHTML = `
-                <div class="text-sm font-medium">${weekDays[i]}</div>
+                <div class="relative w-full">
+                    <span class="day-label text-sm font-medium">${weekDays[i]}</span>
+                    <span class="indicator absolute top-1 right-1 w-3 h-3 rounded-full bg-indigo-600 opacity-0 transition-opacity"></span>
+                </div>
                 <div class="text-lg ${isSameDay(day, today) ? 'font-bold text-indigo-600' : ''}">${day.getDate()}</div>
             `;
+
 
             calendar.appendChild(dayElement);
         }
@@ -84,6 +88,27 @@ function getCSRFToken() {
         // Обновляем список привычек для выбранного дня
         updateHabitsList();
     }
+    //показ точки рядом с днем недели при добавлении или обновлении привычки
+    function showIndicatorForDay(weekdayIndex) {
+    const calendar = document.getElementById('week-calendar');
+    // Получаем все дни недели (div-элементы внутри календаря)
+    const days = calendar.children;
+
+    if (weekdayIndex < 0 || weekdayIndex > 6) return;
+
+    // В каждом дне ищем элемент .indicator и меняем opacity
+    const indicator = days[weekdayIndex].querySelector('.indicator');
+    if (!indicator) return;
+
+    // Показываем точку
+    indicator.style.opacity = '1';
+
+    // Через 3 секунды скрываем
+    setTimeout(() => {
+        indicator.style.opacity = '0';
+    }, 3000);
+}
+
 
     // Функция выбора даты
     function selectDate(date) {
@@ -430,6 +455,7 @@ function saveHabit() {
         if (data.success) {
             console.log('Привычка сохранена!', data.habit);
 
+
             // Уведомление в зависимости от типа (добавление или редактирование)
             if (isEdit) {
                 showNotification('Привычка успешно отредактирована!', 'edit');
@@ -449,6 +475,12 @@ function saveHabit() {
             addHabitToAllHabitsList(data.habit);
             addHabitToSelectedDayList(data.habit);
             addCompletionHandlers();
+
+            if (data.habit.schedule_days && data.habit.schedule_days.length > 0) {
+                data.habit.schedule_days.forEach(dayIndex => {
+                    showIndicatorForDay(dayIndex);
+                });
+            }
 
             closeModal();
         } else {
