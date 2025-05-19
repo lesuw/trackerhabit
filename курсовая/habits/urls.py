@@ -22,7 +22,7 @@ urlpatterns = [
 #Календарь
     path('calendar/', views.calendar_view, name='calendar'),
     path('day/<int:year>/<int:month>/<int:day>/', views.day_details, name='day_details'),
-    path('toggle-completion/<int:habit_id>/', views.toggle_completion, name='toggle_completion'),
+    path('api/toggle-completion/<int:habit_id>/', views.toggle_completion, name='toggle_completion'),
     path('add-to-calendar/', views.add_habit_to_calendar, name='add_habit_to_calendar'),
 
 #трекер

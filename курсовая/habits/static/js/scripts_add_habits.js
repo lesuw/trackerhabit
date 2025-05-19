@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
+    addCompletionHandlers();
     // Инициализация текущей даты
     const today = new Date();
     let currentDate = new Date();
@@ -67,8 +68,9 @@ function getCSRFToken() {
             const dayElement = document.createElement('div');
             dayElement.className = `flex flex-col items-center p-2 rounded-lg cursor-pointer transition ${isSameDay(day, selectedDate) ? 'bg-indigo-100' : 'hover:bg-gray-100'}`;
             dayElement.onclick = () => {
-                selectDate(day);
-                currentSelectedDay = (today.getDay() + 6) % 7; // Обновляем выбранный день
+                selectedDate = new Date(day);  // ✅ сохраняем выбранную дату
+                currentSelectedDay = (day.getDay() + 6) % 7;  // ✅ используем выбранный день недели
+                renderCalendar(); // перерисовываем календарь, чтобы выделить выбранный день
             };
 
             dayElement.innerHTML = `
@@ -100,8 +102,10 @@ function getCSRFToken() {
  function updateHabitsList() {
     const habitsList = document.getElementById('habits-list');
      const dayOfWeek = (selectedDate.getDay() + 6) % 7;
+     const selectedDateStr = selectedDate.toISOString().slice(0, 10);  // YYYY-MM-DD
 
-    fetch(`/habits/get_by_day/?day=${dayOfWeek}`)
+        fetch(`/habits/get_by_day/?day=${dayOfWeek}&date=${selectedDateStr}`)
+
         .then(response => response.json())
         .then(data => {
             if (data.success) {
@@ -135,14 +139,19 @@ function addCompletionHandlers() {
             e.preventDefault();
             const habitId = this.dataset.habitId;
             const button = this.querySelector('button');
+            const selectedDate = document.getElementById('selected-date')?.value || new Date().toISOString().slice(0, 10); // YYYY-MM-DD
 
-            // Выполняем запрос на сервер
-            fetch(`/toggle-completion/${habitId}/`, {
-                method: 'POST',
+            // Допустим, ты получаешь дату из скрытого input внутри формы
+            const dateInput = this.querySelector('input[name="date"]');
+            const date = dateInput ? dateInput.value : null;
+
+            fetch(`/api/toggle-completion/${habitId}/`, {
+               method: 'POST',
                 headers: {
                     'X-CSRFToken': getCSRFToken(),
-                    'Content-Type': 'application/json',
-                }
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: `date=${encodeURIComponent(selectedDate)}`  // 👈 передаём дату
             })
             .then(response => response.json())
             .then(data => {
@@ -159,8 +168,6 @@ function addCompletionHandlers() {
                         progressBar.style.width = `${data.completion_rate}%`;
                     }
                 }
-
-
             })
             .catch(error => {
                 console.error('Error:', error);
@@ -169,6 +176,7 @@ function addCompletionHandlers() {
         });
     });
 }
+
 
     // Функция загрузки всех привычек пользователя
     function loadAllHabits() {
@@ -233,6 +241,7 @@ function addCompletionHandlers() {
     </div>
 ` : '';
 
+
     const rightSection = `
     <div class="flex flex-col items-end space-y-2">
         ${completionSection}
@@ -272,6 +281,16 @@ function addCompletionHandlers() {
     // Добавляем обработчики событий для кнопок
     element.querySelector('.edit-habit').addEventListener('click', () => editHabit(habit.id));
     element.querySelector('.delete-habit').addEventListener('click', () => deleteHabit(habit.id));
+
+//    if (showCompletion) {
+//    const form = element.querySelector('.habit-completion-form');
+//    if (form) {
+//        form.addEventListener('submit', function(e) {
+//            e.preventDefault();
+//            toggleHabitCompletion(habit.id, form);
+//        });
+//    }
+//}
 
     return element;
 }
@@ -469,33 +488,32 @@ function saveHabit() {
     loadAllHabits();
 
     // Функция для отправки состояния выполнения привычки
-function toggleHabitCompletion(habitId, formElement) {
+function toggleHabitCompletion(habitId, formElement, date = null) {
     const button = formElement.querySelector('button');
     const progressText = formElement.closest('.flex.flex-col').querySelector('.progress-text');
     const progressBar = formElement.closest('.flex.flex-col').querySelector('.progress-bar-fill');
+    const selectedDate = document.getElementById('selected-date')?.value || new Date().toISOString().slice(0, 10); // YYYY-MM-DD
 
-    // Показываем состояние загрузки
     button.disabled = true;
     button.textContent = '...';
 
-    fetch(`/toggle-completion/${habitId}/`, {
+    fetch(`/api/toggle-completion/${habitId}/`, {
         method: 'POST',
-        headers: {
-            'X-CSRFToken': getCSRFToken(),
-            'Content-Type': 'application/json',
-        },
+    headers: {
+        'X-CSRFToken': getCSRFToken(),
+        'Content-Type': 'application/x-www-form-urlencoded',
+    },
+    body: `date=${encodeURIComponent(selectedDate)}`  // 👈 передаём дату<-- дата может быть null (сегодня) или задана вручную
     })
     .then(response => response.json())
     .then(data => {
         if (data.success) {
-            // Обновляем кнопку
             button.disabled = false;
             button.textContent = data.completed ? '✓ Выполнено' : 'Отметить';
             button.className = data.completed
                 ? 'bg-green-100 text-green-800 text-xs px-3 py-1 rounded-full transition'
                 : 'bg-gray-100 text-gray-800 text-xs px-3 py-1 rounded-full transition';
 
-            // Обновляем прогресс
             if (data.completion_rate !== undefined) {
                 progressText.textContent = `Прогресс: ${data.completion_rate}%`;
                 progressBar.style.width = `${data.completion_rate}%`;
@@ -512,9 +530,10 @@ function toggleHabitCompletion(habitId, formElement) {
         console.error('Ошибка:', error);
         showNotification('Произошла ошибка при отметке привычки.');
         button.disabled = false;
-        button.textContent = habit.is_completed_today ? '✓ Выполнено' : 'Отметить';
+        button.textContent = 'Отметить';
     });
 }
+
 
     // Назначение обработчиков событий
     document.getElementById('open-modal').addEventListener('click', openModal);
