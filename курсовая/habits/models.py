@@ -24,7 +24,10 @@ class Habit(models.Model):
         ('bg-pink-100 text-pink-800', 'Розовый'),
     ]
 
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE,
+        null=True,  # <- это разрешает хранить NULL в БД
+        blank=True  # <- это позволяет оставить поле пустым в админке
+    )
     name = models.CharField(max_length=100)
     category = models.CharField(max_length=20, choices=CATEGORY_CHOICES)
     description = models.TextField(blank=True)
@@ -86,8 +89,7 @@ class Habit(models.Model):
         return longest
 
     def get_completion_rate(self):
-        """Возвращает процент выполнения привычки (выполненные дни / цель)"""
-        total_completions = self.completions.count()
+        total_completions = self.completions.filter(completed=True).count()
         return min(100, int((total_completions / self.days_goal) * 100))
 
     def is_completed_today(self):
@@ -96,8 +98,7 @@ class Habit(models.Model):
         return self.completions.filter(date=today).exists()
 
     def is_completed_on(self, date):
-        """Проверка, выполнена ли привычка в указанный день"""
-        return self.completions.filter(date=date).exists()
+        return self.completions.filter(date=date, completed=True).exists()
 
     def mark_as_completed(self):
         """Отмечает привычку как выполненную на сегодня"""
@@ -171,7 +172,6 @@ class HabitCompletion(models.Model):
 
     def __str__(self):
         return f"{self.habit.name} - {self.date} ({'Completed' if self.completed else 'Not completed'})"
-
 
 class MoodEntry(models.Model):
     MOOD_CHOICES = [

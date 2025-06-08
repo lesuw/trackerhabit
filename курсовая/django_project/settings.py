@@ -173,6 +173,6 @@ EMAIL_HOST_PASSWORD = 'jghx auey avxw jjpw'  # Пароль или пароль 
 
 DEFAULT_FROM_EMAIL = 'lestkaby@gmail.com'
 
-DEBUG_EMAIL_MODE = True  # Если True - код выводится в консоль, False - отправляется на почту
+DEBUG_EMAIL_MODE = False  # Если True - код выводится в консоль, False - отправляется на почту
 
 

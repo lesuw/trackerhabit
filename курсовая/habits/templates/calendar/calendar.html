@@ -36,33 +36,33 @@
                 </div>
 
                 {% for week in weeks %}
-                <div class="grid grid-cols-7 gap-2 mb-2">
-                    {% for day in week %}
-                    <div class="aspect-square p-2 rounded-lg border transition-colors
-                              {% if not day.current_month %}bg-gray-50 text-gray-400{% else %}bg-white hover:border-blue-500{% endif %}
-                              {% if day.is_today %}ring-2 ring-blue-500{% endif %}">
-                        <div class="flex justify-between">
-                            <span class="text-sm font-medium">{{ day.date.day }}</span>
-                            {% if day.current_month %}
-                            <button onclick="showAddHabitModal('{{ day.date.isoformat }}')"
-                                    class="text-xs text-blue-500 hover:text-blue-700">
-                                +
-                            </button>
-                            {% endif %}
-                        </div>
-                        {% if day.habits %}
-                            <div class="mt-1 flex flex-wrap gap-1">
-                                {% for habit in day.habits %}
-                                    <span class="px-1 py-0.5 rounded text-xs {{ habit.color_class }}">
-                                        {{ habit.name|truncatechars:5 }}
-                                    </span>
-                                {% endfor %}
-                            </div>
-                        {% endif %}
-                    </div>
-                    {% endfor %}
-                </div>
+<div class="grid grid-cols-7 gap-2 mb-2">
+    {% for day in week %}
+    <div class="aspect-square p-1 rounded-lg border transition-colors flex flex-col  <!-- Добавил flex-col и уменьшил padding -->
+              {% if not day.current_month %}bg-gray-50 text-gray-400{% else %}bg-white hover:border-blue-500{% endif %}
+              {% if day.is_today %}ring-2 ring-blue-500{% endif %}">
+        <div class="flex justify-between items-start">  <!-- Изменил на items-start -->
+            <span class="text-xs font-medium">{{ day.date.day }}</span>  <!-- Уменьшил шрифт -->
+            {% if day.current_month %}
+            <button onclick="showAddHabitModal('{{ day.date.isoformat }}')"
+                    class="text-xs text-blue-500 hover:text-blue-700">
+                +
+            </button>
+            {% endif %}
+        </div>
+        {% if day.habits %}
+            <div class="mt-1 flex flex-wrap gap-1 mt-0 flex-grow items-start">  <!-- Добавил flex-grow и items-start -->
+                {% for habit in day.habits %}
+                    <span class="px-1 py-0.5 rounded text-xs {{ habit.color_class }}">
+                        {{ habit.name|truncatechars:5 }}
+                    </span>
                 {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+    {% endfor %}
+</div>
+{% endfor %}
             </div>
         </div>
         </div>

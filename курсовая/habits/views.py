@@ -343,6 +343,7 @@ def get_habits_by_day(request):
 
     return JsonResponse({'success': True, 'habits': habits_data})
 
+
 # //////////////////////////////////
 @login_required
 @require_POST
@@ -446,59 +447,6 @@ def track_habit(request, pk):
 import logging
 
 logger = logging.getLogger(__name__)
-
-# @require_POST
-# @login_required
-# def toggle_habit_completion(request, habit_id):
-#     habit = get_object_or_404(Habit, id=habit_id, user=request.user)
-#     data = json.loads(request.body)
-#     date_str = data.get('date')
-#
-#     # Логирование входных данных
-#     logger.info(f"Received request to toggle habit completion for habit_id: {habit_id}, date: {date_str}")
-#
-#     if not date_str:
-#         return JsonResponse({'error': 'Date is required'}, status=400)
-#
-#     try:
-#         date = datetime.strptime(date_str, '%Y-%m-%d').date()
-#     except ValueError:
-#         logger.error(f"Invalid date format: {date_str}")
-#         return JsonResponse({'error': 'Invalid date format'}, status=400)
-#
-#     today = timezone.now().date()
-#
-#     # Проверяем, что дата не в будущем
-#     if date > today:
-#         logger.error(f"Attempt to mark habit completion for a future date: {date}")
-#         return JsonResponse({'error': 'Нельзя отмечать привычки в будущем'}, status=400)
-#
-#     # Логика проверки, что привычка запланирована на этот день
-#     if date.weekday() not in [s.day_of_week for s in habit.schedule.all()]:
-#         logger.error(f"Habit not scheduled for the selected day: {date.weekday()}")
-#         return JsonResponse({'error': 'Привычка не запланирована на этот день'}, status=400)
-#
-#     # Попытка получить или создать запись о выполнении привычки
-#     completion, created = HabitCompletion.objects.get_or_create(habit=habit, date=date)
-#
-#     if created:
-#         completed = True
-#     else:
-#         # Если привычка уже была выполнена, то отменяем выполнение
-#         completion.delete()
-#         completed = False
-#
-#     # Логирование результата
-#     logger.info(f"Completion status for habit_id {habit_id} on {date}: {completed}")
-#
-#     return JsonResponse({
-#         'completed': completed,
-#         'completion_rate': habit.get_completion_rate(),
-#         'current_streak': habit.get_current_streak(),
-#         'longest_streak': habit.get_longest_streak(),
-#     })
-
-
 
 # ———————————————————————
 # 🔧 Вспомогательные функции
@@ -757,6 +705,7 @@ logger = logging.getLogger(__name__)
 
 from django.utils import timezone
 
+
 @require_POST
 @login_required
 def toggle_completion(request, habit_id):
@@ -773,41 +722,38 @@ def toggle_completion(request, habit_id):
             return JsonResponse({'success': False, 'error': 'Invalid date format'})
 
         today = timezone.now().date()
-
-        # Проверка, чтобы дата не была в будущем
         if selected_date > today:
-            return JsonResponse({'success': False, 'error': 'Cannot mark habit for a future date'})
+            return JsonResponse({'success': False, 'error': 'Нельзя отмечать в будущем'})
 
-        day_of_week = selected_date.weekday()
-
-        # Проверка, что привычка запланирована на этот день недели
-        if not habit.schedule.filter(day_of_week=day_of_week).exists():
-            return JsonResponse({'success': False, 'error': 'Habit is not scheduled for this day'})
+        if not habit.schedule.filter(day_of_week=selected_date.weekday()).exists():
+            return JsonResponse({'success': False, 'error': 'Привычка не запланирована на этот день'})
 
         completion, created = HabitCompletion.objects.get_or_create(
             habit=habit,
-            date=selected_date,
-            defaults={'completed': True}
+            date=selected_date
         )
 
-        if not created:
-            completion.delete()
-            completed = False
+        # ✅ Явно устанавливаем completed = True при создании
+        if created:
+            completion.completed = True
         else:
-            completed = True
+            completion.completed = not completion.completed
+
+        completion.save()
 
         return JsonResponse({
             'success': True,
-            'completed': completed,
+            'completed': completion.completed,
             'completion_rate': habit.get_completion_rate(),
             'current_streak': habit.get_current_streak(),
             'longest_streak': habit.get_longest_streak()
         })
 
     except Habit.DoesNotExist:
-        return JsonResponse({'success': False, 'error': 'Habit not found'})
+        return JsonResponse({'success': False, 'error': 'Привычка не найдена'})
     except Exception as e:
         return JsonResponse({'success': False, 'error': str(e)})
+
 
 #страница трекера привычек
 @login_required

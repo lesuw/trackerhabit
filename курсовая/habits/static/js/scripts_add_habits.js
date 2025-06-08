@@ -4,7 +4,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const today = new Date();
     let currentDate = new Date();
     let selectedDate = new Date();
-//    let currentSelectedDay = today.getDay(); // 0-6 (0 - воскресенье)
     let currentSelectedDay = (today.getDay() + 6) % 7;
 
 
@@ -24,28 +23,6 @@ function getCSRFToken() {
     return csrfToken ? csrfToken[1] : null;
 }
 
- // Функция для отображения уведомления
-    function showNotification(message) {
-    const notification = document.createElement('div');
-    notification.classList.add(
-        'fixed', 'top-4', 'right-4',
-        'text-white', 'p-4', 'rounded-lg', 'shadow-lg',
-        'transition', 'opacity-0', 'z-50'
-    );
-    notification.style.backgroundColor = '#4F46E5'; // Синий фон
-
-    notification.innerHTML = `<p>${message}</p>`;
-    document.body.appendChild(notification);
-
-    // Плавное появление уведомления
-    setTimeout(() => notification.classList.remove('opacity-0'), 100);
-
-    // Автоматическое скрытие через 3 секунды
-    setTimeout(() => {
-        notification.classList.add('opacity-0');
-        setTimeout(() => notification.remove(), 300); // Удаляем элемент после скрытия
-    }, 3000);
-}
 
 
 
@@ -76,11 +53,10 @@ function getCSRFToken() {
             dayElement.innerHTML = `
                 <div class="relative w-full">
                     <span class="day-label text-sm font-medium">${weekDays[i]}</span>
-                    <span class="indicator absolute top-1 right-1 w-3 h-3 rounded-full bg-indigo-600 opacity-0 transition-opacity"></span>
+                    <span class="indicator absolute top-1 right-1 w-3 h-3 rounded-full bg-[#4F46E5] opacity-0 transition-opacity"></span>
                 </div>
-                <div class="text-lg ${isSameDay(day, today) ? 'font-bold text-indigo-600' : ''}">${day.getDate()}</div>
+                <div class="text-lg ${isSameDay(day, today) ? 'font-bold text-[#4F46E5]' : ''}">${day.getDate()}</div>
             `;
-
 
             calendar.appendChild(dayElement);
         }
@@ -108,7 +84,6 @@ function getCSRFToken() {
         indicator.style.opacity = '0';
     }, 3000);
 }
-
 
     // Функция выбора даты
     function selectDate(date) {
@@ -143,18 +118,21 @@ function getCSRFToken() {
                 } else {
                     habitsList.innerHTML = '';
                     data.habits.forEach(habit => {
-                        // Передаем true для showCompletion
-                        habitsList.appendChild(createHabitElement(habit, false, true));
-                    });
+    habitsList.appendChild(createHabitElement(habit, false, true, selectedDateStr));
+});
+
 
                     // Добавляем обработчики событий для новых элементов
                     addCompletionHandlers();
+
                 }
             }
+
         })
         .catch(error => {
             console.error('Error:', error);
         });
+
 }
 
 // Добавьте эту новую функцию для обработки кнопок выполнения:
@@ -164,19 +142,17 @@ function addCompletionHandlers() {
             e.preventDefault();
             const habitId = this.dataset.habitId;
             const button = this.querySelector('button');
-            const selectedDate = document.getElementById('selected-date')?.value || new Date().toISOString().slice(0, 10); // YYYY-MM-DD
 
-            // Допустим, ты получаешь дату из скрытого input внутри формы
             const dateInput = this.querySelector('input[name="date"]');
-            const date = dateInput ? dateInput.value : null;
+            const date = dateInput ? dateInput.value : new Date().toISOString().slice(0, 10); // fallback to today
 
             fetch(`/api/toggle-completion/${habitId}/`, {
-               method: 'POST',
+                method: 'POST',
                 headers: {
                     'X-CSRFToken': getCSRFToken(),
                     'Content-Type': 'application/x-www-form-urlencoded',
                 },
-                body: `date=${encodeURIComponent(selectedDate)}`  // 👈 передаём дату
+                body: `date=${encodeURIComponent(date)}`
             })
             .then(response => response.json())
             .then(data => {
@@ -196,11 +172,11 @@ function addCompletionHandlers() {
             })
             .catch(error => {
                 console.error('Error:', error);
-                showNotification('Ошибка отметки выполнения', 'error');
             });
         });
     });
 }
+
 
 
     // Функция загрузки всех привычек пользователя
@@ -223,7 +199,7 @@ function addCompletionHandlers() {
 
 
     // Создание элемента привычки (только категория окрашивается)
-    function createHabitElement(habit, showDays = false, showCompletion = false) {
+    function createHabitElement(habit, showDays = false, showCompletion = false, dateStr = null) {
     const element = document.createElement('div');
     element.className = 'p-4 hover:bg-gray-50 transition bg-white border-b';
     element.dataset.habitId = habit.id;
@@ -254,13 +230,14 @@ const selectedDateObj = new Date(selectedDate); // selectedDate должен б�
 const isFutureDate = selectedDateObj > today;
 
 const completionSection = showCompletion ? `
-<div class="flex flex-col items-end">
-    <form class="habit-completion-form" data-habit-id="${habit.id}">
-        <button type="submit" class="${
-            habit.is_completed_today ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-800'
-        } text-xs px-3 py-1 rounded-full transition"
-        ${isFutureDate ? 'disabled style="opacity: 0.5; cursor: not-allowed;"' : ''}>
-            ${habit.is_completed_today ? '✓ Выполнено' : 'Отметить'}
+    <div class="flex flex-col items-end">
+        <form class="habit-completion-form" data-habit-id="${habit.id}">
+            <input type="hidden" name="date" value="${dateStr}">
+            <button type="submit" class="${
+                habit.is_completed_today ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-800'
+            } text-xs px-3 py-1 rounded-full transition"
+            ${isFutureDate ? 'disabled style="opacity: 0.5; cursor: not-allowed;"' : ''}>
+                ${habit.is_completed_today ? '✓ Выполнено' : 'Отметить'}
         </button>
     </form>
     <div class="mt-2 text-xs text-gray-500 progress-text">
@@ -271,6 +248,7 @@ const completionSection = showCompletion ? `
     </div>
 </div>
 ` : '';
+
 
 
     const rightSection = `
@@ -334,10 +312,11 @@ const completionSection = showCompletion ? `
     }
 
     function closeModal() {
-        document.getElementById('modal').classList.add('hidden');
-        document.getElementById('habit-form').reset();
-        document.getElementById('habit-id').value = '';
-    }
+    document.getElementById('modal').classList.add('hidden');
+    document.getElementById('habit-form').reset();
+    document.getElementById('habit-id').value = '';
+    resetDaysSelection(); // Сбрасываем выбор дней
+}
 
     // Функция отображения вариантов цвета
     function renderColorOptions() {
@@ -346,7 +325,7 @@ const completionSection = showCompletion ? `
 
         habitColors.forEach(color => {
             const colorElement = document.createElement('div');
-            colorElement.className = `flex items-center space-x-2 p-2 rounded-lg cursor-pointer hover:bg-gray-100`;
+            colorElement.className = `flex items-center space-x-2 p-2 rounded-lg cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-400`;
             colorElement.onclick = () => selectColor(color.value);
 
             colorElement.innerHTML = `
@@ -415,6 +394,14 @@ function selectColor(colorClass) {
         saveHabit();
     });
 
+function resetDaysSelection() {
+    document.querySelectorAll('input[name="days"]').forEach(input => {
+        input.checked = false;
+        const span = input.nextElementSibling;
+        span.classList.remove('bg-indigo-600', 'text-white');
+    });
+}
+
 
     // Функция сохранения привычки
    // Функция сохранения привычки
@@ -458,10 +445,9 @@ function saveHabit() {
 
             // Уведомление в зависимости от типа (добавление или редактирование)
             if (isEdit) {
-                showNotification('Привычка успешно отредактирована!', 'edit');
                 /////нужно обновление страницв=ы
+
             } else {
-                showNotification('Привычка успешно добавлена!', 'add');
             }
 
             // Обновляем UI
@@ -483,6 +469,7 @@ function saveHabit() {
             }
 
             closeModal();
+            updateHabitsList();
         } else {
             console.error('Ошибка сохранения:', data.error);
         }
@@ -518,7 +505,9 @@ function saveHabit() {
             }
 
             habitsList.appendChild(habitElement);
+
         }
+
     }
 
     // Инициализация
@@ -526,49 +515,53 @@ function saveHabit() {
     loadAllHabits();
 
     // Функция для отправки состояния выполнения привычки
-function toggleHabitCompletion(habitId, formElement, date = null) {
-    const button = formElement.querySelector('button');
-    const progressText = formElement.closest('.flex.flex-col').querySelector('.progress-text');
-    const progressBar = formElement.closest('.flex.flex-col').querySelector('.progress-bar-fill');
-    const selectedDate = document.getElementById('selected-date')?.value || new Date().toISOString().slice(0, 10); // YYYY-MM-DD
+function toggleHabitCompletion(habitId, date) {
+    const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
 
-    button.disabled = true;
-    button.textContent = '...';
-
-    fetch(`/api/toggle-completion/${habitId}/`, {
+    fetch(`/habits/${habitId}/toggle_completion/`, {
         method: 'POST',
-    headers: {
-        'X-CSRFToken': getCSRFToken(),
-        'Content-Type': 'application/x-www-form-urlencoded',
-    },
-    body: `date=${encodeURIComponent(selectedDate)}`  // 👈 передаём дату<-- дата может быть null (сегодня) или задана вручную
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'X-CSRFToken': csrfToken
+        },
+        body: `date=${date}`
     })
     .then(response => response.json())
     .then(data => {
         if (data.success) {
-            button.disabled = false;
-            button.textContent = data.completed ? '✓ Выполнено' : 'Отметить';
-            button.className = data.completed
-                ? 'bg-green-100 text-green-800 text-xs px-3 py-1 rounded-full transition'
-                : 'bg-gray-100 text-gray-800 text-xs px-3 py-1 rounded-full transition';
+            // Обновляем только нужные элементы на странице без перезагрузки
+            const habitElement = document.querySelector(`.habit[data-habit-id="${habitId}"]`);
+            if (habitElement) {
+                // Обновляем статус выполнения
+                const completionElement = habitElement.querySelector('.completion-status');
+                if (completionElement) {
+                    completionElement.textContent = data.completed ? '✓' : '✗';
+                    completionElement.className = `completion-status ${data.completed ? 'completed' : 'not-completed'}`;
+                }
 
-            if (data.completion_rate !== undefined) {
-                progressText.textContent = `Прогресс: ${data.completion_rate}%`;
-                progressBar.style.width = `${data.completion_rate}%`;
+                // Обновляем статистику
+                const completionRateElement = habitElement.querySelector('.completion-rate');
+                if (completionRateElement) {
+                    completionRateElement.textContent = `Выполнение: ${data.completion_rate}%`;
+                }
+
+                const currentStreakElement = habitElement.querySelector('.current-streak');
+                if (currentStreakElement) {
+                    currentStreakElement.textContent = `Текущая серия: ${data.current_streak} дней`;
+                }
+
+                const longestStreakElement = habitElement.querySelector('.longest-streak');
+                if (longestStreakElement) {
+                    longestStreakElement.textContent = `Рекордная серия: ${data.longest_streak} дней`;
+                }
             }
-
-            showNotification(data.completed ? "Привычка выполнена!" : "Привычка отменена!");
         } else {
-            showNotification(data.error || 'Ошибка при отметке привычки');
-            button.disabled = false;
-            button.textContent = data.completed ? '✓ Выполнено' : 'Отметить';
+            alert(data.error || 'Произошла ошибка');
         }
     })
     .catch(error => {
-        console.error('Ошибка:', error);
-        showNotification('Произошла ошибка при отметке привычки.');
-        button.disabled = false;
-        button.textContent = 'Отметить';
+        console.error('Error:', error);
+        alert('Произошла ошибка при обновлении статуса привычки');
     });
 }
 
@@ -679,7 +672,7 @@ function toggleHabitCompletion(habitId, formElement, date = null) {
             console.error('Ошибка при удалении привычки:', error);
         });
     }
-    showNotification('Привычка успешно удалена!', 'success');
+
 };
 
 });
